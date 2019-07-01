@@ -1,0 +1,31 @@
+.deskNav {
+    grid-row: 1 / 2;
+    grid-column: full-start / full-end;
+    position: fixed;
+    background: red;
+    width: 100%;
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.deskNav__list {
+    list-style: none;
+    padding: 0;
+    margin: 0 1.5rem;
+    display: none;
+    width: 30%;
+    background: green;
+    height: 60%;
+}
+
+
+
+@media (min-width: 768px) {
+    .deskNav__list {
+      display: flex;
+    }
+  }
+  
+

@@ -1,0 +1,47 @@
+:root {
+  /* COLOR */ 
+  --color-white : #fff;
+  --color-primary: #3a3665;
+  --color-secondary: #7874ca;
+  --color-grey: #989084;
+}
+
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+
+body {
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.centered {
+  text-align: center;
+}
+
+.flex-centered-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-centered-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+

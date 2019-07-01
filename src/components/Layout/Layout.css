@@ -1,0 +1,13 @@
+.layout {
+    display: grid;
+    grid-template-columns: [full-start] minmax(4rem, 1fr) 
+                                [center-start] 
+                                    repeat(4, [col-start] minmax(min-content, 16rem) [col-end]) 
+                                [center-end]
+                            minmax(4rem, 1fr) [full-end];
+    grid-template-rows: 8rem max-content;
+    grid-auto-rows: max-content;
+    justify-content: center;
+    align-content: center;
+    /*overflow-x: hidden*/
+}                           

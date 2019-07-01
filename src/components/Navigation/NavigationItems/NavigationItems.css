@@ -1,0 +1,45 @@
+.navigationItems {
+    padding: 0 1.5rem;
+    margin: 0 1rem;
+    background: blue;
+    font-size: 1.4rem;
+}
+
+.navigationItems.mobile {
+    font-size: 1.75rem;
+    margin: .5rem 0;
+}
+
+.navigationItems a {
+    text-decoration: none;
+    color: var(--color-white)
+}
+
+.navigationItems a:hover,
+.navigationItems a:active,
+.navigationItems a.active {
+    color: var(--color-primary)
+}
+
+.navigationItems.mobile a {
+    color: #3b0062;
+}
+  
+
+
+.navigationItems button {
+    font: inherit;
+    background: transparent;
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+    padding: 0;
+}
+
+.navigationItems button:hover,
+.navigationItems button:active {
+    color: grey;
+}
+
+
+
