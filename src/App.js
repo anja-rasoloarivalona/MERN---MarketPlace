@@ -2,13 +2,17 @@ import React, { Component, Fragment } from 'react';
 import { Route, Switch} from 'react-router-dom';
 import './App.css';
 
+
+
+/*------Components------------- */
 import Layout from './components/Layout/Layout';
-
-
 import DeskNav from './components/Navigation/DeskNav/DeskNav';
 import MobileNav from './components/Navigation/MobileNav/MobileNav';
 import Backdrop from './components/Backdrop/Backdrop';
+
+/*------------Pages-----------------*/
 import Shop from './Pages/ShopIndex/ShopIndex';
+import AdminAddProduct from './Pages/Admin/AddProduct/AddProduct';
 
 class App extends Component {
 
@@ -64,6 +68,7 @@ class App extends Component {
 
             <Switch>
                 <Route path='/' exact component={Shop}/>
+                <Route path='/admin/add-product' exact component={AdminAddProduct}/>
             </Switch>
         </Layout>
     </Fragment>
