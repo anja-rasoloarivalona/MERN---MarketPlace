@@ -23,7 +23,7 @@ class AddProduct extends Component {
     }
     render() {
         return (
-            <section className='addProduct'>
+            <section className='addProduct flex-centered-row'>
                 <form className='addProduct__form'
                       onSubmit={this.submitFormHandler}>
                     <Input 
@@ -31,7 +31,7 @@ class AddProduct extends Component {
                         label='title'
                         type='text'
                         control='input' //to make sure that it's an input field
-                        required='true'
+                        required={true}
                         value={this.state.postProduct['title'].value}
                         onChange={this.postProductChangeHandler}
                     />
@@ -40,7 +40,7 @@ class AddProduct extends Component {
                         label='price'
                         type='number'
                         control='input' 
-                        required='true'
+                        required={true}
                         value={this.state.postProduct['price'].value}
                         onChange={this.postProductChangeHandler}
                     />
@@ -49,13 +49,13 @@ class AddProduct extends Component {
                         label='description'
                         type='text'
                         control='textarea' 
-                        required='true'
+                        required={true}
                         value={this.state.postProduct['description'].value}
                         onChange={this.postProductChangeHandler}
                     />
 
                     <Button color='primary' type='submit'>
-
+                        SUBMIT
                     </Button>
                 </form>
             </section>
