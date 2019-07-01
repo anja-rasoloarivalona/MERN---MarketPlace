@@ -12,7 +12,7 @@ const product = props => (
             <p>{props.description}</p>
             <div className="product__actions">
             <Button 
-                link
+                link = {props.link}
                 color="primary"
                 to={props.link}>
                     View details
