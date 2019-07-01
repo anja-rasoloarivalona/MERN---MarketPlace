@@ -15,6 +15,10 @@ import Product from '../../components/Product/Product';
         this.loadProductsHandler();
     }
 
+    componentDidUpdate(){
+        this.loadProductsHandler();
+    }
+
     loadProductsHandler = () => {
         fetch('http://localhost:8000')
             .then(res => {
