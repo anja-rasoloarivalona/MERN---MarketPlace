@@ -7,7 +7,8 @@ const button = props => !props.link ?
         <button 
             className={['button', `button--${props.color}`].join(' ')}
             onClick={props.onClick}
-            disabled={props.disabled || props.loading}>
+            disabled={props.disabled || props.loading}
+            type={props.type}>
                 {props.loading ? 'Looading...' : props.children}
         </button>
     ) 
