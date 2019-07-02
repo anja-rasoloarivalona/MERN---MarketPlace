@@ -13,7 +13,7 @@ import Backdrop from './components/Backdrop/Backdrop';
 /*------------Pages-----------------*/
 import Shop from './Pages/ShopIndex/ShopIndex';
 import AdminAddProduct from './Pages/Admin/AddProduct/AddProduct';
-import AdminProducts from './Pages/Admin/AdminProducts/AdminProducts'
+import AdminProducts from './Pages/Admin/AdminProducts/AdminProducts';
 
 class App extends Component {
 
