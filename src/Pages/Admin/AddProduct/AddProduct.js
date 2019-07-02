@@ -75,7 +75,7 @@ class AddProduct extends Component {
         this.confirmSubmitHandler(product)
         this.setState({
             postProduct: POST_PRODUCT //-----reset form----------
-        })    
+        }) 
     }
 
 

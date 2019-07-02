@@ -43,6 +43,7 @@ import Product from '../../components/Product/Product';
             <section className="shop">
                 {this.state.products.map( product => (
                     <Product
+                        shop
                         key={product._id}
                         title={product.title}
                         price={product.price}

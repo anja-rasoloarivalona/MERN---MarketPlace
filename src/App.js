@@ -13,6 +13,7 @@ import Backdrop from './components/Backdrop/Backdrop';
 /*------------Pages-----------------*/
 import Shop from './Pages/ShopIndex/ShopIndex';
 import AdminAddProduct from './Pages/Admin/AddProduct/AddProduct';
+import AdminProducts from './Pages/Admin/AdminProducts/AdminProducts'
 
 class App extends Component {
 
@@ -69,6 +70,7 @@ class App extends Component {
             <Switch>
                 <Route path='/' exact component={Shop}/>
                 <Route path='/admin/add-product' exact component={AdminAddProduct}/>
+                <Route path='/admin/products' exact component={AdminProducts}/>
             </Switch>
         </Layout>
     </Fragment>

@@ -10,14 +10,38 @@ const product = props => (
         <div className="product__body">
             <div>Price: <span>{props.price}</span></div>
             <p>{props.description}</p>
-            <div className="product__actions">
-            <Button 
-                link = {props.link}
-                color="primary"
-                to={props.link}>
-                    View details
-            </Button>
-        </div>
+            
+             {
+                 props.shop ?
+                 (
+                    <div className="product__actions">
+                        <Button 
+                            link = {props.link}
+                            color="primary"
+                            to={props.link}>
+                            View details
+                        </Button>
+                    </div>
+                 ) 
+                    :              
+                 ( <div className="product__actions">
+                        <Button 
+                            link = {props.edit_link}
+                            color="primary"
+                            to={props.link}>
+                            Edit
+                        </Button>
+                        <Button 
+                            link = {props.delete_link}
+                            color="primary"
+                            to={props.link}>
+                            Delete
+                        </Button>
+                    </div>
+                 )
+             }   
+            
+       
         </div>
         
     </article>
