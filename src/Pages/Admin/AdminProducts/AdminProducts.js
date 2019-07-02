@@ -32,7 +32,6 @@ import AddProduct from '../AddProduct/AddProduct';
                 if(res.status !== 200){
                     throw new Error('Failed to fectch products')
                 }
-
                 return res.json(); //extract the body
             })
             .then(resData => {
@@ -63,9 +62,73 @@ import AddProduct from '../AddProduct/AddProduct';
          
             return {
                 isEditing: true,
-                 productBeingEdited: loadedProduct,
+                productBeingEdited: loadedProduct,
                 showBackdrop: true
             }
+        })
+    }
+
+    confirmSubmitHandler = productData => {
+        let url = 'http://localhost:8000/admin/add-product';
+        let method = 'POST';
+    
+        if(this.state.isEditing){
+            url = 'http://localhost:8000/admin/product/' + this.state.productBeingEdited._id
+            method = 'PUT'
+        }
+
+        fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({
+                title: productData.title,
+                price: productData.price,
+                description: productData.description
+
+            })
+        })
+        .then(res => {
+            if(res.status !== 200 && res.status !==201){
+                throw new Error('Creating a post failed')
+            }
+
+            return res.json();
+        })
+        .then(resProductData => {
+            const product = {
+                _id: resProductData.product._id,
+                title: resProductData.product.title,
+                price: resProductData.product.price,
+                description: resProductData.product.description,
+                createdAt: resProductData.product.createdAt
+            };
+
+            this.setState(prevState => {
+                let updatedProducts = [...prevState.products];
+                if(prevState.productBeingEdited){
+                    const prodIndex = updatedProducts.findIndex(p => p._id === prevState.productBeingEdited._id )
+                    updatedProducts[prodIndex] = product;
+                    
+                } else if(prevState.products.length < 2) {
+                    updatedProducts = prevState.products.concat(product)
+                }
+
+              //  console.log('old', prevState.products[0]._id)
+            //    console.log('new prods', updatedProducts)
+
+                return {
+                    products: updatedProducts,
+                    productBeingEdited: null,
+                    isEditing: false,
+                    showBackdrop: false
+                }        
+            })
+        })
+
+        .catch(err => {
+            console.log(err);
         })
     }
 
@@ -97,7 +160,9 @@ import AddProduct from '../AddProduct/AddProduct';
                     <Backdrop onClick={this.backdropClickHandler} />
                     <AddProduct 
                         editingMode={this.state.isEditing}
-                        productBeingEdited={this.state.productBeingEdited}/>
+                        confirmSubmitHandler = {this.confirmSubmitHandler}
+                        productBeingEdited={this.state.productBeingEdited}
+                    />
                 </Fragment>
                 
               )}

@@ -21,7 +21,7 @@ class AddProduct extends Component {
     state = {
         postProduct : POST_PRODUCT,
         editingMode : this.props.editingMode,
-        productBeingEdited : this.props.productBeingEdited
+        productBeingEdited : this.props.productBeingEdited,
     }
 
     componentWillMount(){
@@ -57,42 +57,16 @@ class AddProduct extends Component {
         })
     }
 
-    confirmSubmitHandler = productData => {
-        let url = 'http://localhost:8000/admin/add-product';
-        let method = 'POST';
+    
 
-        fetch(url, {
-            method: method,
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify({
-                title: productData.title,
-                price: productData.price,
-                description: productData.description
-
-            })
-        })
-        .then(res => {
-            if(res.status !== 200 && res.status !==201){
-                throw new Error('Creating a post failed')
-            }
-
-            return res.json();
-        })
-
-        .catch(err => {
-            console.log(err);
-        })
-    }
-
-    submitFormHandler = () => {
+    submitFormHandler = (e) => {
+     //   e.preventDefault();
         const product = {
             title: this.state.postProduct.title.value,
             price: this.state.postProduct.price.value,
             description: this.state.postProduct.description.value
         }
-        this.confirmSubmitHandler(product)
+        this.props.confirmSubmitHandler(product)
         this.setState({
             postProduct: POST_PRODUCT //-----reset form----------
         }) 
