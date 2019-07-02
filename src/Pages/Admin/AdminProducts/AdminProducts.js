@@ -22,9 +22,9 @@ import AddProduct from '../AddProduct/AddProduct';
         this.loadProductsHandler();
     }
 
-    componentDidUpdate(){
+  /*  componentDidUpdate(){
         this.loadProductsHandler();
-    }
+    }*/
 
     loadProductsHandler = () => {
         fetch('http://localhost:8000')
@@ -135,17 +135,18 @@ import AddProduct from '../AddProduct/AddProduct';
 
 
     deleteProductHandler = productId => {
-            fetch('http://localhost:8000')
+            fetch('http://localhost:8000/admin/product/' + productId, {
+                method: 'DELETE',
+            })
                 .then(res => {
                     if(res.status !== 200 && res.status !==201){
                         throw new Error('Failed Deleting product')
                     }
-
                     return res.json();
                 })
                 .then(resData => {
                     this.setState(prevState => {
-                        const updatedProducts = prevState.products.filter(p => p.id !== productId);
+                        const updatedProducts = prevState.products.filter(p => p._id !== productId);
                         return { products: updatedProducts};
                     })
                
@@ -175,7 +176,7 @@ import AddProduct from '../AddProduct/AddProduct';
                                 price={product.price}
                                 description={product.description}
                                 link='/'
-                                onDelete={this.deleteProductHandler.bind(this, product.id)}
+                                onDelete={this.deleteProductHandler.bind(this, product._id)}
                                 onStartEdit = {this.startEditProductHandler.bind(this, product._id)}
                         />
                         ))}
