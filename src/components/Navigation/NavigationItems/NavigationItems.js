@@ -5,8 +5,7 @@ import './NavigationItems.css';
 const navListItems = [
     {id: 'shop', text: 'Shop', link:'/', auth: false},
     {id: 'admin', text: 'Admin', link:'/admin', auth: true},
-    {id: 'admin-add-product', text: 'Add Product', link:'/admin/add-product', auth: false},
-    {id: 'admin-add-product', text: 'Admin Products', link:'/admin/products', auth: false},
+    {id: 'admin-products', text: 'Admin', link:'/admin/products', auth: false},
     {id: 'login', text: 'Login', link:'/login', auth: false},
     {id: 'signup', text: 'Signup', link:'/signup', auth: false},
     

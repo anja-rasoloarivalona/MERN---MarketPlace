@@ -99,7 +99,6 @@ import AddProduct from '../AddProduct/AddProduct';
                             <Button 
                             color='primary' 
                             onClick={this.addProductHandler}
-                            link='/admin/add-product'
                             >
                                 Add Product
                             </Button>
