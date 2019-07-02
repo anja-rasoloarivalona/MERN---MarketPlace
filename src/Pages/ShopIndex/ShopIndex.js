@@ -54,6 +54,7 @@ import Product from '../../components/Product/Product';
                                     description={product.description}
                                     date = {date}
                                     link='/'
+                                    imageUrl = {'http://localhost:8000/' + product.imageUrl }
                                 />
                     })
                 }             

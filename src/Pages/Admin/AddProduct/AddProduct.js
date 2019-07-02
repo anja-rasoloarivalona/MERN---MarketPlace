@@ -3,6 +3,8 @@ import './AddProduct.css';
 
 import Button from '../../../components/Button/Button';
 import Input from '../../../components/FormInput/FormInput';
+import FilePicker from '../../../components/FormInput/FilePicker/FilePicker';
+import { generateBase64FromImage } from '../../../util/image';
 
 const POST_PRODUCT = {
     title: {
@@ -10,6 +12,10 @@ const POST_PRODUCT = {
     },
 
     price: {
+        value: ''
+    },
+
+    image: {
         value: ''
     },
 
@@ -22,6 +28,7 @@ class AddProduct extends Component {
         postProduct : POST_PRODUCT,
         editingMode : this.props.editingMode,
         productBeingEdited : this.props.productBeingEdited,
+        imagePreview: null
     }
 
     componentWillMount(){
@@ -34,6 +41,10 @@ class AddProduct extends Component {
                 price: {
                     value: this.state.productBeingEdited.price
                 },
+                image: {   
+                    value: this.state.productBeingEdited.imagePath,
+                   
+                  },
                 description: {
                     value: this.state.productBeingEdited.description
                 }
@@ -42,13 +53,22 @@ class AddProduct extends Component {
         }
     }
 
-    postProductChangeHandler = (input, value) => {
+    postProductChangeHandler = (input, value, files) => {
+        if(files){
+            generateBase64FromImage(files[0])
+            .then(b64 => {
+                this.setState({ imagePreview: b64})
+            })
+            .catch(err => {
+                this.setState({imagePreview: null})
+            })
+        }
         this.setState(prevState =>{
             const updatedProduct = {
                 ...prevState.postProduct,
                 [input] : {
                     ...prevState.postProduct[input],
-                    value: value
+                    value: files ? files[0] : value
                 }
             }
             return {
@@ -64,7 +84,8 @@ class AddProduct extends Component {
         const product = {
             title: this.state.postProduct.title.value,
             price: this.state.postProduct.price.value,
-            description: this.state.postProduct.description.value
+            description: this.state.postProduct.description.value,
+            image: this.state.postProduct.image.value,
         }
         this.props.confirmSubmitHandler(product)
         this.setState({
@@ -95,6 +116,13 @@ class AddProduct extends Component {
                         value={this.state.postProduct['price'].value}
                         onChange={this.postProductChangeHandler}
                     />
+                    <FilePicker
+                            id="image"
+                            label="Image"
+                            control="input"
+                            onChange={this.postProductChangeHandler}
+                            />
+
                     <Input 
                         id='description'
                         label='description'

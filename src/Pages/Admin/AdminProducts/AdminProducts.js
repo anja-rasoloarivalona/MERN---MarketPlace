@@ -36,7 +36,13 @@ import AddProduct from '../AddProduct/AddProduct';
             })
             .then(resData => {
                 this.setState({
-                    products: resData.products,
+                    products: resData.products.map(product => {
+                        return {
+                            ...product,
+                            imagePath: product.imageUrl
+                        }
+                    })
+                   
                 })
             })
             .catch( err => {
@@ -69,6 +75,11 @@ import AddProduct from '../AddProduct/AddProduct';
     }
 
     confirmSubmitHandler = productData => {
+            const formData = new FormData();
+            formData.append('title', productData.title);
+            formData.append('price', productData.price);
+            formData.append('description', productData.description);
+            formData.append('image', productData.image);
         let url = 'http://localhost:8000/admin/add-product';
         let method = 'POST';
     
@@ -79,15 +90,7 @@ import AddProduct from '../AddProduct/AddProduct';
 
         fetch(url, {
             method: method,
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify({
-                title: productData.title,
-                price: productData.price,
-                description: productData.description
-
-            })
+            body: formData
         })
         .then(res => {
             if(res.status !== 200 && res.status !==201){
@@ -102,6 +105,7 @@ import AddProduct from '../AddProduct/AddProduct';
                 title: resProductData.product.title,
                 price: resProductData.product.price,
                 description: resProductData.product.description,
+
                 createdAt: resProductData.product.createdAt
             };
 
@@ -179,6 +183,7 @@ import AddProduct from '../AddProduct/AddProduct';
                                 link='/'
                                 onDelete={this.deleteProductHandler.bind(this, product._id)}
                                 onStartEdit = {this.startEditProductHandler.bind(this, product._id)}
+                                imageUrl = {'http://localhost:8000/' + product.imageUrl }
                         />
                         ))}
 

@@ -5,9 +5,14 @@ import Button from '../Button/Button';
 const product = props => (
     <article className="product">
 
-        <div className="product__image">
-                image
-        </div>
+        <div className="product__image" 
+                style={{
+                    backgroundImage: `url('${props.imageUrl}')`,
+                    backgroundSize: 'contain',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                }}/>
+
         <div className="product__description">
             <header className="product__header">
                 <h1 className="product__title">{props.title}</h1>
