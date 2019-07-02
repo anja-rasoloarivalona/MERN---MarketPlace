@@ -13,7 +13,9 @@ import AddProduct from '../AddProduct/AddProduct';
     state = {
         products: [],
         status: '',
-        showBackdrop: false
+        showBackdrop: false,
+        isEditing: false,
+        productBeingEdited: ''
     }
 
     componentDidMount(){
@@ -55,6 +57,19 @@ import AddProduct from '../AddProduct/AddProduct';
         })
     }
 
+    startEditProductHandler = postId => {
+        this.setState(prevState => {
+            const loadedProduct = {...prevState.posts.find( p => p.id === postId)}
+
+            return {
+                isEditing: true,
+                productBeingEdited: loadedProduct
+            }
+        })
+    }
+
+
+
     deleteProductHandler = productId => {
             fetch('http://localhost:8000')
                 .then(res => {
@@ -92,6 +107,7 @@ import AddProduct from '../AddProduct/AddProduct';
                                 description={product.description}
                                 link='/'
                                 onDelete={this.deleteProductHandler.bind(this, product._id)}
+                                onStartEdit = {this.startEditProductHandler.bind(this, product._id)}
                         />
                         ))}
 
