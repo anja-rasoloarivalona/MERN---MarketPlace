@@ -19,7 +19,27 @@ const POST_PRODUCT = {
 }
 class AddProduct extends Component {
     state = {
-        postProduct : POST_PRODUCT
+        postProduct : POST_PRODUCT,
+        editingMode : this.props.editingMode,
+        productBeingEdited : this.props.productBeingEdited
+    }
+
+    componentWillMount(){
+        console.log('Mounted')
+        if(this.props.editingMode){
+            const postProduct = {
+                title: {
+                    value: this.state.productBeingEdited.title
+                },
+                price: {
+                    value: this.state.productBeingEdited.price
+                },
+                description: {
+                    value: this.state.productBeingEdited.description
+                }
+            }
+            this.setState({postProduct: postProduct})
+        }
     }
 
     postProductChangeHandler = (input, value) => {
@@ -112,7 +132,7 @@ class AddProduct extends Component {
                     />
 
                     <Button color='primary' type='submit'>
-                        SUBMIT
+                        { this.state.editingMode ? 'Update' : 'Create'}
                     </Button>
                 </form>
         )

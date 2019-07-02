@@ -45,6 +45,7 @@ import Product from '../../components/Product/Product';
                     <Product
                         shop
                         key={product._id}
+                        id={product._id}
                         title={product.title}
                         price={product.price}
                         description={product.description}

@@ -57,13 +57,18 @@ import AddProduct from '../AddProduct/AddProduct';
         })
     }
 
-    startEditProductHandler = postId => {
+    startEditProductHandler = prodId => {
+        console.log('request',prodId)
         this.setState(prevState => {
-            const loadedProduct = {...prevState.posts.find( p => p.id === postId)}
 
+           console.log(prevState.products[0]._id)
+          const loadedProduct = {...prevState.products.find( p => p._id === prodId)}
+         //  console.log(loadedProduct);
+         
             return {
                 isEditing: true,
-                productBeingEdited: loadedProduct
+                 productBeingEdited: loadedProduct,
+                showBackdrop: true
             }
         })
     }
@@ -94,7 +99,9 @@ import AddProduct from '../AddProduct/AddProduct';
             {this.state.showBackdrop && (
                 <Fragment>
                     <Backdrop onClick={this.backdropClickHandler} />
-                    <AddProduct />
+                    <AddProduct 
+                        editingMode={this.state.isEditing}
+                        productBeingEdited={this.state.productBeingEdited}/>
                 </Fragment>
                 
               )}
@@ -102,11 +109,12 @@ import AddProduct from '../AddProduct/AddProduct';
                         {this.state.products.map( product => (
                             <Product
                                 key={product._id}
+                                id={product._id}
                                 title={product.title}
                                 price={product.price}
                                 description={product.description}
                                 link='/'
-                                onDelete={this.deleteProductHandler.bind(this, product._id)}
+                                onDelete={this.deleteProductHandler.bind(this, product.id)}
                                 onStartEdit = {this.startEditProductHandler.bind(this, product._id)}
                         />
                         ))}
