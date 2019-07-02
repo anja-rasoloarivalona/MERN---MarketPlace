@@ -3,18 +3,21 @@ import './Product.css';
 import Button from '../Button/Button';
 
 const product = props => (
-    <article className="product flex-centered-column">
-        <header className="product__header flex-centered-row">
-            <h1 className="product__title">{props.title}</h1>
-        </header>
-        <div className="product__body">
-            <div>Price: <span>{props.price}</span></div>
+    <article className="product">
+
+        <div className="product__image">
+                image
+        </div>
+        <div className="product__description">
+            <header className="product__header">
+                <h1 className="product__title">{props.title}</h1>
+                <div className="product__date">{props.date}</div>
+            </header>
             <p>{props.description}</p>
-            
-             {
+            {
                  props.shop ?
                  (
-                    <div className="product__actions">
+                    <div className="product__actions flex-centered-row">
                         <Button 
                             link = {props.link}
                             color="primary"
@@ -41,10 +44,16 @@ const product = props => (
                         </Button>
                     </div>
                  )
-             }   
-            
-       
+             }
         </div>
+        
+        <div className="product__price">
+            <div> $ {props.price}</div> 
+        </div>
+
+        
+
+   
         
     </article>
 );

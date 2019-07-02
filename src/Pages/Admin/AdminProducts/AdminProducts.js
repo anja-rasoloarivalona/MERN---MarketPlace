@@ -168,6 +168,7 @@ import AddProduct from '../AddProduct/AddProduct';
                 
               )}
                 <section className="admin-products">
+
                         {this.state.products.map( product => (
                             <Product
                                 key={product._id}
@@ -180,6 +181,8 @@ import AddProduct from '../AddProduct/AddProduct';
                                 onStartEdit = {this.startEditProductHandler.bind(this, product._id)}
                         />
                         ))}
+
+                        
 
                     <div className="admin-add-products">
                             <Button 

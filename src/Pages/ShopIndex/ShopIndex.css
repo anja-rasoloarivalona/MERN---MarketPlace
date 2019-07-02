@@ -1,7 +1,10 @@
 .shop {
     grid-row: 2 / 3;
-    grid-column: center-start / center-end;
+    grid-column: center-start / full-end;
 
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgb(218, 238, 240);
 }

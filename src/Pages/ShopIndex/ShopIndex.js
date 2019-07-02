@@ -39,19 +39,24 @@ import Product from '../../components/Product/Product';
     }
 
     render() {
+       
         return (
             <section className="shop">
-                {this.state.products.map( product => (
-                    <Product
-                        shop
-                        key={product._id}
-                        id={product._id}
-                        title={product.title}
-                        price={product.price}
-                        description={product.description}
-                        link='/'
-                />
-            ))}
+                {
+                    this.state.products.map(product => {
+                        const date = product.createdAt.slice(0, 10);
+                        return <Product
+                                    shop
+                                    key={product._id}
+                                    id={product._id}
+                                    title={product.title}
+                                    price={product.price}
+                                    description={product.description}
+                                    date = {date}
+                                    link='/'
+                                />
+                    })
+                }             
                 
             </section>
         )
