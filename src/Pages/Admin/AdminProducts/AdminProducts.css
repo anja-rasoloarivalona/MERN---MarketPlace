@@ -1,7 +1,14 @@
 .admin-products {
     grid-row: 2 / 3;
     grid-column: center-start / center-end;
-
     display: flex;
     justify-content: space-around;
+    position: relative;
+}
+
+.admin-add-products {
+    position: fixed;
+    top: 10rem;
+    right: 4rem;
+    display: block;
 }

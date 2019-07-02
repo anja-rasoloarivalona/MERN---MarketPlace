@@ -81,7 +81,8 @@ class AddProduct extends Component {
 
     render() {
         return (
-            <section className='addProduct flex-centered-row'>
+            <section className='addProduct flex-centered-row'
+                    >
                 <form className='addProduct__form'
                       onSubmit={this.submitFormHandler}>
                     <Input 

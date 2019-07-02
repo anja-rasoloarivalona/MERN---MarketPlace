@@ -1,14 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './AdminProducts.css';
-import Product from '../../../components/Product/Product';
 
+/*-----COMPONENTS---------*/
+import Product from '../../../components/Product/Product';
+import Button from '../../../components/Button/Button';
+import Backdrop from '../../../components/Backdrop/Backdrop';
+import AddProduct from '../AddProduct/AddProduct';
 
 
  class AdminProducts extends Component {
 
     state = {
         products: [],
-        status: ''
+        status: '',
+        showBackdrop: false
     }
 
     componentDidMount(){
@@ -38,20 +43,70 @@ import Product from '../../../components/Product/Product';
             })
     }
 
+    backdropClickHandler = () => {
+        this.setState({ showBackdrop: false});
+        console.log('clicked')
+      };
+
+    addProductHandler = (e) => {
+        e.preventDefault();
+        this.setState({
+            showBackdrop: true
+        })
+    }
+
+    deleteProductHandler = productId => {
+            fetch('http://localhost:8000')
+                .then(res => {
+                    if(res.status !== 200 && res.status !==201){
+                        throw new Error('Failed Deleting product')
+                    }
+
+                    return res.json();
+                })
+                .then(resData => {
+                    this.setState(prevState => {
+                        const updatedProducts = prevState.products.filter(p => p.id !== productId);
+                        return { products: updatedProducts};
+                    })
+               
+                })
+    }
+
     render() {
         return (
-            <section className="admin-products">
-                {this.state.products.map( product => (
-                    <Product
-                        key={product._id}
-                        title={product.title}
-                        price={product.price}
-                        description={product.description}
-                        link='/'
-                />
-            ))}
+            <Fragment>
+            {this.state.showBackdrop && (
+                <Fragment>
+                    <Backdrop onClick={this.backdropClickHandler} />
+                    <AddProduct />
+                </Fragment>
                 
-            </section>
+              )}
+                <section className="admin-products">
+                        {this.state.products.map( product => (
+                            <Product
+                                key={product._id}
+                                title={product.title}
+                                price={product.price}
+                                description={product.description}
+                                link='/'
+                                onDelete={this.deleteProductHandler.bind(this, product._id)}
+                        />
+                        ))}
+
+                    <div className="admin-add-products">
+                            <Button 
+                            color='primary' 
+                            onClick={this.addProductHandler}
+                            link='/admin/add-product'
+                            >
+                                Add Product
+                            </Button>
+                    </div>
+                    
+                </section>
+            </Fragment>
         )
     }
 }

@@ -28,13 +28,15 @@ const product = props => (
                         <Button 
                             link = {props.edit_link}
                             color="primary"
-                            to={props.link}>
+                            to={props.link}
+                            onClick={props.onStartEdit}>
                             Edit
                         </Button>
                         <Button 
                             link = {props.delete_link}
                             color="primary"
-                            to={props.link}>
+                            to={props.link}
+                            onClick={props.onDelete}>
                             Delete
                         </Button>
                     </div>

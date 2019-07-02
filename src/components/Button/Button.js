@@ -16,7 +16,8 @@ const button = props => !props.link ?
     (
         <Link 
             className={['button', `button--${props.color}`].join(' ')}
-            to={props.link}>
+            to={props.link}
+            onClick={props.onClick}>
                 {props.children}
         </Link>
     )

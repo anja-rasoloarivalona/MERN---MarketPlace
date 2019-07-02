@@ -7,7 +7,9 @@ const backdrop = props =>
         <div
         className={['backdrop', props.open ? 'open' : ''].join(' ')}
         onClick={props.onClick}
-        />,
+        >
+          {props.children}
+        </div>,
     document.getElementById('backdrop-root')
   );
 
