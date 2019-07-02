@@ -46,7 +46,7 @@ import AddProduct from '../AddProduct/AddProduct';
     }
 
     backdropClickHandler = () => {
-        this.setState({ showBackdrop: false});
+        this.setState({ showBackdrop: false, isEditing: false});
         console.log('clicked')
       };
 
@@ -58,12 +58,8 @@ import AddProduct from '../AddProduct/AddProduct';
     }
 
     startEditProductHandler = prodId => {
-        console.log('request',prodId)
         this.setState(prevState => {
-
-           console.log(prevState.products[0]._id)
-          const loadedProduct = {...prevState.products.find( p => p._id === prodId)}
-         //  console.log(loadedProduct);
+        const loadedProduct = {...prevState.products.find( p => p._id === prodId)}
          
             return {
                 isEditing: true,
