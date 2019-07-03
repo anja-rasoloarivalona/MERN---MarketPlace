@@ -9,7 +9,7 @@ const deskNav = (props) => {
     return (
         <nav className="deskNav">           
             <NavLink to="/">
-                <h1>Market Place</h1>
+                <div className="deskNav__logo flex-centered-row">Market Place</div>
             </NavLink>
             <ul className="deskNav__list flex-centered-row">
                 <NavigationItems isAuth={props.isAuth} onLogout={props.onLogout}/>

@@ -17,7 +17,7 @@
 .navigationItems a:hover,
 .navigationItems a:active,
 .navigationItems a.active {
-    color: var(--color-primary)
+    color: var(--color-secondary)
 }
 
 .navigationItems.mobile a {
