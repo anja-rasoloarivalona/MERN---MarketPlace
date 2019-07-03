@@ -3,6 +3,7 @@ import './ShopIndex.css';
 import Product from '../../components/Product/Product';
 
 import Range from '../../components/FormInput/InputRange/InputRange';
+import Sidebar from '../../components/Navigation/Sidebar/Sidebar';
 
  class ShopIndex extends Component {
 
@@ -42,26 +43,29 @@ import Range from '../../components/FormInput/InputRange/InputRange';
        
         return (
             <Fragment>
-            <section className="shop">
-                {
-                    this.state.products.map(product => {
-                        const date = product.createdAt.slice(0, 10);
-                        return <Product
-                                    shop
-                                    key={product._id}
-                                    id={product._id}
-                                    title={product.title}
-                                    price={product.price}
-                                    description={product.description}
-                                    date = {date}
-                                    link='/'
-                                    imageUrl = {'http://localhost:8000/' + product.imageUrl }
-                                />
-                    })
-                }             
+        
+                <Sidebar />
+                <section className="shop">
                 
-            </section>
-            {/*  <Range />*/}  
+                    {/*
+                        this.state.products.map(product => {
+                            const date = product.createdAt.slice(0, 10);
+                            return <Product
+                                        shop
+                                        key={product._id}
+                                        id={product._id}
+                                        title={product.title}
+                                        price={product.price}
+                                        description={product.description}
+                                        date = {date}
+                                        link='/'
+                                        imageUrl = {'http://localhost:8000/' + product.imageUrl }
+                                    />
+                        })
+                    */}             
+                    
+                </section>
+                {/*  <Range />*/}  
             </Fragment>
         )
     }

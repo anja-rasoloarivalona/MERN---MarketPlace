@@ -11,7 +11,15 @@ const deskNav = (props) => {
     return (
         <Fragment>
         <div className="deskNav__top">
-            <IconSvg icon='facebook'/>
+            <div>
+                English
+            </div>
+            <div className="deskNav__top__icon flex-centered-row">
+                <IconSvg icon='facebook' size='small'/>
+                <IconSvg icon='twitter' size='small'/>
+                <IconSvg icon='instagram' size='small'/>
+            </div>
+           
         </div>
         <nav className="deskNav">           
             <NavLink to="/">

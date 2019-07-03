@@ -66,7 +66,7 @@ class App extends Component {
                 onClickNavLink={this.mobileNavHandler.bind(this, false)}
                 onLogout={this.logoutHandler}
                 isAuth={this.state.isAuth}/>
-
+            
             <Switch>
                 <Route path='/' exact component={Shop}/>
                 <Route path='/admin/products' exact component={AdminProducts}/>

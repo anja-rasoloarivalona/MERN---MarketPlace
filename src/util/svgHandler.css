@@ -1,5 +1,16 @@
 .icon {
-    width: 2.6rem;
-    height: 2.6rem;
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
     fill: white;
+}
+
+.small {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.big {
+    width: 3rem;
+    height: 3rem;
 }

@@ -1,14 +1,16 @@
 .deskNav {
     grid-row: 2 / 3;
-    grid-column: full-start / full-end;
+    grid-column: center-start / center-end;
     position: fixed;
-    background: var(--color-white);
-    width: 100%;
     height: 5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     top: 3rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: calc(100% - 4rem);
 }
 
 .deskNav__top {
@@ -18,6 +20,20 @@
   width: 100%;
   height: 3rem;
   background: var(--color-primary);
+ 
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.deskNav__top__icon {
+  height: 100%;
+  width: 16rem;
+}
+
+.deskNav__top__icon > * {
+  margin: 0 1rem;
 }
 
 
