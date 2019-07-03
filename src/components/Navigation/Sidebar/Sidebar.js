@@ -18,7 +18,7 @@ const sidebar = props => (
                     <span></span>
                 </div>
                 <div>
-                    All Categories
+                    All Categoriees
                 </div>
             </div>
             <IconSvg icon="down"/>
