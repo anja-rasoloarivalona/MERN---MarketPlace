@@ -15,7 +15,7 @@
   .mobileToggler__bar {
     width: 5rem;
     height: 2px;
-    background: white;
+    background: red;
   }
   
   @media (min-width: 768px) {

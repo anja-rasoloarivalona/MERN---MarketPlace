@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './ShopIndex.css';
 import Product from '../../components/Product/Product';
 
-
+import Range from '../../components/FormInput/InputRange/InputRange';
 
  class ShopIndex extends Component {
 
@@ -41,6 +41,7 @@ import Product from '../../components/Product/Product';
     render() {
        
         return (
+            <Fragment>
             <section className="shop">
                 {
                     this.state.products.map(product => {
@@ -60,6 +61,8 @@ import Product from '../../components/Product/Product';
                 }             
                 
             </section>
+            {/*  <Range />*/}  
+            </Fragment>
         )
     }
 }

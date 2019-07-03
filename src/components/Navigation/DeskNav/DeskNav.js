@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import './DeskNav.css';
 import { NavLink} from 'react-router-dom';
 import NavigationItems from '../NavigationItems/NavigationItems';
@@ -7,6 +7,10 @@ import MobileToggler from '../MobileToggler/MobileToggler';
 
 const deskNav = (props) => {
     return (
+        <Fragment>
+        <div className="deskNav__top">
+
+        </div>
         <nav className="deskNav">           
             <NavLink to="/">
                 <div className="deskNav__logo flex-centered-row">Market Place</div>
@@ -16,6 +20,7 @@ const deskNav = (props) => {
             </ul>
             <MobileToggler onOpenMobileNav={props.onOpenMobileNav}/>
         </nav>
+        </Fragment>
     )
 }
 

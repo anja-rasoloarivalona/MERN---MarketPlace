@@ -11,7 +11,7 @@
 
 .navigationItems a {
     text-decoration: none;
-    color: var(--color-white)
+    color: var(--color-primary)
 }
 
 .navigationItems a:hover,
@@ -30,7 +30,7 @@
     font: inherit;
     background: transparent;
     border: none;
-    color: var(--color-white);
+    color: red;
     cursor: pointer;
     padding: 0;
 }
