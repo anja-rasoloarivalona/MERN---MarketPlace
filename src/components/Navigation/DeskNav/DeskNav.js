@@ -5,13 +5,13 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 import MobileToggler from '../MobileToggler/MobileToggler';
 import IconSvg from '../../../util/svgHandler';
 
-const svgUrl = '../../../assets/icon/sprite.svg';
+
 
 const deskNav = (props) => {
     return (
         <Fragment>
         <div className="deskNav__top">
-            <IconSvg icon='facebook' url={svgUrl}/>
+            <IconSvg icon='facebook'/>
         </div>
         <nav className="deskNav">           
             <NavLink to="/">
