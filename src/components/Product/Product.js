@@ -32,7 +32,7 @@ const product = props => (
                     </div>
                  ) 
                     :              
-                 ( <div className="product__actions">
+                 ( <div className="product__actions flex-centered-row">
                         <Button 
                             link = {props.edit_link}
                             color="primary"

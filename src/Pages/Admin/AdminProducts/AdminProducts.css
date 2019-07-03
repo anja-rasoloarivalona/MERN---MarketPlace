@@ -1,6 +1,6 @@
 .admin-products {
-    grid-row: 2 / 3;
-    grid-column: center-start / full-end;
+    grid-row: 3 / 4;
+    grid-column: col-start 2 / col-end 4;
     display: flex;
     flex-direction: column;
     align-items: center;
