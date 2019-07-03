@@ -1,10 +1,19 @@
-.shop {
+.shop__intro {
     grid-row: 3 / 4;
+    grid-column: col-start 2 / col-end 4;
+    width: 100%;
+    height: calc(100vh - 8rem);
+    background: red;
+}
+
+.shop {
+    grid-row: 4/ 5;
     grid-column: col-start 2 / col-end 4;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: orange;
+    background: rgb(238, 238, 238);
+    padding-top: 3rem;
     
 }

@@ -5,6 +5,8 @@ import Product from '../../components/Product/Product';
 import Range from '../../components/FormInput/InputRange/InputRange';
 import Sidebar from '../../components/Navigation/Sidebar/Sidebar';
 
+import bg from '../../assets/img/bg.jpg'
+
  class ShopIndex extends Component {
 
     state = {
@@ -45,9 +47,17 @@ import Sidebar from '../../components/Navigation/Sidebar/Sidebar';
             <Fragment>
         
                 <Sidebar />
+                <section className="shop__intro" style={{
+                                backgroundImage: `url('${bg}')`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                        }} >
+                
+                </section>
                 <section className="shop">
                 
-                    {/*
+                    {
                         this.state.products.map(product => {
                             const date = product.createdAt.slice(0, 10);
                             return <Product
@@ -62,7 +72,7 @@ import Sidebar from '../../components/Navigation/Sidebar/Sidebar';
                                         imageUrl = {'http://localhost:8000/' + product.imageUrl }
                                     />
                         })
-                    */}             
+                   }             
                     
                 </section>
                 {/*  <Range />*/}  
