@@ -4,6 +4,7 @@
     transition: all .2s ease-in-out;
     z-index: -1;
     position: relative;
+    
 }
 
 .sidebar__category__list__item {
@@ -16,7 +17,6 @@
     padding-left: 8rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid grey;
 }
 
 .sidebar__category__list__item span {

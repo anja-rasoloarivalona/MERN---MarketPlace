@@ -42,8 +42,8 @@ const sidebarCategoryList = props => {
                         </li>
                     ))}
 
-                
-                </ul>
+                {props.children}
+        </ul>
     )
 }
   

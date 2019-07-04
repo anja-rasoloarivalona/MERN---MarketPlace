@@ -11,7 +11,7 @@ import bg from '../../assets/img/bg.jpg'
         status: '',
         productPriceRequested : {min: 2, max: 10},
         priceMin: 0,
-        priceMax: 100
+        priceMax: 2000
     }
 
     componentDidMount(){
