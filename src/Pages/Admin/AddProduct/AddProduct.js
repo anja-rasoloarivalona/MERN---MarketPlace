@@ -15,6 +15,10 @@ const POST_PRODUCT = {
         value: ''
     },
 
+    category: {
+        value: ''
+    },
+
     image: {
         value: ''
     },
@@ -47,7 +51,12 @@ class AddProduct extends Component {
                   },
                 description: {
                     value: this.state.productBeingEdited.description
+                },
+                category: {
+                    value: this.state.productBeingEdited.category
                 }
+
+                
             }
             this.setState({postProduct: postProduct})
         }
@@ -71,6 +80,8 @@ class AddProduct extends Component {
                     value: files ? files[0] : value
                 }
             }
+   
+
             return {
                 postProduct: updatedProduct
             }           
@@ -84,6 +95,7 @@ class AddProduct extends Component {
         const product = {
             title: this.state.postProduct.title.value,
             price: this.state.postProduct.price.value,
+            category: this.state.postProduct.category.value,
             description: this.state.postProduct.description.value,
             image: this.state.postProduct.image.value,
         }
@@ -116,6 +128,17 @@ class AddProduct extends Component {
                         value={this.state.postProduct['price'].value}
                         onChange={this.postProductChangeHandler}
                     />
+
+                    <Input 
+                        id='category'
+                        label='category'
+                        type='text'
+                        control='select' 
+                        required={true}
+                        value={this.state.postProduct['category'].value}
+                        onChange={this.postProductChangeHandler}
+                    />
+
                     <FilePicker
                             id="image"
                             label="Image"

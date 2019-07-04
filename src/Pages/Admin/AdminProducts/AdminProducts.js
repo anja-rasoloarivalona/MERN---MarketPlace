@@ -80,6 +80,7 @@ import AddProduct from '../AddProduct/AddProduct';
             const formData = new FormData();
             formData.append('title', productData.title);
             formData.append('price', productData.price);
+            formData.append('category', productData.category);
             formData.append('description', productData.description);
             formData.append('image', productData.image);
         let url = 'http://localhost:8000/admin/add-product';
@@ -106,6 +107,7 @@ import AddProduct from '../AddProduct/AddProduct';
                 _id: resProductData.product._id,
                 title: resProductData.product.title,
                 price: resProductData.product.price,
+                category: resProductData.product.category,
                 description: resProductData.product.description,
 
                 createdAt: resProductData.product.createdAt

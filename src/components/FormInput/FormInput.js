@@ -29,6 +29,24 @@ const formInput = props =>(
                     />
             )
         }
+
+        {
+            props.control === 'select' && (
+                <select id={props.id} 
+                        required={props.required}
+                        value={props.value}
+                        onChange={e => props.onChange(props.id, e.target.value)}>  
+
+                    <option value="automobile">automobile</option>
+                    <option value="clothes">clothes</option>     
+                    <option value="furniture">furniture</option>
+                    <option value="headphones">headphones</option>
+                    <option value="laptop">laptop</option>
+                    <option value="smartphone">smartphone</option>
+                    <option value="television">television</option>
+                </select> 
+            )
+        }
     </div>
 ) 
 
