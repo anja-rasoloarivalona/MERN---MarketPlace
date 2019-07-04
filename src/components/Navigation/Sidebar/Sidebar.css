@@ -9,6 +9,7 @@
     left: 0;
     right: 85rem;
     margin: auto;
+    overflow: hidden;
 }
 
 .sidebar__category {
@@ -20,6 +21,8 @@
     justify-content: space-around;
     font-size: 1.6rem;
     color: var(--color-white);
+    z-index: 2;
+    position: relative;
 }
 
 .sidebar__category__hamburger {
@@ -40,7 +43,9 @@
 
 .sidebar__category__list {
     list-style: none;
-
+    transform-origin: top center;
+    transition: all .5s ease-in;
+    z-index: -1;
 }
 
 .sidebar__category__list__item {
@@ -55,4 +60,10 @@
 
 .sidebar__category__list__item svg{
     margin-right: 1rem;
+}
+
+.sidebar__category__list.sidebar__category__list--hide {
+    transform: translateY(-100%);
+    z-index: -1;
+    position: relative;
 }

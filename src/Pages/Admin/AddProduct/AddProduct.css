@@ -1,8 +1,8 @@
 .addProduct__form {
     background: grey;
     padding: 2rem;
-    width: 50%;
-    height: 40%;
+    width: 40rem;
+    height: 30rem;
     z-index: 200;
     position: absolute;
     top: 0;
@@ -10,6 +10,7 @@
     right: 0;
     bottom: 0;
     margin: auto;
+
    
 }
 

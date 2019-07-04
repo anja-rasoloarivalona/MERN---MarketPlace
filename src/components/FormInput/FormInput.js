@@ -9,7 +9,7 @@ const formInput = props =>(
 
         {
             props.control === 'input' && (
-                <input 
+                <input className="input__field"
                     type={props.type} //text, email, password, number, etc...
                     id={props.id} //for the label
                     required={props.required}
@@ -21,7 +21,7 @@ const formInput = props =>(
 
         {
             props.control === 'textarea' && (
-                <textarea 
+                <textarea className="textarea"
                     id={props.id}
                     required={props.required}
                     value={props.value}
