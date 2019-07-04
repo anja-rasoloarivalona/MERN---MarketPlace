@@ -12,58 +12,25 @@
     overflow: hidden;
 }
 
-.sidebar__category {
-    height: 7rem;
-    width: 100%;
-    background: var(--color-primary);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    font-size: 1.6rem;
-    color: var(--color-white);
-    z-index: 2;
-    position: relative;
-}
 
-.sidebar__category__hamburger {
-    height: 1.3rem;
-    width: 2.5rem;
+
+
+
+.sidebar__price {
+    background: red;
+    height: 9rem;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    margin-right: 1rem;
-    transform: translateY(-1px);
-}
-
-.sidebar__category__hamburger span {
-    width: 100%;
-    height: 1px;
-    background: white;
-}
-
-.sidebar__category__list {
-    list-style: none;
-    transform-origin: top center;
-    transition: all .5s ease-in;
-    z-index: -1;
-}
-
-.sidebar__category__list__item {
-    display: flex;
-    width: 60%;
-    justify-content: flex-start;
     align-items: center;
-    line-height: 1.6;
-    margin: 1rem 0;
-    font-size: 1.3rem;
+    justify-content: space-around;
+    padding: 1rem;
 }
 
-.sidebar__category__list__item svg{
-    margin-right: 1rem;
+.sidebar__price__title {
+    align-self: flex-start;
 }
 
-.sidebar__category__list.sidebar__category__list--hide {
-    transform: translateY(-100%);
-    z-index: -1;
-    position: relative;
+.input-range__label--max,
+.input-range__label--min {
+    display: none;
 }

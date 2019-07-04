@@ -1,0 +1,44 @@
+.sidebar__category__list {
+    list-style: none;
+    transform-origin: top center;
+    transition: all .2s ease-in-out;
+    z-index: -1;
+    position: relative;
+}
+
+.sidebar__category__list__item {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    line-height: 1.6;
+    font-size: 1.3rem;
+    padding-left: 8rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid grey;
+}
+
+.sidebar__category__list__item span {
+    margin-left: 2rem;
+}
+
+
+.sidebar__category__list.sidebar__category__list--hide {
+    transform: translateY(-100%);
+    z-index: -1;
+    position: relative;
+}
+
+.sidebar__category__list__item .icon {
+    width: 3rem;
+    height: 3rem;
+}
+
+.sidebar__category__list__item .icon--couch {
+    width: 4rem;
+}
+
+.sidebar__category__list__item .icon--Motorcycle {
+    transform: translateY(-3px);
+}

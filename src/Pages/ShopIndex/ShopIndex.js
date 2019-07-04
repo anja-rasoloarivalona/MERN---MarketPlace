@@ -1,17 +1,17 @@
 import React, { Component, Fragment } from 'react'
 import './ShopIndex.css';
 import Product from '../../components/Product/Product';
-
-import Range from '../../components/FormInput/InputRange/InputRange';
 import Sidebar from '../../components/Navigation/Sidebar/Sidebar';
-
 import bg from '../../assets/img/bg.jpg'
 
  class ShopIndex extends Component {
 
     state = {
         products: [],
-        status: ''
+        status: '',
+        productPriceRequested : {min: 2, max: 10},
+        priceMin: 0,
+        priceMax: 100
     }
 
     componentDidMount(){
@@ -41,12 +41,24 @@ import bg from '../../assets/img/bg.jpg'
             })
     }
 
+    inputRangeChangeHandler = value => {
+        this.setState({productPriceRequested : value})
+    }
+
     render() {
        
         return (
             <Fragment>
         
-                <Sidebar />
+                <Sidebar 
+                     maxPriceRequested = {this.state.priceMax} 
+                     minPriceRequested = {this.state.priceMin}
+                     inputRangeValue = {this.state.productPriceRequested}
+                     onInputRangeChange = {this.inputRangeChangeHandler}
+                     minPrice = {this.state.productPriceRequested.min}
+                     maxPrice = {this.state.productPriceRequested.max}
+                />
+
                 <section className="shop__intro" style={{
                                 backgroundImage: `url('${bg}')`,
                                 backgroundSize: 'cover',
@@ -55,6 +67,7 @@ import bg from '../../assets/img/bg.jpg'
                         }} >
                 
                 </section>
+                
                 <section className="shop">
                 
                     {
@@ -75,7 +88,6 @@ import bg from '../../assets/img/bg.jpg'
                    }             
                     
                 </section>
-                {/*  <Range />*/}  
             </Fragment>
         )
     }
