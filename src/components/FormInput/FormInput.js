@@ -2,7 +2,7 @@ import React from 'react';
 import './FormInput.css';
 
 const formInput = props =>(
-    <div className="input">
+    <div className='input'>
         {           
             props.label && (<label htmlFor={props.id}>{props.label}</label>)
         }

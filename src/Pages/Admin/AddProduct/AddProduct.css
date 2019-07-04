@@ -1,8 +1,8 @@
 .addProduct__form {
-    background: grey;
-    padding: 2rem;
+    background: rgb(209, 209, 209);
+   
     width: 40rem;
-    height: 30rem;
+    height: 35rem;
     z-index: 200;
     position: absolute;
     top: 0;
@@ -10,7 +10,15 @@
     right: 0;
     bottom: 0;
     margin: auto;
-
+    display: flex;
+    align-items: center;  
+     border-radius: 2px;
+    flex-direction: column;
    
+}
+
+.addProduct__form button {
+    position: absolute;
+    bottom: .5rem;
 }
 

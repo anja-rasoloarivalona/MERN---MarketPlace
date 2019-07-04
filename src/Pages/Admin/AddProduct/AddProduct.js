@@ -133,6 +133,8 @@ class AddProduct extends Component {
                         onChange={this.postProductChangeHandler}
                     />
 
+                    
+
                     <Button color='primary' type='submit'>
                         { this.state.editingMode ? 'Update' : 'Create'}
                     </Button>
