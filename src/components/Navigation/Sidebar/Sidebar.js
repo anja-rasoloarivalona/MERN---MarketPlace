@@ -54,11 +54,10 @@ class Sidebar extends Component {
                     <span>
                         Sort by
                     </span>
-                    <select name="cars">
-                        <option value="volvo">latest</option>
-                        <option value="saab">price: low to high</option>
-                        <option value="fiat">price: high to low</option>
-                        <option value="audi">popularity</option>
+                    <select name="filter">
+                        <option value="latest">latest</option>
+                        <option value="low_to_high">price: low to high</option>
+                        <option value="high_to_low">price: high to low</option>
                     </select>
                     
                 </div>
