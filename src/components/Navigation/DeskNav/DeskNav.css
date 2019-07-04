@@ -12,6 +12,7 @@
     margin: auto;
     width: calc(100% - 4rem);
     background: var(--color-white);
+    z-index: 2000;
 }
 
 .deskNav__top {
@@ -21,6 +22,7 @@
   width: 100%;
   height: 3rem;
   background: var(--color-primary);
+  z-index: 2000;
  
 
   display: flex;

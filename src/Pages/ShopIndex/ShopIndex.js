@@ -9,7 +9,7 @@ import bg from '../../assets/img/bg.jpg'
     state = {
         products: [],
         status: '',
-        productPriceRequested : {min: 2, max: 10},
+        productPriceRequested : {min: 20, max: 500},
         priceMin: 0,
         priceMax: 2000
     }

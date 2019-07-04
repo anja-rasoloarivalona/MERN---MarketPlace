@@ -1,9 +1,8 @@
 .addProduct__form {
-    background: rgb(209, 209, 209);
-   
+    background: rgb(209, 209, 209);  
     width: 40rem;
     height: 35rem;
-    z-index: 200;
+    z-index: 2200;
     position: absolute;
     top: 0;
     left: 0; 
