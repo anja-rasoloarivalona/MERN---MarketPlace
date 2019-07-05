@@ -1,0 +1,7 @@
+.single-product {
+    grid-row: 3 / 4;
+    grid-column: center-start / center-end;
+    height: calc(100vh - 8rem);
+    width: 100%;
+    background: red;
+}

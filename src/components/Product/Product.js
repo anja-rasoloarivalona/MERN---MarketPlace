@@ -24,9 +24,9 @@ const product = props => (
                  (
                     <div className="product__actions flex-centered-row">
                         <Button 
-                            link = {props.link}
+                            link= {`${props.category}/${props.id}`}
                             color="primary"
-                            to={props.link}>
+                        >
                             View details
                         </Button>
                     </div>
@@ -36,14 +36,14 @@ const product = props => (
                         <Button 
                             link = {props.edit_link}
                             color="primary"
-                            to={props.link}
+                          /*  to={props.link}*/
                             onClick={props.onStartEdit}>
                             Edit
                         </Button>
                         <Button 
                             link = {props.delete_link}
                             color="primary"
-                            to={props.link}
+                         /*   to={props.link}*/
                             onClick={props.onDelete}>
                             Delete
                         </Button>

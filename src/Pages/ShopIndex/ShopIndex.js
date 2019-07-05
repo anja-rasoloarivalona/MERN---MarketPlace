@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react'
 import './ShopIndex.css';
 import Product from '../../components/Product/Product';
 import Sidebar from '../../components/Navigation/Sidebar/Sidebar';
-import bg from '../../assets/img/bg.jpg'
+import bg from '../../assets/img/bg.jpg';
+
 
  class ShopIndex extends Component {
 
@@ -19,6 +20,8 @@ import bg from '../../assets/img/bg.jpg'
 
 
     componentDidMount(){
+        console.log(this.props.match.params)
+        
         this._isMounted = true;
         this.loadProductsHandler();
     }
@@ -92,9 +95,9 @@ import bg from '../../assets/img/bg.jpg'
                                         id={product._id}
                                         title={product.title}
                                         price={product.price}
+                                        category = {product.category}
                                         description={product.description}
                                         date = {date}
-                                        link='/'
                                         imageUrl = {'http://localhost:8000/' + product.imageUrl }
                                     />
                         })

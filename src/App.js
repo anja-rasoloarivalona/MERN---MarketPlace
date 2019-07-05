@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Route, Switch} from 'react-router-dom';
+import { Route, Switch, withRouter} from 'react-router-dom';
 import './App.css';
 
 
@@ -15,6 +15,7 @@ import Shop from './Pages/ShopIndex/ShopIndex';
 import AdminProducts from './Pages/Admin/AdminProducts/AdminProducts';
 import AuthSignup from './Pages/Auth/Signup/Signup';
 import AuthLogin from './Pages/Auth/Login/Login';
+import SingleProduct from './Pages/SingleProduct/SingleProduct';
 
 class App extends Component {
 
@@ -73,6 +74,9 @@ class App extends Component {
                 <Route path='/admin/products' component={AdminProducts}/>
                 <Route path='/auth/signup' component={AuthSignup}/>
                 <Route path='/auth/login' component={AuthLogin}/>
+                <Route path='/:category/:prodId' render={props => (
+                      <SingleProduct {...props}/>
+                )}/>
             </Switch>
         </Layout>
     </Fragment>
@@ -81,4 +85,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default withRouter(App);
