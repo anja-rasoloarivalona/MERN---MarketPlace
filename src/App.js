@@ -14,6 +14,7 @@ import Backdrop from './components/Backdrop/Backdrop';
 import Shop from './Pages/ShopIndex/ShopIndex';
 import AdminProducts from './Pages/Admin/AdminProducts/AdminProducts';
 import AuthSignup from './Pages/Auth/Signup/Signup';
+import AuthLogin from './Pages/Auth/Login/Login';
 
 class App extends Component {
 
@@ -71,6 +72,7 @@ class App extends Component {
                 <Route path='/' exact component={Shop}/>
                 <Route path='/admin/products' component={AdminProducts}/>
                 <Route path='/auth/signup' component={AuthSignup}/>
+                <Route path='/auth/login' component={AuthLogin}/>
             </Switch>
         </Layout>
     </Fragment>

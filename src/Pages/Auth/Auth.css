@@ -3,4 +3,11 @@
     grid-column: center-start / center-end;
     height: calc(100vh - 8rem);
     background: red;
+    position: relative;
+}
+
+.auth__form {
+    width: 30rem;
+    background: blue;
+    padding: 1rem 0;
 }

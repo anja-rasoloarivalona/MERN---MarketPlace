@@ -14,6 +14,7 @@ const formInput = props =>(
                     id={props.id} //for the label
                     required={props.required}
                     value={props.value}
+                    placeholder = {props.placeholder}
                     onChange={e => props.onChange(props.id, e.target.value /*, e.target.files*/)}
                 />
             )
