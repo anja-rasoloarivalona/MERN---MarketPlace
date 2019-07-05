@@ -8,7 +8,7 @@ const navListItems = [
     {id: 'admin', text: 'Admin', link:'/admin', auth: true},
     {id: 'admin-products', text: 'Admin', link:'/admin/products', auth: false},
     {id: 'login', text: 'Login', link:'/login', auth: false},
-    {id: 'signup', text: 'Signup', link:'/signup', auth: false},
+    {id: 'signup', text: 'Signup', link:'/auth/signup', auth: false},
    
     
 

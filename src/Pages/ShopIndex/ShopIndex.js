@@ -6,15 +6,20 @@ import bg from '../../assets/img/bg.jpg'
 
  class ShopIndex extends Component {
 
+    _isMounted = false;
+
     state = {
         products: [],
         status: '',
         productPriceRequested : {min: 20, max: 500},
         priceMin: 0,
-        priceMax: 2000
+        priceMax: 2000, 
     }
 
+
+
     componentDidMount(){
+        this._isMounted = true;
         this.loadProductsHandler();
     }
 
@@ -22,8 +27,14 @@ import bg from '../../assets/img/bg.jpg'
         this.loadProductsHandler();
     }
 
+    componentWillUnmount(){
+        this._isMounted = false;
+    }
+ 
+
     loadProductsHandler = () => {
-        fetch('http://localhost:8000')
+
+            fetch('http://localhost:8000')
             .then(res => {
                 if(res.status !== 200){
                     throw new Error('Failed to fectch products')
@@ -40,6 +51,8 @@ import bg from '../../assets/img/bg.jpg'
                 console.log(err)
             })
     }
+       
+  
 
     inputRangeChangeHandler = value => {
         this.setState({productPriceRequested : value})
