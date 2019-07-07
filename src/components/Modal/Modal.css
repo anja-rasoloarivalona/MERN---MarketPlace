@@ -1,0 +1,32 @@
+.modal {
+    position: fixed;
+    width: 50%;
+    top: 20vh;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 3200;
+    background: var(--color-white);
+}
+
+.modal__header {
+    border-bottom: 2px solid var(--color-primary)
+}
+
+.modal__header h1 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin: 1rem;
+}
+
+.modal__body {
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.modal__cta {
+    padding: 1rem;
+    width: 100%;
+}
