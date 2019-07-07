@@ -4,41 +4,87 @@ import './Signup.css';
 import Auth from '../Auth';
 import '../Auth.css';
 import Button from '../../../components/Button/Button';
+import { required, length, email } from '../../../util/validators';
 
 class Signup extends Component {
+
+ 
 
     state = {
         signupForm : {
 
             name: {
                 value: '',
-                valid: false
+                valid: false,
+                validators: [required, length({min: 3})]
             },
             email: {
                 value: '',
-                valid: false
+                valid: false,
+                validators: [required, email]
             },
 
             password: {
                 value: '',
-                valid: false
+                valid: false,
+                validators: [required, length({min: 5})]
+
             },
 
             confirm_password: {
-                value: '',
-                valid: false
-            }
+                value: '',  
+                valid: false,    
+                validators: [required]        
+            },
+        },
 
-        }
+        formIsValid: false
     }
 
-    signupFormChangeHandler = () => {
-        console.log('lol')
+    confirmHandler = value => {
+        return value === this.state.signupForm.password.value;
+    } 
+    
+    
+ 
+    signupFormChangeHandler = (input, value) => { 
+        this.setState(prevState => {
+            let isValid = true;
+            for (const validator of prevState.signupForm[input].validators) {
+              isValid = isValid && validator(value);
+            }
+            const updatedForm = {
+              ...prevState.signupForm,
+              [input]: {
+                ...prevState.signupForm[input],
+                valid: isValid,
+                value: value
+              }
+            };
+            let formIsValid = true;
+            for (const inputName in updatedForm) {
+                   formIsValid = formIsValid && updatedForm[inputName].valid;
+            }
+
+            if(updatedForm.confirm_password.value === updatedForm.password.value) {
+                return {
+                    signupForm: updatedForm,
+                    formIsValid: formIsValid
+                  };
+            } else {
+               return {
+                signupForm : updatedForm,
+                formIsValid: false
+               } 
+            }
+
+           
+          });
     }
 
     signupHandler = (e, signupFormData) => {
         e.preventDefault();
-        console.log('sign up')
+        console.log(this.state.formIsValid, this.state.signupForm)
     }
 
     render() {
@@ -46,7 +92,7 @@ class Signup extends Component {
           <Auth>          
             <form onSubmit={e => this.signupHandler(e, this.state)}
                   className="auth__form flex-centered-column">
-                <dv>Create an account</dv>
+                <div>Create an account</div>
                 <Input 
                     id='name'
                     label='name*'

@@ -46,9 +46,15 @@ import bg from '../../assets/img/bg.jpg';
                 return res.json(); //extract the body
             })
             .then(resData => {
-                this.setState({
-                    products: resData.products,
-                })
+
+                if(this._isMounted === true) {
+                    this.setState({
+                        products: resData.products,
+                    })
+                }
+
+                return null;
+                
             })
             .catch( err => {
                 console.log(err)
