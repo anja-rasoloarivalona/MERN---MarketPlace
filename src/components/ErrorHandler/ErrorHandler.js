@@ -11,9 +11,9 @@ const errorHandler = props =>
             )}
 
             {props.error && (
-                <Modal title={props.error.title}
+                <Modal title='Oops something went wrong'
                         onCloseModal = {props.onCloseError}>
-                    <p>{props.error.message}</p>
+                    <p>{props.error[0]}</p>
                 </Modal>
             )}
         </Fragment>

@@ -5,7 +5,7 @@ import Auth from '../Auth';
 import '../Auth.css';
 import Button from '../../../components/Button/Button';
 import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
-import { required, length, email } from '../../../util/validators';
+import { validator } from '../../../util/validators';
 
 class Signup extends Component {
 
@@ -16,35 +16,23 @@ class Signup extends Component {
 
             name: {
                 value: '',
-                valid: false,
-                validators: [length({min: 3})],
                 errorLabel: 'A name',
-                errorMessage: 'Please enter at least 3 characters in the name field'
             },
             email: {
                 value: '',
-                valid: false,
-                validators: [email],
                 errorLabel: 'An email',
-                errorMessage: 'Please enter a valid email'
-
             },
 
             password: {
                 value: '',
-                valid: false,
-                validators: [length({min: 5})],
                 errorLabel: 'A password',
-                errorMessage: 'Please enter at least 5 characters in the password field'
+
 
             },
 
             confirm_password: {
                 value: '',  
-                valid: false,    
-                validators: [required],
                 errorLabel: 'A confirmation password',
-                errorMessage: 'There is a problem with the password, please try again'   
             },
         },
         error : null
@@ -57,15 +45,10 @@ class Signup extends Component {
  
     changeHandler = (input, value) => { 
         this.setState(prevState => {
-            let isValid = true;
-            for (const validator of prevState.signupForm[input].validators) {
-              isValid = isValid && validator(value);
-            }
             const updatedForm = {
               ...prevState.signupForm,
               [input]: {
                 ...prevState.signupForm[input],
-                valid: isValid,
                 value: value
               }
             };
@@ -75,40 +58,64 @@ class Signup extends Component {
           });
     }
 
-    checkValueHandler = (inputBeingChecked) => {
-        if(inputBeingChecked.value.length < 1) {
-            this.setState({
-                error: {
-                    title: 'Oops something went wrong',
-                    message: `${inputBeingChecked.errorLabel} is required`
-                }
-            })
-        } 
-        if(inputBeingChecked.valid === false) {
-            this.setState({
-                error: {
-                    title: 'Oops something went wrong',
-                    message: inputBeingChecked.errorMessage
-                }
-            })
-        }
-    }
+
     
 
     submitHandler = (e, signupFormData) => {
         e.preventDefault();
-        for ( let inputToCheck in signupFormData){
-            this.checkValueHandler(signupFormData[inputToCheck]);
-        }       
 
-        if(signupFormData.password.value !== signupFormData.confirm_password.value){
-                this.setState({
-                    error: {
-                        title:'Oops something went wrong',
-                        message: 'Please enter the same password'
-                }
+        const errors = validator(
+            signupFormData.name, 
+            signupFormData.email, 
+            signupFormData.password,
+            signupFormData.confirm_password)
+ 
+           if(errors.length > 0){
+                this.setState({ error : errors});
+                return
+    }
+
+
+
+        fetch('http://localhost:8000/auth/signup', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: signupFormData.name.value,
+                email: signupFormData.email.value,
+                password: signupFormData.password.value
+
             })
-        }
+
+        })
+        .then( res => {
+            if(res.status === 422) {
+                throw new Error (
+                    "Make sure the email adress isn't used yet"
+                )
+            }
+            if (res.status !== 200 && res.status !== 201){
+                throw new Error('Creating a user failed')
+            }
+
+            return res.json()
+        })
+
+        .then(resData => {
+            this.props.history.replace('/auth/login')
+        })
+
+        .catch(err => {
+            let error = []
+            error.push(err.message)           
+            this.setState({
+              error: error
+            });
+          });
+        
+        
     }
 
     

@@ -26,6 +26,10 @@ class Login extends Component {
         console.log('Login')
     }
 
+    inputChangeHandler = () => {
+        console.log('changed')
+    }
+
     render() {
         return (        
             <Auth>
