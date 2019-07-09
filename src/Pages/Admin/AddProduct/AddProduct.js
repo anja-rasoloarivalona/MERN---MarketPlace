@@ -16,7 +16,7 @@ const POST_PRODUCT = {
     },
 
     category: {
-        value: ''
+        value: 'automobile'
     },
 
     image: {
@@ -36,7 +36,7 @@ class AddProduct extends Component {
     }
 
     componentWillMount(){
-        console.log('Mounted')
+        console.log('Edit Mounted')
         if(this.props.editingMode){
             const postProduct = {
                 title: {

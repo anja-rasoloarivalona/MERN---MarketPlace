@@ -136,6 +136,8 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
                 createdAt: resProductData.product.createdAt
             };
 
+            console.log('from resProductData',product)
+
             this.setState(prevState => {
                 let updatedProducts = [...prevState.products];
                 if(prevState.productBeingEdited){
@@ -145,9 +147,6 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
                 } else if(prevState.products.length < 2) {
                     updatedProducts = prevState.products.concat(product)
                 }
-
-              //  console.log('old', prevState.products[0]._id)
-            //    console.log('new prods', updatedProducts)
 
                 return {
                     products: updatedProducts,
@@ -159,7 +158,12 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
         })
 
         .catch(err => {
-            console.log(err);
+            let error = []
+            error.push(err.message)
+            this.setState({
+                isAuth: false,
+                error: error
+            })
         })
     }
 
