@@ -93,7 +93,15 @@ import bg from '../../assets/img/bg.jpg';
                 
                     {
                         this.state.products.map(product => {
-                            const date = product.createdAt.slice(0, 10);
+                          /*  const date = product.createdAt.slice(0, 10);*/
+                                let date = product.createdAt.toString().split('T')[0];
+                                let hour = product.createdAt.toString().split('T')[1].slice(0, 8);
+
+                                let fullDate = date + ' ' + hour
+
+                    
+                               
+
                             return <Product
                                         shop
                                         key={product._id}
@@ -102,7 +110,7 @@ import bg from '../../assets/img/bg.jpg';
                                         price={product.price}
                                         category = {product.category}
                                         description={product.description}
-                                        date = {date}
+                                        date = {fullDate}
                                         imageUrl = {'http://localhost:8000/' + product.imageUrl }
                                     />
                         })

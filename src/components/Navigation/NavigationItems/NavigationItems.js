@@ -4,7 +4,7 @@ import './NavigationItems.css';
 
 const navListItems = [
     {id: 'shop', text: 'Shop', link:'/'},
-    {id: 'cart', text: 'Cart', link:'/cart', auth: true},
+ /*   {id: 'cart', text: 'Cart', link:'/cart', auth: true},*/
     {id: 'admin-products', text: 'Admin', link:'/admin/products', auth: true},
     {id: 'login', text: 'Login', link:'/auth/login', auth: false},
     {id: 'signup', text: 'Signup', link:'/auth/signup', auth: false},
