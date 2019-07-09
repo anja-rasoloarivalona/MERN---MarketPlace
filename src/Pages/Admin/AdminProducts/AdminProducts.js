@@ -7,49 +7,67 @@ import Button from '../../../components/Button/Button';
 import Backdrop from '../../../components/Backdrop/Backdrop';
 import AddProduct from '../AddProduct/AddProduct';
 
+import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
+
 
 
 
  class AdminProducts extends Component {
+
+    _isMounted = false;
 
     state = {
         products: [],
         status: '',
         showBackdrop: false,
         isEditing: false,
-        productBeingEdited: ''
+        productBeingEdited: '',
+        error: null
+ 
     }
 
     componentDidMount(){
+        this._isMounted = true;
         this.loadProductsHandler();
     }
 
-  /*  componentDidUpdate(){
-        this.loadProductsHandler();
-    }*/
+    componentWillUnmount(){
+        this._isMounted = false;
+    }
 
     loadProductsHandler = () => {
-        fetch('http://localhost:8000')
-            .then(res => {
-                if(res.status !== 200){
-                    throw new Error('Failed to fectch products')
-                }
-                return res.json(); //extract the body
-            })
-            .then(resData => {
-                this.setState({
-                    products: resData.products.map(product => {
-                        return {
-                            ...product,
-                            imagePath: product.imageUrl
-                        }
-                    })
-                   
-                })
-            })
-            .catch( err => {
-                console.log(err)
-            })
+        if(this._isMounted === true){
+
+            const token = localStorage.getItem('token');
+
+            fetch('http://localhost:8000/admin/products',
+        {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+                 .then(res => {
+                     if(res.status !== 200){
+                         throw new Error('Failed to fectch products')
+                     }
+                     return res.json(); //extract the body
+                 })
+                 .then(resData => {
+                     this.setState({
+                         products: resData.products.map(product => {
+                             return {
+                                 ...product,
+                                 imagePath: product.imageUrl
+                             }
+                         })
+                        
+                     })
+                 })
+                 .catch( err => {
+                     console.log(err)
+             })
+        }
+        
     }
 
     backdropClickHandler = () => {
@@ -77,6 +95,8 @@ import AddProduct from '../AddProduct/AddProduct';
     }
 
     confirmSubmitHandler = productData => {
+        const token = localStorage.getItem('token');
+        
             const formData = new FormData();
             formData.append('title', productData.title);
             formData.append('price', productData.price);
@@ -91,7 +111,10 @@ import AddProduct from '../AddProduct/AddProduct';
             method = 'PUT'
         }
 
-        fetch(url, {
+        fetch(url, {        
+            headers: {
+                Authorization: 'Bearer ' + token
+            },
             method: method,
             body: formData
         })
@@ -143,7 +166,12 @@ import AddProduct from '../AddProduct/AddProduct';
 
 
     deleteProductHandler = productId => {
+        const token = localStorage.getItem('token');
+
             fetch('http://localhost:8000/admin/product/' + productId, {
+                headers: {
+                    Authorization: 'Bearer ' + token
+                },
                 method: 'DELETE',
             })
                 .then(res => {
@@ -161,9 +189,18 @@ import AddProduct from '../AddProduct/AddProduct';
                 })
     }
 
+    closeErrorHandler = () => {
+        this.setState({ error: null})
+    }
+
+    
     render() {
         return (
             <Fragment>
+
+            <ErrorHandler error = {this.state.error}
+                          onCloseError={this.closeErrorHandler}/> 
+
             {this.state.showBackdrop && (
                 <Fragment>
                     <Backdrop onClick={this.backdropClickHandler} />

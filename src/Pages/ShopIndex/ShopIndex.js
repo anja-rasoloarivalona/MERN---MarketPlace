@@ -26,10 +26,6 @@ import bg from '../../assets/img/bg.jpg';
         this.loadProductsHandler();
     }
 
-    componentDidUpdate(){
-        this.loadProductsHandler();
-    }
-
     componentWillUnmount(){
         this._isMounted = false;
     }
@@ -57,7 +53,10 @@ import bg from '../../assets/img/bg.jpg';
                 
             })
             .catch( err => {
-                console.log(err)
+                if(err){
+                    console.log(err)
+                }
+               
             })
     }
        

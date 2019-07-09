@@ -65,15 +65,16 @@ class Signup extends Component {
         e.preventDefault();
 
         const errors = validator(
-            signupFormData.name, 
             signupFormData.email, 
             signupFormData.password,
-            signupFormData.confirm_password)
+            signupFormData.confirm_password,
+            signupFormData.name          
+           )
  
            if(errors.length > 0){
                 this.setState({ error : errors});
                 return
-    }
+            }
 
 
 

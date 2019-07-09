@@ -3,10 +3,9 @@ import { NavLink } from 'react-router-dom';
 import './NavigationItems.css';
 
 const navListItems = [
-    {id: 'shop', text: 'Shop', link:'/', auth: false},
-    {id: 'cart', text: 'Cart', link:'/cart', auth: false},
-    {id: 'admin', text: 'Admin', link:'/admin', auth: true},
-    {id: 'admin-products', text: 'Admin', link:'/admin/products', auth: false},
+    {id: 'shop', text: 'Shop', link:'/'},
+    {id: 'cart', text: 'Cart', link:'/cart', auth: true},
+    {id: 'admin-products', text: 'Admin', link:'/admin/products', auth: true},
     {id: 'login', text: 'Login', link:'/auth/login', auth: false},
     {id: 'signup', text: 'Signup', link:'/auth/signup', auth: false},
    
@@ -15,7 +14,17 @@ const navListItems = [
 ]
 
 const navigationItems = props => [
-       
+
+   (
+        <li key={'shop'} 
+                className={["navigationItems", "centered", props.mobile ? "mobile" : ''].join(' ')}
+        >    
+            <NavLink to={'/'} exact onClick={props.onClickNavLink}>
+                Shop
+            </NavLink>       
+        </li> 
+    ),   
+
      ...navListItems
         .filter(item => item.auth === props.isAuth)
         .map(item => (
