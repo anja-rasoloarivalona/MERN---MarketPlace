@@ -2,7 +2,7 @@
   /* COLOR */ 
   --color-white : #fff;
   --color-primary: #3a3665;
-  --color-secondary: #7874ca;
+  --color-secondary: #04776e;
   --color-grey: #989084;
 }
 
@@ -24,6 +24,7 @@ html {
 body {
   box-sizing: border-box;
   overflow-x: hidden;
+  font-family: 'Lato', sans-serif;
 }
 
 .centered {

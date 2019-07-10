@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './SidebarCategoryList.css';
 
 import IconSvg from '../../../../util/svgHandler';
@@ -31,21 +31,23 @@ const sidebarCategoryList = props => {
                    
                     { category.map( category => (
                         
-                        <Link key={category} 
+                        <NavLink 
+                              key={category} 
                               to={`${category}`}
                               className="sidebar__category__list__item">
                                 <IconSvg icon={category} size="big"/>
-                                <span>{category}</span>
-                        </Link>
+                                <span className="sidebar__category__list__item__title">{category}</span>
+                        </NavLink>
                     ))}
 
                     { category2.map( category => (
-                        <Link   key={category.title} 
+                        <NavLink   
+                            key={category.title} 
                               to={`${category.title}`}
                               className="sidebar__category__list__item">
                                 <ReactSVG src={category.src} className={`icon icon--${category.title}`}/>
-                                <span>{category.title}</span>
-                        </Link>
+                                <span className="sidebar__category__list__item__title">{category.title}</span>
+                        </NavLink>
                     ))}
 
                 {props.children}

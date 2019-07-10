@@ -11,17 +11,19 @@
 
 .navigationItems a {
     text-decoration: none;
-    color: var(--color-primary)
+    color: var(--color-primary);
 }
+
 
 .navigationItems a:hover,
 .navigationItems a:active,
 .navigationItems a.active {
-    color: var(--color-secondary)
+    color: #11ac9f;
 }
 
+
 .navigationItems.mobile a {
-    color: #3b0062;
+    color: var(--color-secondary)
 }
   
 

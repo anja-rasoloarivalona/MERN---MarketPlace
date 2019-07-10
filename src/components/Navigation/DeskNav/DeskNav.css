@@ -10,10 +10,12 @@
     left: 0;
     right: 0;
     margin: auto;
-    width: calc(100% - 4rem);
+    width: 100%;
     background: var(--color-white);
     z-index: 2000;
-}
+    box-shadow: 3px 1px 5px -2px rgba(207,207,207,0.65);
+  }
+  
 
 .deskNav__top {
   grid-row: 1 / 2;
@@ -23,11 +25,20 @@
   height: 3rem;
   background: var(--color-primary);
   z-index: 2000;
- 
-
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.deskNav__top__language {
+  color: var(--color-white);
+  font-size: 1.5rem;
+  width: 21rem;
+  text-align: center;
+}
+
+.deskNav__top__language svg {
+  transform: translateY(2px);
 }
 
 .deskNav__top__icon {
