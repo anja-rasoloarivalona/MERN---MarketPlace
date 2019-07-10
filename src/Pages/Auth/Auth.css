@@ -1,13 +1,14 @@
 .auth {
     grid-row: 3 / 4;
-    grid-column: center-start / center-end;
+    grid-column: full-start / full-end;
     height: calc(100vh - 8rem);
-    background: red;
     position: relative;
 }
 
 .auth__form {
-    width: 30rem;
-    background: blue;
-    padding: 1rem 0;
+    width: 34rem;
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: 2rem;
+    border-radius: 3px;
 }

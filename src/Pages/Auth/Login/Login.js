@@ -1,10 +1,12 @@
 import React, { Component, Fragment} from 'react';
+import { Link } from 'react-router-dom';
 import Input from '../../../components/FormInput/FormInput';
 import './Login.css';
 import Auth from '../Auth';
 import Button from '../../../components/Button/Button';
 import { validator } from '../../../util/validators';
 import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
+import IconSvg from '../../../util/svgHandler';
 
 
 class Login extends Component {
@@ -122,7 +124,9 @@ class Login extends Component {
                         this.loginHandler(e, this.state.loginForm))}
                     noValidate>    
 
-                        <div>Log In</div>
+                        <div className="login__title flex-centered-row">Log In
+                            <IconSvg icon="user"/>
+                        </div>
                         <Input 
                             id='email'
                             label='email'
@@ -141,7 +145,11 @@ class Login extends Component {
                             required={true}
                             value={this.state.loginForm['password'].value}
                         />
-                        <Button type="submit">
+                        <div className="login__cta">
+                                <Link to='/signup'>Don't have an account?</Link>
+                                <div>Forget password</div>
+                            </div>
+                        <Button type="submit" color="secondary">
                             Login
                         </Button>
                 </form>

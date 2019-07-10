@@ -1,0 +1,22 @@
+.signup__cta {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.signup__cta a {
+    color: var(--color-white);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.signup__title {
+    width: 70%;
+    font-size: 1.8rem;
+    margin-bottom: .8rem;
+}
+
+.signup__title svg {
+    transform: translateX(3rem);
+}

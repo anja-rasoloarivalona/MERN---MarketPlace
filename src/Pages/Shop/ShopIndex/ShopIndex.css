@@ -3,7 +3,6 @@
     grid-column: col-start 2 / col-end 4;
     width: 100%;
     height: calc(100vh - 8rem);
-    background: red;
 }
 
 .shop--index {

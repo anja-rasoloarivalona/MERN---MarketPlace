@@ -106,8 +106,8 @@ class App extends Component {
     let routes = (
       <Switch>
             <Route path='/' exact component={ShopIndex}/>
-            <Route path='/auth/signup' component={AuthSignup}/>
-            <Route path='/auth/login' 
+            <Route path='/signup' component={AuthSignup}/>
+            <Route path='/login' 
                 render={props => (
                   <AuthLogin {...props} onUpdateState={this.onUpdateState} />
             )}/>

@@ -1,11 +1,13 @@
 import React, { Component, Fragment} from 'react';
 import Input from '../../../components/FormInput/FormInput';
+import { Link } from 'react-router-dom';
 import './Signup.css';
 import Auth from '../Auth';
 import '../Auth.css';
 import Button from '../../../components/Button/Button';
 import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import { validator } from '../../../util/validators';
+import IconSvg from '../../../util/svgHandler';
 
 class Signup extends Component {
 
@@ -132,7 +134,9 @@ class Signup extends Component {
                     <form onSubmit={e => this.submitHandler(e, this.state.signupForm)}
                         className="auth__form flex-centered-column"
                         noValidate>
-                        <div>Create an account</div>
+                        <div className="signup__title flex-centered-row">Create an account
+                            <IconSvg icon="pencil"/>
+                        </div>
                         <Input 
                             id='name'
                             label='name*'
@@ -169,11 +173,11 @@ class Signup extends Component {
                             value={this.state.signupForm['confirm_password'].value}
                             onChange={this.changeHandler}
                         />
-                            <div>
-                                <div>Already a member?</div>
+                            <div className='signup__cta'>
+                                <Link to="login">Already a member?</Link>
                                 <div>Forget password</div>
                             </div>
-                        <Button type="submit">
+                        <Button type="submit" color="secondary">
                             Sign Up
                         </Button>
                     </form>

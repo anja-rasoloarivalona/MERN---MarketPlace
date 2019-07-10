@@ -1,0 +1,22 @@
+.login__cta {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.login__cta a {
+    color: var(--color-white);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.login__title {
+    width: 70%;
+    font-size: 1.8rem;
+    margin-bottom: .8rem;
+}
+
+.login__title svg {
+    transform: translateX(1rem);
+}
