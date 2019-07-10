@@ -57,7 +57,31 @@
         background: var(--color-white);
         padding: 0 35rem;
     }
-  }
+}
+
+@media (max-width: 999px) {
+    .sidebar__price__input {
+        padding: 0 30rem;
+    }
+}
+
+@media (max-width: 799px) {
+    .sidebar__price__input {
+        padding: 0 20rem;
+    }
+}
+
+@media (max-width: 616px) {
+    .sidebar__price__input {
+        padding: 0 10rem;
+    }
+}
+
+@media (max-width: 370px) {
+    .sidebar__price__input {
+        padding: 0 3rem;
+    }
+}
 
 .sidebar__price__input--hide{
     transform: translateY(-8rem);   
@@ -127,3 +151,9 @@
 .sidebar__sort__goTop {
     transform: translateY(-8rem);
 }
+
+@media (max-width: 600px) {
+    .sidebar__sort__goTop {
+        transform: translateY(-8.2rem);
+    }
+  }

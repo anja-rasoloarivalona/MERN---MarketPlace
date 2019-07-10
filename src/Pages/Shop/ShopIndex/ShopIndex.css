@@ -26,4 +26,11 @@
         grid-row: 5/ 6;
         grid-column: center-start / center-end;
     }
+}
+
+@media (max-width: 887px) {
+    .shop--index {
+        grid-column: full-start / full-end;
+        padding-top: 0;
+    }
   }

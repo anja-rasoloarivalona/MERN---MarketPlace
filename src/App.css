@@ -20,6 +20,12 @@ html {
   overflow-x: hidden;
 }
 
+@media (max-width: 600px) {
+  html {
+    font-size: 55%;
+  }
+}
+
 
 body {
   box-sizing: border-box;
