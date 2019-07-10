@@ -55,7 +55,7 @@ class Sidebar extends Component {
                     <span>
                         Sort by
                     </span>
-                    <select name="filter">
+                    <select name="filter" onChange={e => this.props.sortbyhandler(e)}>
                         <option value="latest">latest</option>
                         <option value="low_to_high">price: low to high</option>
                         <option value="high_to_low">price: high to low</option>

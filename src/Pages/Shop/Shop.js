@@ -12,6 +12,7 @@ const Shop = props => (
                      onChangeComplete = {props.onChangeComplete}
                      minPrice = {props.productPriceRequested.min}
                      maxPrice = {props.productPriceRequested.max}
+                     sortbyhandler = {props.sortbyhandler}
                  /*    onChangeComplete ={props.onChangeComplete}*/
                
                 />
