@@ -6,6 +6,18 @@
     align-items: center;
     justify-content: center;
     background: rgb(238, 238, 238);
-    padding-top: 3rem;
-    
+}
+
+.shop--category__title {
+    height: 7rem;
+    width: 100%;
+    background: #EEEEEE;
+    display: flex;
+    align-items: center;
+    padding-left: 3rem;
+    font-size: 1.5rem;
+}
+
+.shop--category__title span {
+ width: .5rem;
 }

@@ -13,7 +13,7 @@ import ShopLayout from '../Shop';
     state = {
         products: [],
         status: '',
-        productPriceRequested : {min: 100, max: 500},
+        productPriceRequested : {min: 1, max: 99998},
         priceMin: 0,
         priceMax: 99999, 
         sortBy: 'latest'

@@ -1,4 +1,5 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import './ShopByCategory.css';
 import Product from '../../../components/Product/Product';
 import ShopLayout from '../Shop';
@@ -109,7 +110,11 @@ import ShopLayout from '../Shop';
                     sortbyhandler = {this.sortbyhandler}
                     >
 
-                    <section className="shop--category">                
+                    <section className="shop--category"> 
+
+                        <div className="shop--category__title">
+                            <Link to='/'>Home</Link> <span></span> > {this.state.category}
+                        </div>               
                         {
                             this.state.products.map(product => {
                             /*  const date = product.createdAt.slice(0, 10);*/
