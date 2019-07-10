@@ -9,6 +9,12 @@
     background: rgb(245, 245, 241);
 }
 
+@media (max-width: 1060px) {
+    .admin-products {
+        grid-column: full-start / full-end;
+    }
+}
+
 .admin-add-products {
     position: fixed;
     top: 10rem;
