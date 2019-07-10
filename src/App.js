@@ -11,7 +11,8 @@ import MobileNav from './components/Navigation/MobileNav/MobileNav';
 import Backdrop from './components/Backdrop/Backdrop';
 
 /*------------Pages-----------------*/
-import Shop from './Pages/ShopIndex/ShopIndex';
+import ShopIndex from './Pages/Shop/ShopIndex/ShopIndex';
+import ShopByCategory from './Pages/Shop/ShopByCategory/ShopByCategory';
 import AdminProducts from './Pages/Admin/AdminProducts/AdminProducts';
 import AuthSignup from './Pages/Auth/Signup/Signup';
 import AuthLogin from './Pages/Auth/Login/Login';
@@ -104,7 +105,7 @@ class App extends Component {
 
     let routes = (
       <Switch>
-            <Route path='/' exact component={Shop}/>
+            <Route path='/' exact component={ShopIndex}/>
             <Route path='/auth/signup' component={AuthSignup}/>
             <Route path='/auth/login' 
                 render={props => (
@@ -113,6 +114,9 @@ class App extends Component {
             <Route path='/admin/products' render={props => (
                   <AdminProducts {...props} token={this.state.token}/>
             )}/>
+              <Route path='/:category' render={props => (
+                      <ShopByCategory {...props}/>
+            )}/> 
             <Route path='/:category/:prodId' render={props => (
                       <SingleProduct {...props}/>
             )}/>  

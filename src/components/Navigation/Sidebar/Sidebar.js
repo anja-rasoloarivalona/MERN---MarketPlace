@@ -31,7 +31,8 @@ class Sidebar extends Component {
 
                 <SidebarCategoryToggler hideCategoryFilterHandler = {this.hideCategoryFilterHandler}/>
 
-                <SideBarCategoryList hideCategoryFilter = {this.state.hideCategoryFilter}>
+                <SideBarCategoryList hideCategoryFilter = {this.state.hideCategoryFilter}
+                                    >
 
                 <div className="sidebar__price">
 
