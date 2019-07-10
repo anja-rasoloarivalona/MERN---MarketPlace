@@ -38,7 +38,7 @@ const navigationItems = props => [
         )),
     
     props.isAuth && (
-        <li className="navigationItems" key="logout">
+        <li className="navigationItems centered" key="logout">
             <button onClick={props.onLogout}>Logout</button>
         </li>
     )

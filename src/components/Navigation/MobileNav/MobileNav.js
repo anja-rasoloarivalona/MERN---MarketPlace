@@ -5,6 +5,7 @@ import './MobileNav.css';
 
 const mobileNavigation = props => (
   <nav className={['mobileNav', props.isMobileNavOpen ? 'open' : ''].join(' ')}>
+    <header>Market Place</header>
     <ul
       className={['mobileNav__list', props.mobile ? 'mobile' : ''].join(' ')}
     >

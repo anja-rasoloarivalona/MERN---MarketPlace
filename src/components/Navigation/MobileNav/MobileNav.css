@@ -9,7 +9,7 @@
     box-shadow: 1px 0 8px rbga(0, 0, 0, 0.26);
     transition: transform 0.3s ease-out;
     transform: translateX(-100%);
-    z-index: 200;
+    z-index: 5200;
     padding: 3rem 2rem;
   }
   
@@ -19,9 +19,12 @@
   
   .mobileNav__list {
       display: flex;
+      align-items: center;
+      justify-content: center;
       list-style: none;
       padding: 0;
       margin: 0;
+      height: 100%;
   }
   
   .mobileNav__list.mobile {
