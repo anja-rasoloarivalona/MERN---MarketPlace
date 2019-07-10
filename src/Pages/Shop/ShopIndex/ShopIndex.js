@@ -13,9 +13,9 @@ import ShopLayout from '../Shop';
     state = {
         products: [],
         status: '',
-        productPriceRequested : {min: 20, max: 500},
+        productPriceRequested : {min: 100, max: 500},
         priceMin: 0,
-        priceMax: 2000, 
+        priceMax: 99999, 
     }
 
 
@@ -34,7 +34,7 @@ import ShopLayout from '../Shop';
 
     loadProductsHandler = () => {
 
-            fetch('http://localhost:8000')
+            fetch('http://localhost:8000/' + this.state.productPriceRequested.min)
             .then(res => {
                 if(res.status !== 200){
                     throw new Error('Failed to fectch products')
@@ -60,11 +60,16 @@ import ShopLayout from '../Shop';
                
             })
     }
-       
-  
+
 
     inputRangeChangeHandler = value => {
         this.setState({productPriceRequested : value})
+    }
+
+    onChangeComplete = value => {   
+        this.setState({productPriceRequested : value}, 
+            () => this.loadProductsHandler())
+        console.log('complete state', this.state.productPriceRequested)
     }
 
     render() {      
@@ -76,7 +81,9 @@ import ShopLayout from '../Shop';
                     productPriceRequested={this.state.productPriceRequested}
                     inputRangeChangeHandler={this.inputRangeChangeHandler}
                     minPrice = {this.state.productPriceRequested.min}
-                    maxPrice ={this.state.productPriceRequested.max}>
+                    maxPrice ={this.state.productPriceRequested.max}
+                    onChangeComplete = {this.onChangeComplete}>
+                    
 
                     <section className="shop__intro" style={{
                                     backgroundImage: `url('${bg}')`,

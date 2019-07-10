@@ -9,8 +9,10 @@ const Shop = props => (
                      minPriceRequested = {props.priceMin}
                      inputRangeValue = {props.productPriceRequested}
                      onInputRangeChange = {props.inputRangeChangeHandler}
+                     onChangeComplete = {props.onChangeComplete}
                      minPrice = {props.productPriceRequested.min}
                      maxPrice = {props.productPriceRequested.max}
+                 /*    onChangeComplete ={props.onChangeComplete}*/
                
                 />
                 
