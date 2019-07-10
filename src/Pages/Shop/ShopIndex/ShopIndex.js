@@ -22,8 +22,6 @@ import ShopLayout from '../Shop';
 
 
     componentDidMount(){
-        console.log(this.props.match.params)
-        
         this._isMounted = true;
         this.loadProductsHandler();
     }

@@ -12,10 +12,11 @@ import ShopLayout from '../Shop';
     state = {
         products: [],
         status: '',
-        productPriceRequested : {min: 20, max: 500},
+        productPriceRequested : {min: 1, max: 99998},
         priceMin: 0,
-        priceMax: 2000, 
+        priceMax: 99999, 
         category: this.props.match.params.category,
+        sortBy: 'latest'
     }
 
 
@@ -35,9 +36,7 @@ import ShopLayout from '../Shop';
             this.setState({category: nextProps.match.params.category}, () => {
                 this.loadProductsHandler()
             }); 
-        }
-        
-       
+        }     
     }
 
 
@@ -48,7 +47,11 @@ import ShopLayout from '../Shop';
  
 
     loadProductsHandler = () => {
-            fetch('http://localhost:8000/' + this.state.category)
+            fetch('http://localhost:8000/' + 
+                   this.state.category + '/' + 
+                   this.state.productPriceRequested.min + '&&' + this.state.productPriceRequested.max + '/' +
+                   this.state.sortBy
+                   )
             .then(res => {
                 console.log(this.state.category)
                 if(res.status !== 200){
@@ -76,12 +79,21 @@ import ShopLayout from '../Shop';
             })
     }
 
-
-  
-
     inputRangeChangeHandler = value => {
         this.setState({productPriceRequested : value})
     }
+
+    onChangeComplete = value => {   
+        this.setState({productPriceRequested : value}, 
+            () => this.loadProductsHandler())
+    }
+
+    sortbyhandler = event => {
+        event.preventDefault();
+        this.setState({sortBy : event.target.value}, 
+            () => this.loadProductsHandler())
+    }
+
 
     render() {      
         return (
@@ -90,9 +102,11 @@ import ShopLayout from '../Shop';
                     priceMax ={this.state.priceMax}
                     priceMin = {this.state.priceMin}
                     productPriceRequested={this.state.productPriceRequested}
+                    onChangeComplete = {this.onChangeComplete}
                     inputRangeChangeHandler={this.inputRangeChangeHandler}
                     minPrice = {this.state.productPriceRequested.min}
                     maxPrice ={this.state.productPriceRequested.max}
+                    sortbyhandler = {this.sortbyhandler}
                     >
 
                     <section className="shop--category">                
