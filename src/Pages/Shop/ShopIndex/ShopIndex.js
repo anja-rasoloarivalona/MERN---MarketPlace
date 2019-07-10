@@ -34,7 +34,7 @@ import ShopLayout from '../Shop';
 
     loadProductsHandler = () => {
 
-            fetch('http://localhost:8000/' + this.state.productPriceRequested.min)
+            fetch('http://localhost:8000/' + this.state.productPriceRequested.min + '&&' + this.state.productPriceRequested.max)
             .then(res => {
                 if(res.status !== 200){
                     throw new Error('Failed to fectch products')
