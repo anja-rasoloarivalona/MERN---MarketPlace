@@ -24,7 +24,7 @@ class SingleProduct extends Component {
 
         console.log(category, prodId)
         
-        fetch('http://localhost:8000/'+ category + '/' + prodId, {
+        fetch('http://localhost:8000/' + prodId, {
             method: 'GET'
         })
         .then( res => {
@@ -62,8 +62,8 @@ class SingleProduct extends Component {
                     <div className="single-product__details">
                         <h1 className="single-product__details__title">{this.state.title}</h1>
                         <div className="single-product__details__date">{this.state.date}</div>
-                        <p>{this.state.description}</p>
                         <div className="single-product__details__price flex-centered-row">${this.state.price}</div>
+                        <p>{this.state.description}</p>
                         <div className="single-product__details__cta flex-centered-row">
                             <Button color='primary'>
                                 Add to cart
@@ -71,12 +71,14 @@ class SingleProduct extends Component {
                         </div>
                     </div> 
                     <div className="single-product__image" 
-                    style={{
-                        backgroundImage: `url('${this.state.image}')`,
-                        backgroundSize: 'contain',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                    }}/>                  
+                            style={{
+                                backgroundImage: `url('${this.state.image}')`,
+                                backgroundSize: 'contain',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                            }}>
+                                
+                    </div>                  
                 </article>               
             </section>
         )

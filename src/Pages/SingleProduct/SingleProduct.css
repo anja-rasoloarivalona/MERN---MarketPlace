@@ -14,11 +14,13 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+
 }
 
 .single-product__image {
     width: 60%;
     height: 80%;
+    position: relative;
 }
 
 .single-product__details {
@@ -29,20 +31,22 @@
 
 .single-product__details__title {
     font-size: 2.7rem;
-    padding: 1rem 0;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
 }
 
 .single-product__details__date {
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
+    color: var(--color-grey);
 }
 
 .single-product__details__price {
-    margin-bottom: 1rem;
     position: absolute;
-    right: 0;
+    right: 0rem;
     top: 0;
-    width: 4rem;
-    height: 1.5rem;
+    padding: .4rem 4rem;
+    font-size: 2rem;
+    background: var(--color-secondary);
 }
 
 .single-product__details__cta {

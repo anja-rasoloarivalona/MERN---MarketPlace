@@ -35,7 +35,12 @@ class AddProduct extends Component {
         imagePreview: null
     }
 
-    componentWillMount(){
+    componentDidMount(){
+        document.body.style.overflow = 'hidden';
+    }
+    
+
+    componentWillMount(){     
         console.log('Edit Mounted')
         if(this.props.editingMode){
             const postProduct = {

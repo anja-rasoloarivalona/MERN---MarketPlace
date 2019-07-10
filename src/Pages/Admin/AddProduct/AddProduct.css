@@ -1,9 +1,10 @@
 .addProduct__form {
-    background: rgb(209, 209, 209);  
-    width: 40rem;
-    height: 35rem;
+    background: var(--color-grey);
+    color: var(--color-white);  
+    width: 45rem;
+    height: 82%;
     z-index: 2200;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0; 
     right: 0;
@@ -21,3 +22,6 @@
     bottom: .5rem;
 }
 
+.addProduct__form textarea {
+    height: 60%;
+}
