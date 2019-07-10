@@ -2,7 +2,15 @@ import React from 'react';
 import './Product.css';
 import Button from '../Button/Button';
 
-const product = props => (
+const product = props => {
+
+    let description = props.description;
+
+    if(description.length > 230){
+        description = description.slice(0, 230) + '...'
+    }
+
+    return (
     <article className="product">
 
         <div className="product__image" 
@@ -18,7 +26,7 @@ const product = props => (
                 <h1 className="product__title">{props.title}</h1>
                 <div className="product__date">{props.date}</div>
             </header>
-            <p>{props.description}</p>
+            <p>{description}</p>
             {
                  props.shop ?
                  (
@@ -61,6 +69,6 @@ const product = props => (
    
         
     </article>
-);
+)};
 
 export default product;
