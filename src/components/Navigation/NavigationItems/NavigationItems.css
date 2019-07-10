@@ -32,7 +32,7 @@
     font: inherit;
     background: transparent;
     border: none;
-    color: red;
+    color: var(--color-primary);
     cursor: pointer;
     padding: 0;
 }
