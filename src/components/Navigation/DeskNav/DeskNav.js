@@ -4,6 +4,7 @@ import { NavLink} from 'react-router-dom';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import MobileToggler from '../MobileToggler/MobileToggler';
 import IconSvg from '../../../util/svgHandler';
+import logo from '../../../assets/img/logo.png';
 
 
 
@@ -23,7 +24,7 @@ const deskNav = (props) => {
         </div>
         <nav className="deskNav">           
             <NavLink to="/">
-                <div className="deskNav__logo flex-centered-row">Market Place</div>
+                    <div className="deskNav__logo flex-centered-row">Market Place</div>
             </NavLink>
             <ul className="deskNav__list flex-centered-row">
                 <NavigationItems isAuth={props.isAuth} onLogout={props.onLogout}/>
@@ -35,3 +36,6 @@ const deskNav = (props) => {
 }
 
 export default deskNav;
+
+
+

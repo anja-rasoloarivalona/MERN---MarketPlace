@@ -44,5 +44,18 @@ body {
   flex-direction: column;
 }
 
+.spacer_sidebar_mobile {
+  display: none;
+}
+
+@media (max-width: 1199px) {
+  .spacer_sidebar_mobile{
+      grid-row: 4 / 5;
+      grid-column: center-start / center-end;
+      height: 17rem;
+      display: block;
+  }
+}
+
 
 

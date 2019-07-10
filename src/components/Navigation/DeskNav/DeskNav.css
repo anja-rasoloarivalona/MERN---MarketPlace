@@ -71,6 +71,7 @@
   text-transform: uppercase;
   font-weight: 600;
   color: var(--color-primary);
+  margin-left: .5rem;
 }
 
 

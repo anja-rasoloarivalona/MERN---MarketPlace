@@ -5,6 +5,7 @@
     height: calc(100vh - 8rem);
 }
 
+
 .shop--index {
     grid-row: 4/ 5;
     grid-column: col-start 2 / col-end 4;
@@ -13,6 +14,16 @@
     align-items: center;
     justify-content: center;
     background: rgb(238, 238, 238);
-    padding-top: 3rem;
-    
+    padding-top: 3rem;  
 }
+
+@media (max-width: 1199px) {
+    .shop__intro {
+        display: none;
+    }
+
+    .shop--index {
+        grid-row: 5/ 6;
+        grid-column: center-start / center-end;
+    }
+  }

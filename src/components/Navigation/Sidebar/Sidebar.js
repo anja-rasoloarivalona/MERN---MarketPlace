@@ -13,12 +13,14 @@ class Sidebar extends Component {
     }
 
     hideCategoryFilterHandler = ()=> {
+        console.log('cat clicked')
         this.setState(prevstate => ({
             hideCategoryFilter: !prevstate.hideCategoryFilter
         }))
     }
 
     hidePriceFilterHandler = ()=> {
+        console.log('clicked')
         this.setState(prevstate => ({
             hidePriceFilter: !prevstate.hidePriceFilter
         }))
@@ -51,7 +53,7 @@ class Sidebar extends Component {
                 </div>
 
 
-                <div className={["sidebar__date", this.state.hidePriceFilter ? "sidebar__date__goTop" : ''].join(' ')}>
+                <div className={["sidebar__sort", this.state.hidePriceFilter ? "sidebar__sort__goTop" : ''].join(' ')}>
                     <span>
                         Sort by
                     </span>

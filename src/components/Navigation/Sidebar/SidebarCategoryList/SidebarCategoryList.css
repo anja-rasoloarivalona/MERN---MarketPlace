@@ -6,6 +6,14 @@
     position: relative;  
 }
 
+@media (max-width: 1199px) {
+    .sidebar__category__list{
+        background: var(--color-white);
+    }
+  }
+
+
+
 
 
 a.sidebar__category__list__item.active,
