@@ -100,6 +100,7 @@ import Spinner from '../../../components/Spinner/Spinner';
     }
 
     confirmSubmitHandler = productData => {
+        this.setState({loading: true})
         const token = localStorage.getItem('token');
         
             const formData = new FormData();
@@ -157,7 +158,8 @@ import Spinner from '../../../components/Spinner/Spinner';
                     products: updatedProducts,
                     productBeingEdited: null,
                     isEditing: false,
-                    showBackdrop: false
+                    showBackdrop: false,
+                    loading: false
                 }        
             })
         })
@@ -166,6 +168,7 @@ import Spinner from '../../../components/Spinner/Spinner';
             let error = []
             error.push(err.message)
             this.setState({
+                loading: false,
                 isAuth: false,
                 error: error
             })
