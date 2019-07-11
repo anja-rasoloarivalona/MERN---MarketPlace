@@ -7,6 +7,7 @@
     justify-content: center;
     position: relative;
     background: rgb(245, 245, 241);
+    min-height: calc(100vh - 8rem);
 }
 
 @media (max-width: 1060px) {

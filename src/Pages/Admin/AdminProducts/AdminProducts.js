@@ -8,6 +8,7 @@ import Backdrop from '../../../components/Backdrop/Backdrop';
 import AddProduct from '../AddProduct/AddProduct';
 
 import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
+import Spinner from '../../../components/Spinner/Spinner';
 
 
 
@@ -22,7 +23,8 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
         showBackdrop: false,
         isEditing: false,
         productBeingEdited: '',
-        error: null
+        error: null,
+        loading: false
  
     }
 
@@ -36,6 +38,7 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
     }
 
     loadProductsHandler = () => {
+        this.setState({loading: true})
         if(this._isMounted === true){
 
             const token = localStorage.getItem('token');
@@ -59,11 +62,13 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
                                  ...product,
                                  imagePath: product.imageUrl
                              }
-                         })
+                         }),
+                         loading: false
                         
                      })
                  })
                  .catch( err => {
+                     this.setState({loading: false})
                      console.log(err)
              })
         }
@@ -199,6 +204,27 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 
     
     render() {
+
+        let product;
+        if(this.state.loading === true){
+            product = <Spinner />
+        } else {
+            product = (
+                this.state.products.map( product => (
+                    <Product
+                        key={product._id}
+                        id={product._id}
+                        title={product.title}
+                        price={product.price}
+                        description={product.description}
+                        link='/'
+                        onDelete={this.deleteProductHandler.bind(this, product._id)}
+                        onStartEdit = {this.startEditProductHandler.bind(this, product._id)}
+                        imageUrl = {'http://localhost:8000/' + product.imageUrl }
+                />
+                ))
+            )
+        }
         return (
             <Fragment>
 
@@ -218,32 +244,15 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
                 
               )}
                 <section className="admin-products">
-                <div className="admin-add-products">
-                            <Button 
-                            color='primary' 
-                            onClick={this.addProductHandler}
-                            >
-                                Add Product
-                            </Button>
-                </div>
-                        {this.state.products.map( product => (
-                            <Product
-                                key={product._id}
-                                id={product._id}
-                                title={product.title}
-                                price={product.price}
-                                description={product.description}
-                                link='/'
-                                onDelete={this.deleteProductHandler.bind(this, product._id)}
-                                onStartEdit = {this.startEditProductHandler.bind(this, product._id)}
-                                imageUrl = {'http://localhost:8000/' + product.imageUrl }
-                        />
-                        ))}
-
-                        
-
-                    
-                    
+                    <div className="admin-add-products">
+                                <Button 
+                                color='primary' 
+                                onClick={this.addProductHandler}
+                                >
+                                    Add Product
+                                </Button>
+                    </div>
+                     {product}     
                 </section>
             </Fragment>
         )
