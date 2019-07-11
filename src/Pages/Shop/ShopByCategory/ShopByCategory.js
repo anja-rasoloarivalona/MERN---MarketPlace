@@ -4,6 +4,7 @@ import './ShopByCategory.css';
 import Product from '../../../components/Product/Product';
 import ShopLayout from '../Shop';
 import Paginator from '../../../components/Paginator/Paginator';
+import Spinner from '../../../components/Spinner/Spinner';
 
 
 
@@ -20,7 +21,8 @@ import Paginator from '../../../components/Paginator/Paginator';
         category: this.props.match.params.category,
         sortBy: 'latest',
         totalProducts: 0,
-        currentPage: 1
+        currentPage: 1,
+        loading: false
     }
 
 
@@ -51,6 +53,7 @@ import Paginator from '../../../components/Paginator/Paginator';
  
 
     loadProductsHandler = direction => {
+        this.setState({loading: true});
         if(direction){
             this.setState( {products: []} )
         }
@@ -86,7 +89,8 @@ import Paginator from '../../../components/Paginator/Paginator';
                 if(this._isMounted === true) {
                     this.setState({
                         products: resData.products,
-                        totalProducts: resData.totalProducts
+                        totalProducts: resData.totalProducts,
+                        loading: false
                     })
                 }
 
@@ -95,6 +99,7 @@ import Paginator from '../../../components/Paginator/Paginator';
             })
             .catch( err => {
                 if(err){
+                    this.setState({loading: false})
                     console.log(err)
                 }
                
@@ -117,25 +122,14 @@ import Paginator from '../../../components/Paginator/Paginator';
     }
 
 
-    render() {      
-        return (
-            
-                <ShopLayout 
-                    priceMax ={this.state.priceMax}
-                    priceMin = {this.state.priceMin}
-                    productPriceRequested={this.state.productPriceRequested}
-                    onChangeComplete = {this.onChangeComplete}
-                    inputRangeChangeHandler={this.inputRangeChangeHandler}
-                    minPrice = {this.state.productPriceRequested.min}
-                    maxPrice ={this.state.productPriceRequested.max}
-                    sortbyhandler = {this.sortbyhandler}
-                    >
-
-                    <section className="shop--category"> 
-
-                        <div className="shop--category__title">
-                            <Link to='/'>Home</Link> <span></span> > {this.state.category}
-                        </div>   
+    render() {  
+        
+        let products;
+        if(this.state.loading === true){
+            products = <Spinner />
+        } else {
+            products = (
+                         
                         <Paginator onRequestPreviousPage={this.loadProductsHandler.bind(this, 'previous')}
                                                 onRequestNextPage={this.loadProductsHandler.bind(this, 'next')}
                                                 lastPage={Math.ceil(this.state.totalProducts / 5)}
@@ -160,7 +154,27 @@ import Paginator from '../../../components/Paginator/Paginator';
                                             imageUrl = {'http://localhost:8000/' + product.imageUrl }
                                         />
                                 })}  
-                        </Paginator>                               
+                        </Paginator> 
+            )
+        }
+        return (
+            
+                <ShopLayout 
+                    priceMax ={this.state.priceMax}
+                    priceMin = {this.state.priceMin}
+                    productPriceRequested={this.state.productPriceRequested}
+                    onChangeComplete = {this.onChangeComplete}
+                    inputRangeChangeHandler={this.inputRangeChangeHandler}
+                    minPrice = {this.state.productPriceRequested.min}
+                    maxPrice ={this.state.productPriceRequested.max}
+                    sortbyhandler = {this.sortbyhandler}
+                    >
+
+                    <section className="shop--category"> 
+                        <div className="shop--category__title">
+                            <Link to='/'>Home</Link> <span></span> > {this.state.category}
+                        </div> 
+                        {products}             
                     </section>
                     </ShopLayout>
         

@@ -7,6 +7,7 @@ import Button from '../../../components/Button/Button';
 import { validator } from '../../../util/validators';
 import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import IconSvg from '../../../util/svgHandler';
+import Spinner from '../../../components/Spinner/Spinner';
 
 
 class Login extends Component {
@@ -25,6 +26,7 @@ class Login extends Component {
         error: null,
         token: null,
         userId: null,
+        loading: false
     }
 
     closeErrorHandler = () => {
@@ -34,14 +36,15 @@ class Login extends Component {
 
     loginHandler = (e, loginFormData) => {
         e.preventDefault();
+        this.setState({loading: true})
        
           const errors = validator(
             loginFormData.email, 
             loginFormData.password
          )
 
-    if(errors.length > 0){
-                this.setState({ error : errors});
+            if(errors.length > 0){
+                this.setState({ error : errors, loading: false});
                 return
             }
 
@@ -69,7 +72,8 @@ class Login extends Component {
         .then(resData => {
             this.setState({
                 token: resData.token,
-                userId: resData.userId
+                userId: resData.userId,
+                loading: false
             });
 
             this.props.onUpdateState({token: this.state.token, 
@@ -87,7 +91,8 @@ class Login extends Component {
             error.push(err.message)
             this.setState({
                 isAuth: false,
-                error: error
+                error: error,
+                loading: false
             })
         })
     }
@@ -114,12 +119,13 @@ class Login extends Component {
 
 
     render() {
-        return (    
-            <Fragment> 
-            <ErrorHandler error = {this.state.error}
-                          onCloseError={this.closeErrorHandler}/> 
-            <Auth>
-                <form className="auth__form flex-centered-column"
+
+        let form;
+        if(this.state.loading === true){
+            form = <Spinner />
+        } else {
+            form = (
+            <form className="auth__form flex-centered-column"
                     onSubmit={ e => (
                         this.loginHandler(e, this.state.loginForm))}
                     noValidate>    
@@ -153,6 +159,14 @@ class Login extends Component {
                             Login
                         </Button>
                 </form>
+            )
+        }
+        return (    
+            <Fragment> 
+            <ErrorHandler error = {this.state.error}
+                          onCloseError={this.closeErrorHandler}/> 
+            <Auth>
+                {form}
             </Auth> 
             </Fragment>     
             
