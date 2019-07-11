@@ -62,7 +62,7 @@ class SingleProduct extends Component {
                     <div className="single-product__details">
                         <h1 className="single-product__details__title">{this.state.title}</h1>
                         <div className="single-product__details__date">{this.state.date}</div>
-                        <div className="single-product__details__price flex-centered-row">${this.state.price}</div>
+                        <div className="single-product__details__price">${this.state.price}</div>
                         <p>{this.state.description}</p>
                         <div className="single-product__details__cta flex-centered-row">
                             <Button color='primary'>

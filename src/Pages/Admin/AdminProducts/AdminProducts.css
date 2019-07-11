@@ -12,6 +12,7 @@
 @media (max-width: 1060px) {
     .admin-products {
         grid-column: full-start / full-end;
+        margin-top: 7rem;
     }
 }
 

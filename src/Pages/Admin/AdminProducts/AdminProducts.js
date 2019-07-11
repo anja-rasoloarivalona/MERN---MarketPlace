@@ -217,7 +217,14 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
                 
               )}
                 <section className="admin-products">
-
+                <div className="admin-add-products">
+                            <Button 
+                            color='primary' 
+                            onClick={this.addProductHandler}
+                            >
+                                Add Product
+                            </Button>
+                </div>
                         {this.state.products.map( product => (
                             <Product
                                 key={product._id}
@@ -234,14 +241,7 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 
                         
 
-                    <div className="admin-add-products">
-                            <Button 
-                            color='primary' 
-                            onClick={this.addProductHandler}
-                            >
-                                Add Product
-                            </Button>
-                    </div>
+                    
                     
                 </section>
             </Fragment>
