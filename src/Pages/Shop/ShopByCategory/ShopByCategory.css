@@ -8,6 +8,22 @@
     background: rgb(238, 238, 238);
 }
 
+@media (max-width: 1199px) {
+    .shop--category{
+        grid-row: 5/ 6;
+        grid-column: center-start / center-end;
+    }
+}
+
+@media (max-width: 887px) {
+    .shop--category{
+        grid-column: full-start / full-end;
+        transform: translateY(-.5rem);
+    }
+}
+
+
+
 .shop--category__title {
     height: 7rem;
     width: 100%;
@@ -16,8 +32,9 @@
     padding-left: 3rem;
     font-size: 1.5rem;
     color: var(--color-secondary)
-  
 }
+
+
 
 .shop--category__title a {
     text-decoration: none;
