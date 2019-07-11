@@ -8,6 +8,7 @@ import Button from '../../../components/Button/Button';
 import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import { validator } from '../../../util/validators';
 import IconSvg from '../../../util/svgHandler';
+import Spinner from '../../../components/Spinner/Spinner';
 
 class Signup extends Component {
 
@@ -37,7 +38,8 @@ class Signup extends Component {
                 errorLabel: 'A confirmation password',
             },
         },
-        error : null
+        error : null,
+        loading: false
     }
 
     closeErrorHandler = () => {
@@ -64,6 +66,7 @@ class Signup extends Component {
     
 
     submitHandler = (e, signupFormData) => {
+        this.setState({loading: true})
         e.preventDefault();
 
         const errors = validator(
@@ -74,7 +77,7 @@ class Signup extends Component {
            )
  
            if(errors.length > 0){
-                this.setState({ error : errors});
+                this.setState({ error : errors, loading: false});
                 return
             }
 
@@ -102,19 +105,21 @@ class Signup extends Component {
             if (res.status !== 200 && res.status !== 201){
                 throw new Error('Creating a user failed')
             }
-
             return res.json()
+            
         })
 
-        .then(resData => {
-            this.props.history.replace('/auth/login')
+        .then(resData => { 
+            this.setState({ loading: false});   
+            this.props.history.replace('/login');
         })
 
         .catch(err => {
             let error = []
             error.push(err.message)           
             this.setState({
-              error: error
+              error: error,
+              loading: false
             });
           });
         
@@ -126,12 +131,12 @@ class Signup extends Component {
         
 
     render() {
-        return (     
-            <Fragment>
-                <ErrorHandler error = {this.state.error}
-                              onCloseError={this.closeErrorHandler}/>
-                <Auth>          
-                    <form onSubmit={e => this.submitHandler(e, this.state.signupForm)}
+
+        let form;
+        if(this.state.loading === true) {
+            form = <Spinner />
+        } else form = (
+                <form onSubmit={e => this.submitHandler(e, this.state.signupForm)}
                         className="auth__form flex-centered-column"
                         noValidate>
                         <div className="signup__title flex-centered-row">Create an account
@@ -181,6 +186,13 @@ class Signup extends Component {
                             Sign Up
                         </Button>
                     </form>
+        )
+        return (     
+            <Fragment>
+                <ErrorHandler error = {this.state.error}
+                              onCloseError={this.closeErrorHandler}/>
+                <Auth>          
+                    {form}
                 </Auth>
         </Fragment>     
             
