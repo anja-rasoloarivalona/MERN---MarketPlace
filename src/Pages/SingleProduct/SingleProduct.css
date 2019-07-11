@@ -3,9 +3,7 @@
     grid-column: center-start / center-end;
     height: calc(100vh - 8rem);
     width: 100%;
-
-
-    
+    min-height: calc(100vh - 8rem);   
 }
 
 .single-product article {

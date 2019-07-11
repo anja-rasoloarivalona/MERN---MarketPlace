@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './SingleProduct.css';
 import Button from '../../components/Button/Button';
+import Spinner from '../../components/Spinner/Spinner';
+import spinner from '../../components/Spinner/Spinner';
 
 
 
@@ -15,9 +17,11 @@ class SingleProduct extends Component {
         price: '',
         image: '',
         date: '',
+        loading: false
     }
 
     componentDidMount(){
+        this.setState({loading: true})
         this._isMounted = true;
         const prodId = this.props.match.params.prodId;
         const category = this.props.match.params.category;
@@ -42,11 +46,13 @@ class SingleProduct extends Component {
                     category: resData.product.category,
                     image: 'http://localhost:8000/' + resData.product.imageUrl,
                     description: resData.product.description,
-                    date: date
+                    date: date,
+                    loading: false
                 })} 
             return
             })
         .catch( err => {
+            this.setState({loading: false})
             console.log(err)
         })
     }
@@ -56,8 +62,12 @@ class SingleProduct extends Component {
     }
 
     render() {
-        return (
-            <section className="single-product flex-centered-row">
+
+        let product;
+        if(this.state.loading === true) {
+            product = <Spinner />
+        } else {
+            product =(
                 <article>                   
                     <div className="single-product__details">
                         <h1 className="single-product__details__title">{this.state.title}</h1>
@@ -79,7 +89,12 @@ class SingleProduct extends Component {
                             }}>
                                 
                     </div>                  
-                </article>               
+            </article> 
+            )
+        }
+        return (
+            <section className="single-product flex-centered-row">
+                {product}     
             </section>
         )
     }
