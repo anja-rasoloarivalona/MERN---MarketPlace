@@ -3,6 +3,7 @@ import './ShopIndex.css';
 import Product from '../../../components/Product/Product';
 import bg from '../../../assets/img/bg.jpg';
 import ShopLayout from '../Shop';
+import Paginator from '../../../components/Paginator/Paginator';
 
 
 
@@ -16,7 +17,9 @@ import ShopLayout from '../Shop';
         productPriceRequested : {min: 1, max: 99998},
         priceMin: 0,
         priceMax: 99999, 
-        sortBy: 'latest'
+        sortBy: 'latest',
+        totalProducts: 0,
+        currentPage: 1
     }
 
 
@@ -31,9 +34,28 @@ import ShopLayout from '../Shop';
     }
  
 
-    loadProductsHandler = () => {
+    loadProductsHandler = direction => {
 
-            fetch('http://localhost:8000/' + this.state.productPriceRequested.min + '&&' + this.state.productPriceRequested.max + '/' + this.state.sortBy) 
+        if(direction){
+            this.setState( {products: []} )
+        }
+
+        let currentPage = this.state.currentPage;
+
+        if(direction === 'next'){
+            currentPage++;
+            this.setState({currentPage: currentPage})
+        }
+
+        if(direction === 'previous'){
+            currentPage--;
+            this.setState({currentPage: currentPage})
+        }
+
+            fetch('http://localhost:8000/' + 
+                    this.state.productPriceRequested.min + '&&' + this.state.productPriceRequested.max +
+                     '/' + this.state.sortBy +
+                     '?page=' + currentPage) 
             .then(res => {
                 if(res.status !== 200){
                     throw new Error('Failed to fectch products')
@@ -46,6 +68,7 @@ import ShopLayout from '../Shop';
                 if(this._isMounted === true) {
                     this.setState({
                         products: resData.products,
+                        totalProducts: resData.totalProducts
                     })
                 }
 
@@ -99,28 +122,32 @@ import ShopLayout from '../Shop';
                             }} >
                     
                     </section>              
-                    <section className="shop--index">                
-                        {
-                            this.state.products.map(product => {
-                            /*  const date = product.createdAt.slice(0, 10);*/
-                                    let date = product.createdAt.toString().split('T')[0];
-                                    let hour = product.createdAt.toString().split('T')[1].slice(0, 8);
-
-                                    let fullDate = date + ' ' + hour                       
-
-                                return <Product
-                                            shop
-                                            key={product._id}
-                                            id={product._id}
-                                            title={product.title}
-                                            price={product.price}
-                                            category = {product.category}
-                                            description={product.description}
-                                            date = {fullDate}
-                                            imageUrl = {'http://localhost:8000/' + product.imageUrl }
-                                        />
-                            })
-                    }                               
+                    <section className="shop--index"> 
+                        <Paginator onRequestPreviousPage={this.loadProductsHandler.bind(this, 'previous')}
+                                                onRequestNextPage={this.loadProductsHandler.bind(this, 'next')}
+                                                lastPage={Math.ceil(this.state.totalProducts / 5)}
+                                                currentPage={this.state.currentPage}>               
+                            {
+                                this.state.products.map(product => {
+                                /*  const date = product.createdAt.slice(0, 10);*/
+                                        let date = product.createdAt.toString().split('T')[0];
+                                        let hour = product.createdAt.toString().split('T')[1].slice(0, 8);
+                                        let fullDate = date + ' ' + hour                       
+                                        return (          
+                                                <Product
+                                                    shop
+                                                    key={product._id}
+                                                    id={product._id}
+                                                    title={product.title}
+                                                    price={product.price}
+                                                    category = {product.category}
+                                                    description={product.description}
+                                                    date = {fullDate}
+                                                    imageUrl = {'http://localhost:8000/' + product.imageUrl }
+                                                />                        
+                                    )                                                      
+                                })}  
+                        </Paginator>                             
                     </section>
                     </ShopLayout>
         
