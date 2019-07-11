@@ -27,9 +27,21 @@ import Spinner from '../../../components/Spinner/Spinner';
 
 
     componentDidMount(){
+        window.scrollTo(0, 0);
         this._isMounted = true;
-        this.loadProductsHandler();
+        this.loadProductsHandler();    
     }
+
+    componentWillUpdate(){
+        let scroll;
+        if(window.innerWidth < 1199){
+            scroll = 0
+        } else {
+            scroll = window.innerHeight - 80
+        }
+        window.scrollTo(0, scroll);
+    }
+
 
     componentWillUnmount(){
         this._isMounted = false;
