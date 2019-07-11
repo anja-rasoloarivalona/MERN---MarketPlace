@@ -212,6 +212,7 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
                         editingMode={this.state.isEditing}
                         confirmSubmitHandler = {this.confirmSubmitHandler}
                         productBeingEdited={this.state.productBeingEdited}
+                        onCancel = {this.backdropClickHandler}
                     />
                 </Fragment>
                 

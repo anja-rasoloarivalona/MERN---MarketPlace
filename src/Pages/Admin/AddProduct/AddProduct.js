@@ -32,11 +32,6 @@ class AddProduct extends Component {
         postProduct : POST_PRODUCT,
         editingMode : this.props.editingMode,
         productBeingEdited : this.props.productBeingEdited,
-        imagePreview: null
-    }
-
-    componentDidMount(){
-        document.body.style.overflow = 'hidden';
     }
     
 
@@ -162,10 +157,15 @@ class AddProduct extends Component {
                     />
 
                     
-
-                    <Button color='primary' type='submit'>
-                        { this.state.editingMode ? 'Update' : 'Create'}
-                    </Button>
+                    <div>
+                        <Button color='primary' type='submit'>
+                            { this.state.editingMode ? 'Update' : 'Create'}
+                        </Button>
+                        <Button color="secondary" onClick={this.props.onCancel}>
+                                Cancel
+                        </Button>
+                    </div>
+                    
                 </form>
         )
     }

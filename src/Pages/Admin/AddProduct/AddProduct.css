@@ -29,6 +29,59 @@
     bottom: .9rem;
 }
 
+.addProduct__form button:first-child {
+    left: 11rem;
+}
+
+@media (max-width: 424px) {
+    .addProduct__form button:first-child {
+        left: 11rem;
+    }
+
+    .addProduct__form button:nth-child(2) {
+        right: 11rem;
+    }
+}
+
+@media (max-width: 409px) {
+    .addProduct__form button:first-child {
+        left: 9rem;
+    }
+
+    .addProduct__form button:nth-child(2) {
+        right: 9rem;
+    }
+}
+
+@media (max-width: 364px) {
+    .addProduct__form button:first-child {
+        left: 7rem;
+    }
+
+    .addProduct__form button:nth-child(2) {
+        right: 7rem;
+    }
+}
+
+@media (max-width: 325px) {
+    .addProduct__form button:first-child {
+        left: 4rem;
+    }
+
+    .addProduct__form button:nth-child(2) {
+        right: 4rem;
+    }
+}
+
+@media (max-width: 271px) {
+    .addProduct__form button:first-child {
+        left: 2rem;
+    }
+    .addProduct__form button:nth-child(2) {
+        right: 2rem;
+    }
+}
+
 @media (max-width: 600px) {
     .addProduct__form button {
         bottom: .5rem;  
