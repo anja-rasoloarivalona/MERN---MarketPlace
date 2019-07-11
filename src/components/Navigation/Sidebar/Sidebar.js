@@ -29,7 +29,9 @@ class Sidebar extends Component {
     render() {
 
         return (
-            <section className="sidebar">
+            <section className={["sidebar", 
+                                 this.state.hideCategoryFilter === false ? 'sidebar--show' : ' ',
+                                 this.state.hidePriceFilter === false ? 'sidebar--show' : ' '].join(' ')}>
 
                 <SidebarCategoryToggler hideCategoryFilterHandler = {this.hideCategoryFilterHandler}/>
 
