@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './ShopByCategory.css';
 import Product from '../../../components/Product/Product';
 import ShopLayout from '../Shop';
+import Paginator from '../../../components/Paginator/Paginator';
 
 
 
@@ -17,7 +18,9 @@ import ShopLayout from '../Shop';
         priceMin: 0,
         priceMax: 99999, 
         category: this.props.match.params.category,
-        sortBy: 'latest'
+        sortBy: 'latest',
+        totalProducts: 0,
+        currentPage: 1
     }
 
 
@@ -47,11 +50,28 @@ import ShopLayout from '../Shop';
     }
  
 
-    loadProductsHandler = () => {
+    loadProductsHandler = direction => {
+        if(direction){
+            this.setState( {products: []} )
+        }
+
+        let currentPage = this.state.currentPage;
+
+        if(direction === 'next'){
+            currentPage++;
+            this.setState({currentPage: currentPage})
+        }
+
+        if(direction === 'previous'){
+            currentPage--;
+            this.setState({currentPage: currentPage})
+        }
+
             fetch('http://localhost:8000/' + 
                    this.state.category + '/' + 
                    this.state.productPriceRequested.min + '&&' + this.state.productPriceRequested.max + '/' +
-                   this.state.sortBy
+                   this.state.sortBy +
+                   '?page=' + currentPage
                    )
             .then(res => {
                 console.log(this.state.category)
@@ -66,6 +86,7 @@ import ShopLayout from '../Shop';
                 if(this._isMounted === true) {
                     this.setState({
                         products: resData.products,
+                        totalProducts: resData.totalProducts
                     })
                 }
 
@@ -114,7 +135,11 @@ import ShopLayout from '../Shop';
 
                         <div className="shop--category__title">
                             <Link to='/'>Home</Link> <span></span> > {this.state.category}
-                        </div>               
+                        </div>   
+                        <Paginator onRequestPreviousPage={this.loadProductsHandler.bind(this, 'previous')}
+                                                onRequestNextPage={this.loadProductsHandler.bind(this, 'next')}
+                                                lastPage={Math.ceil(this.state.totalProducts / 5)}
+                                                currentPage={this.state.currentPage}>              
                         {
                             this.state.products.map(product => {
                             /*  const date = product.createdAt.slice(0, 10);*/
@@ -134,8 +159,8 @@ import ShopLayout from '../Shop';
                                             date = {fullDate}
                                             imageUrl = {'http://localhost:8000/' + product.imageUrl }
                                         />
-                            })
-                    }                               
+                                })}  
+                        </Paginator>                               
                     </section>
                     </ShopLayout>
         
