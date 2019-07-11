@@ -2,7 +2,7 @@
     background: var(--color-grey);
     color: var(--color-white);  
     width: 45rem;
-    height: 82%;
+    height: 57rem;
     z-index: 99002;
     position: fixed;
     top: 0;
@@ -13,13 +13,26 @@
     display: flex;
     align-items: center;  
      border-radius: 2px;
-    flex-direction: column;
-   
+    flex-direction: column; 
 }
+
+@media (max-width: 443px) {
+    .addProduct__form  {
+        width: 95%;    
+    }
+}
+
+
 
 .addProduct__form button {
     position: absolute;
-    bottom: .5rem;
+    bottom: .9rem;
+}
+
+@media (max-width: 600px) {
+    .addProduct__form button {
+        bottom: .5rem;  
+    }
 }
 
 .addProduct__form textarea {
