@@ -21,6 +21,7 @@ class SingleProduct extends Component {
     }
 
     componentDidMount(){
+        window.scrollTo(0, 0);
         this.setState({loading: true})
         this._isMounted = true;
         const prodId = this.props.match.params.prodId;

@@ -29,6 +29,10 @@ class Login extends Component {
         loading: false
     }
 
+    componentDidMount(){
+        window.scrollTo(0, 0);
+    }
+
     closeErrorHandler = () => {
         this.setState({ error: null})
     }

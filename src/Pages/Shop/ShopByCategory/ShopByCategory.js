@@ -30,6 +30,11 @@ import Spinner from '../../../components/Spinner/Spinner';
     componentDidMount(){        
         this._isMounted = true;
         this.loadProductsHandler();
+        window.scrollTo(0, 0);
+    }
+
+    componentWillUpdate(){
+        window.scrollTo(0, 0);
     }
 
    
