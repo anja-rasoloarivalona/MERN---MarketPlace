@@ -9,6 +9,7 @@ import Layout from './components/Layout/Layout';
 import DeskNav from './components/Navigation/DeskNav/DeskNav';
 import MobileNav from './components/Navigation/MobileNav/MobileNav';
 import Backdrop from './components/Backdrop/Backdrop';
+import Footer from './components/Footer/Footer';
 
 /*------------Pages-----------------*/
 import ShopIndex from './Pages/Shop/ShopIndex/ShopIndex';
@@ -146,6 +147,7 @@ class App extends Component {
                 isAuth={this.state.isAuth}/>
             <div className='spacer_sidebar_mobile'></div>
             {routes}
+            <Footer />
         </Layout>
     </Fragment>
     )
