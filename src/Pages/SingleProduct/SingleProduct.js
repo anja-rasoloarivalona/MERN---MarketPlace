@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './SingleProduct.css';
 import Button from '../../components/Button/Button';
 import Spinner from '../../components/Spinner/Spinner';
-import spinner from '../../components/Spinner/Spinner';
+
 
 
 
@@ -77,6 +77,9 @@ class SingleProduct extends Component {
                         <div className="single-product__details__cta flex-centered-row">
                             <Button color='primary'>
                                 Add to cart
+                            </Button>
+                            <Button color="secondary" onClick={this.props.history.goBack}>
+                                Back
                             </Button>
                         </div>
                     </div> 
