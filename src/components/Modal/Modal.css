@@ -9,6 +9,18 @@
     background: var(--color-white);
 }
 
+@media (max-width: 900px) {
+    .modal {
+        width: 80%;
+    }
+}
+
+@media (max-width: 400px) {
+    .modal {
+        width: 95%;
+    }
+}
+
 .modal__header {
     border-bottom: 2px solid var(--color-primary)
 }
