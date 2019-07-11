@@ -62,6 +62,9 @@ class Login extends Component {
             if(res.status === 422) {
                 throw new Error('validation failed.');
             }
+            if(res.status === 401) {
+                throw new Error('Wrong email address or password. Please try again')
+            }
             if(res.status !== 200 && res.status !== 201) {
                 throw new Error('Could not authenticate you! Please try again')
             }
