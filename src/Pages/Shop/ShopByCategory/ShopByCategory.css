@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     background: rgb(238, 238, 238);
+    min-height: calc(100vh - 8rem);
 }
 
 @media (max-width: 1199px) {
