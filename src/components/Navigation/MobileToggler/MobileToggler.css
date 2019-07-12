@@ -10,12 +10,17 @@
     cursor: pointer;
     padding: 0;
     margin-right: 1rem;
+    border: none;
+  }
+
+  .mobileToggler:focus{
+    outline: none;
   }
   
   .mobileToggler__bar {
     width: 5rem;
     height: 2px;
-    background: red;
+    background: var(--color-primary);
   }
   
   @media (min-width: 768px) {

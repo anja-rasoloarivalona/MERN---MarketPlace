@@ -1,11 +1,12 @@
 import React from 'react';
+import IconSvg from '../../../util/svgHandler';
 
 import NavigationItems from '../NavigationItems/NavigationItems';
 import './MobileNav.css';
 
 const mobileNavigation = props => (
   <nav className={['mobileNav', props.isMobileNavOpen ? 'open' : ''].join(' ')}>
-    <header>Market Place</header>
+    <header className="mobileNav__logo">Market Place</header>
     <ul
       className={['mobileNav__list', props.mobile ? 'mobile' : ''].join(' ')}
     >
@@ -16,6 +17,11 @@ const mobileNavigation = props => (
         onLogout={props.onLogout}
       />
     </ul>
+    <div className="mobileNav__social-media flex-centered-row">
+        <IconSvg icon="facebook"/>
+        <IconSvg icon="twitter"/>
+        <IconSvg icon="instagram"/>
+    </div>
   </nav>
 );
 
