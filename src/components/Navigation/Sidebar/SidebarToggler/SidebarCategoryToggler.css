@@ -9,6 +9,7 @@
     color: var(--color-white);
     z-index: 2;
     position: relative;
+    cursor: pointer;
 }
 
 .sidebar__category svg {

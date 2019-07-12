@@ -104,6 +104,7 @@
     justify-content: center;
     position: relative;
     z-index: 2;
+    cursor: pointer;
     
 }
 
@@ -144,6 +145,7 @@
     font-size: 1.3rem;
     padding: 0 2.2rem;
     transition: all .2s ease-in-out;
+
 }
 
 @media (max-width: 1199px) {
@@ -163,6 +165,15 @@
 
 .sidebar__sort__goTop {
     transform: translateY(-8rem);
+}
+
+.sidebar__sort select {
+    cursor: pointer;
+}
+
+
+.sidebar__sort select:focus {
+    outline: none;
 }
 
 @media (max-width: 600px) {
