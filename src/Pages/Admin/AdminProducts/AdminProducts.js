@@ -140,11 +140,11 @@ import IconSvg from '../../../util/svgHandler';
                 price: resProductData.product.price,
                 category: resProductData.product.category,
                 description: resProductData.product.description,
-
                 createdAt: resProductData.product.createdAt
             };
 
-            console.log('from resProductData',product)
+            this.props.history.replace('/admin/products')
+
 
             this.setState(prevState => {
                 let updatedProducts = [...prevState.products];
