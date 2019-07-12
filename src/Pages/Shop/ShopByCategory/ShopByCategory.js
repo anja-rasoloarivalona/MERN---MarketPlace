@@ -45,8 +45,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
         if(nextProps.match.params.category === this.state.category){
             return
         } else {
-            this.setState({category: nextProps.match.params.category}, () => {
-                this.setState({currentPage: 1});
+            this.setState({category: nextProps.match.params.category, currentPage: 1}, () => {
                 this.loadProductsHandler()
             }); 
         }     
