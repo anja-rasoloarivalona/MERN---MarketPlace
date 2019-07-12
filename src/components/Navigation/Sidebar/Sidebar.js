@@ -7,24 +7,43 @@ import IconSvg from '../../../util/svgHandler';
 
 
 class Sidebar extends Component {
+
     state = {
         hideCategoryFilter : false,
-        hidePriceFilter: false
+        hidePriceFilter: false,
+        windowWidth: 0
     }
 
+    componentWillMount(){
+        this.setState({
+            windowWidth : window.innerWidth,
+            hideCategoryFilter: window.innerWidth < 1199 ? true : false,
+            hidePriceFilter: window.innerWidth < 1199 ? true : false
+        })      
+    } 
+
     hideCategoryFilterHandler = ()=> {
-        console.log('cat clicked')
         this.setState(prevstate => ({
             hideCategoryFilter: !prevstate.hideCategoryFilter
         }))
     }
 
+    hideCategoryFilterHandlerOnMobile = () => {
+        if(this.state.windowWidth < 1199){
+            this.setState(prevstate => ({
+                hideCategoryFilter: !prevstate.hideCategoryFilter
+            }))
+        }
+    }
+
+
     hidePriceFilterHandler = ()=> {
-        console.log('clicked')
         this.setState(prevstate => ({
             hidePriceFilter: !prevstate.hidePriceFilter
         }))
     }
+
+    
 
     render() {
 
@@ -37,7 +56,7 @@ class Sidebar extends Component {
                                         hideCategoryFilter = {this.state.hideCategoryFilter}/>
 
                 <SideBarCategoryList hideCategoryFilter = {this.state.hideCategoryFilter}
-                                    >
+                                     hideCategoryFilterHandlerOnMobile ={this.hideCategoryFilterHandlerOnMobile}>
 
                 <div className="sidebar__price">
 

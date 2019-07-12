@@ -22,8 +22,10 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
         sortBy: 'latest',
         totalProducts: 0,
         currentPage: 1,
-        loading: false
+        loading: false,
     }
+
+   
 
 
 
