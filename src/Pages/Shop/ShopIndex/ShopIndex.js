@@ -116,7 +116,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
 
     sortbyhandler = event => {
         event.preventDefault();
-        this.setState({sortBy : event.target.value}, 
+        this.setState({sortBy : event.target.value, currentPage: 1}, 
             () => this.loadProductsHandler())
     }
 
@@ -133,7 +133,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                 products = (
                     <Paginator onRequestPreviousPage={this.loadProductsHandler.bind(this, 'previous')}
                                                     onRequestNextPage={this.loadProductsHandler.bind(this, 'next')}
-                                                    lastPage={Math.ceil(this.state.totalProducts / 5)}
+                                                    lastPage={Math.ceil(this.state.totalProducts / 10)}
                                                     currentPage={this.state.currentPage}>               
                                 {
                                     this.state.products.map(product => {

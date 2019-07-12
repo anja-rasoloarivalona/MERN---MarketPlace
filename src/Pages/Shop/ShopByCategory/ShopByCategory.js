@@ -117,13 +117,13 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
     }
 
     onChangeComplete = value => {   
-        this.setState({productPriceRequested : value}, 
+        this.setState({productPriceRequested : value, currentPage: 1}, 
             () => this.loadProductsHandler())
     }
 
     sortbyhandler = event => {
         event.preventDefault();
-        this.setState({sortBy : event.target.value}, 
+        this.setState({sortBy : event.target.value, currentPage: 1}, 
             () => this.loadProductsHandler())
     }
 
