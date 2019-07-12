@@ -1,0 +1,18 @@
+.products-not-found {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-align: center;
+    height: 80vh;
+}
+
+.products-not-found > * {
+    transform: translateY(-6rem);
+}
+
+.products-not-found  svg{
+    fill: var(--color-primary);
+    height: 10rem;
+    width:10rem;
+    margin-bottom: 2rem;
+}

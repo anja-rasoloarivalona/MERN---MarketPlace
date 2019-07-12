@@ -5,6 +5,7 @@ import Product from '../../../components/Product/Product';
 import ShopLayout from '../Shop';
 import Paginator from '../../../components/Paginator/Paginator';
 import Spinner from '../../../components/Spinner/Spinner';
+import NoProductFound from '../../../components/NoProductFound/NoProductFound';
 
 
 
@@ -132,35 +133,39 @@ import Spinner from '../../../components/Spinner/Spinner';
         let products;
         if(this.state.loading === true){
             products = <Spinner />
+        } else { if(this.state.totalProducts < 1){
+            products = <NoProductFound />
         } else {
             products = (
                          
-                        <Paginator onRequestPreviousPage={this.loadProductsHandler.bind(this, 'previous')}
-                                                onRequestNextPage={this.loadProductsHandler.bind(this, 'next')}
-                                                lastPage={Math.ceil(this.state.totalProducts / 5)}
-                                                currentPage={this.state.currentPage}>              
-                        {
-                            this.state.products.map(product => {
-                            /*  const date = product.createdAt.slice(0, 10);*/
-                                    let date = product.createdAt.toString().split('T')[0];
-                                    let hour = product.createdAt.toString().split('T')[1].slice(0, 8);
+                <Paginator onRequestPreviousPage={this.loadProductsHandler.bind(this, 'previous')}
+                                        onRequestNextPage={this.loadProductsHandler.bind(this, 'next')}
+                                        lastPage={Math.ceil(this.state.totalProducts / 5)}
+                                        currentPage={this.state.currentPage}>              
+                {
+                    this.state.products.map(product => {
+                    /*  const date = product.createdAt.slice(0, 10);*/
+                            let date = product.createdAt.toString().split('T')[0];
+                            let hour = product.createdAt.toString().split('T')[1].slice(0, 8);
 
-                                    let fullDate = date + ' ' + hour                       
+                            let fullDate = date + ' ' + hour                       
 
-                                return <Product
-                                            shop
-                                            key={product._id}
-                                            id={product._id}
-                                            title={product.title}
-                                            price={product.price}
-                                            category = {product.category}
-                                            description={product.description}
-                                            date = {fullDate}
-                                            imageUrl = {'http://localhost:8000/' + product.imageUrl }
-                                        />
-                                })}  
-                        </Paginator> 
-            )
+                        return <Product
+                                    shop
+                                    key={product._id}
+                                    id={product._id}
+                                    title={product.title}
+                                    price={product.price}
+                                    category = {product.category}
+                                    description={product.description}
+                                    date = {fullDate}
+                                    imageUrl = {'http://localhost:8000/' + product.imageUrl }
+                                />
+                        })}  
+                </Paginator> 
+            )       
+        }
+            
         }
         return (
             
