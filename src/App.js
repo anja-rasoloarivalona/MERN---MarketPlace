@@ -70,7 +70,8 @@ class App extends Component {
     this.setState({ isAuth: false, token: null});
     localStorage.removeItem('token');
     localStorage.removeItem('expiryDate');
-    localStorage.removeItem('userId')
+    localStorage.removeItem('userId');
+    this.props.history.replace('/');
 }
 
    setAutoLogout = milliseconds => {

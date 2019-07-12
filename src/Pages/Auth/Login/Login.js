@@ -91,7 +91,7 @@ class Login extends Component {
             const remainingMilliseconds = 60 * 60 * 1000; 
             const expiryDate = new Date(  new Date().getTime() + remainingMilliseconds  );
             localStorage.setItem('expiryDate', expiryDate.toISOString());
-            this.props.history.replace('/');
+            this.props.history.replace('/admin/products');
         })
         .catch(err => {
             let error = []
