@@ -105,6 +105,15 @@ class App extends Component {
 
   render() {
 
+    let isAuthRoute;
+    if(this.state.isAuth === true){
+        isAuthRoute = (
+            <Route path='/admin/products' render={props => (
+                  <AdminProducts {...props} token={this.state.token}/>
+            )}/>
+        )
+    } else { isAuthRoute = null}
+
     let routes = (
       <Switch>
             <Route path='/' exact component={ShopIndex}/>
@@ -113,17 +122,12 @@ class App extends Component {
                 render={props => (
                   <AuthLogin {...props} onUpdateState={this.onUpdateState} />
             )}/>
-            <Route path='/admin/products' render={props => (
-                  <AdminProducts {...props} token={this.state.token}/>
-            )}/>
+              {isAuthRoute}         
               <Route exact path='/:category' render={props => (
                         <ShopByCategory {...props}/>
               )}/> 
               <Route exact path='/details/:prodId' component={SingleProduct}/>
-              )}/> 
-
-              
-             
+              )}/>                          
             <Redirect to='/'/>      
         </Switch>      
     )
