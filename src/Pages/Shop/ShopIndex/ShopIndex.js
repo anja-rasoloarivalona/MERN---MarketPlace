@@ -135,10 +135,9 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                                                     currentPage={this.state.currentPage}>               
                                 {
                                     this.state.products.map(product => {
-                                    /*  const date = product.createdAt.slice(0, 10);*/
-                                            let date = product.createdAt.toString().split('T')[0];
-                                            let hour = product.createdAt.toString().split('T')[1].slice(0, 8);
-                                            let fullDate = date + ' ' + hour                       
+                                        let fulldate =  new Date(product.createdAt).toString()
+                                        let date = fulldate.slice(4, 15)
+                                        let hour = fulldate.slice(16, 24)
                                             return (          
                                                     <Product
                                                         shop
@@ -148,7 +147,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                                                         price={product.price}
                                                         category = {product.category}
                                                         description={product.description}
-                                                        date = {fullDate}
+                                                        date = {date + ' - ' + hour}
                                                         imageUrl = {'http://localhost:8000/' + product.imageUrl }
                                                     />                        
                                         )                                                      
