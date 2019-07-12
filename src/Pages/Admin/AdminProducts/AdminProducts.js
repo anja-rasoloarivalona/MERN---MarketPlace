@@ -9,6 +9,7 @@ import AddProduct from '../AddProduct/AddProduct';
 
 import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import Spinner from '../../../components/Spinner/Spinner';
+import IconSvg from '../../../util/svgHandler';
 
 
 
@@ -212,6 +213,12 @@ import Spinner from '../../../components/Spinner/Spinner';
         let product;
         if(this.state.loading === true){
             product = <Spinner />
+        } else { if(this.state.products.length < 1){
+            product = (
+                <div className="no-product flex-centered-column">
+                    <IconSvg icon="happy"/> <span>You do not have any products for sale yet</span>
+                </div>
+            )
         } else {
             product = (
                 this.state.products.map( product => (
@@ -228,6 +235,8 @@ import Spinner from '../../../components/Spinner/Spinner';
                 />
                 ))
             )
+        }
+            
         }
         return (
             <Fragment>

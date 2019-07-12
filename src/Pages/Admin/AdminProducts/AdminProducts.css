@@ -23,3 +23,26 @@
     left: 4rem;
     display: block;
 }
+
+.no-product {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-align: center;
+    height: 80vh;
+}
+
+.no-product > * {
+    transform: translateY(-6rem);
+}
+
+.no-product  svg{
+    fill: var(--color-primary);
+    height: 10rem;
+    width:10rem;
+    margin-bottom: 2rem;
+}
+
+.no-product  span {
+    padding: 0 .5rem;
+}
