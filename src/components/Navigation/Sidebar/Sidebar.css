@@ -48,6 +48,7 @@
     color: var(--color-white);
     transform: translateY(3rem);
     z-index: -1;   
+   
 }
 
 .sidebar__price__input {
@@ -103,16 +104,17 @@
     justify-content: center;
     position: relative;
     z-index: 2;
+    
 }
 
 .sidebar__price__title span {
     font-size: 1.3rem;
+  
 }
 
 .sidebar__price__title span:nth-child(2) {
-    width: 10rem;
+    width: 11rem;
     text-align: center;
-
 }
 
 .sidebar__price__title svg {
