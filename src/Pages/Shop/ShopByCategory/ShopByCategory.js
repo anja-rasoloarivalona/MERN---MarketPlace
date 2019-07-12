@@ -46,6 +46,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
             return
         } else {
             this.setState({category: nextProps.match.params.category}, () => {
+                this.setState({currentPage: 1});
                 this.loadProductsHandler()
             }); 
         }     
