@@ -118,7 +118,11 @@
 }
 
 .sidebar__price__title svg {
-    transform: translateX(.6rem)
+    transition: all .3s ease-in-out;
+}
+
+.sidebar__price__title.rotateIcon svg {
+    transform: rotate(-180deg)
 }
 
 .input-range__label--max,

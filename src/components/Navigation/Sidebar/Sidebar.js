@@ -33,14 +33,15 @@ class Sidebar extends Component {
                                  this.state.hideCategoryFilter === false ? 'sidebar--show' : ' ',
                                  this.state.hidePriceFilter === false ? 'sidebar--show' : ' '].join(' ')}>
 
-                <SidebarCategoryToggler hideCategoryFilterHandler = {this.hideCategoryFilterHandler}/>
+                <SidebarCategoryToggler hideCategoryFilterHandler = {this.hideCategoryFilterHandler} 
+                                        hideCategoryFilter = {this.state.hideCategoryFilter}/>
 
                 <SideBarCategoryList hideCategoryFilter = {this.state.hideCategoryFilter}
                                     >
 
                 <div className="sidebar__price">
 
-                    <div className="sidebar__price__title flex-centered-row"
+                    <div className={["sidebar__price__title", "flex-centered-row", this.state.hidePriceFilter === false ? 'rotateIcon' : ''].join(' ')}
                         onClick = {this.hidePriceFilterHandler}>
                         <span>Filter by price:</span> 
                         <span>${this.props.minPrice} - ${this.props.maxPrice}</span> 
