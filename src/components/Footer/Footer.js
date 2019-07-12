@@ -16,9 +16,6 @@ const footer = () => {
                         <li className="footer__menu__list__item">
                             <Link to="/">Shop</Link>
                         </li>
-                        <li className="footer__menu__list__item">
-                            <Link to="/login">Sell</Link>
-                        </li>
                         <li className="footer__menu__list__item">About</li>
                         <li className="footer__menu__list__item">Member Benefits</li>                                              
                     </ul>

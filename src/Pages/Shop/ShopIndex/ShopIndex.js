@@ -110,7 +110,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
     }
 
     onChangeComplete = value => {   
-        this.setState({productPriceRequested : value}, 
+        this.setState({productPriceRequested : value, currentPage: 1}, 
             () => this.loadProductsHandler())
     }
 
