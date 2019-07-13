@@ -23,14 +23,17 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
         sortBy: 'latest',
         totalProducts: 0,
         currentPage: 1,
-        loading: false
+        loading: false,
+        mountedOnce: false
     }
 
 
 
     componentDidMount(){        
         this._isMounted = true;
-        this.loadProductsHandler();
+        this.setState({ mountedOnce: true}, () => {
+            this.loadProductsHandler();
+        })
         window.scrollTo(0, 0);
     }
 
@@ -45,7 +48,16 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
         if(nextProps.match.params.category === this.state.category){
             return
         } else {
-            this.setState({category: nextProps.match.params.category, currentPage: 1}, () => {
+            let priceRequested = {...this.state.productPriceRequested}
+            priceRequested.min = 1;
+            priceRequested.max = 99998;
+            this.setState({
+                        mountedOnce: true,
+                        category: nextProps.match.params.category, 
+                        currentPage: 1,
+                        priceMin: 0,
+                        priceMax: 99999,
+                        productPriceRequested: priceRequested}, () => {
                 this.loadProductsHandler()
             }); 
         }     
@@ -83,7 +95,6 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                    '?page=' + currentPage
                    )
             .then(res => {
-                console.log(this.state.category)
                 if(res.status !== 200){
                     throw new Error('Failed to fectch products')
                 }
@@ -92,14 +103,30 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
             })
             .then(resData => {
 
-                if(this._isMounted === true) {
-                    this.setState({
+                if(this._isMounted === true && this.state.mountedOnce === true) {
+                    this.setState( prevstate => ({
+                        ...prevstate,
                         products: resData.products,
                         totalProducts: resData.totalProducts,
-                        loading: false
-                    })
-                }
-
+                        loading: false,
+                        mountedOnce: false,
+                        priceMin: resData.minPrice,
+                        priceMax: resData.maxPrice,
+                        productPriceRequested: {
+                            ...prevstate.productPriceRequested,
+                            min: resData.minPrice,
+                            max: resData.maxPrice 
+                        }
+                    }))                 
+                } else {
+                    if(this._isMounted === true){
+                        this.setState({
+                            products: resData.products,
+                            totalProducts: resData.totalProducts,
+                            loading: false,
+                        })
+                    } 
+                }           
                 return null;
                 
             })
@@ -115,6 +142,8 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
     inputRangeChangeHandler = value => {
         this.setState({productPriceRequested : value})
     }
+
+    
 
     onChangeComplete = value => {   
         this.setState({productPriceRequested : value, currentPage: 1}, 

@@ -23,6 +23,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
         totalProducts: 0,
         currentPage: 1,
         loading: false,
+        mountedOnce: false
     }
 
    
@@ -32,7 +33,9 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
     componentDidMount(){
         window.scrollTo(0, 0);
         this._isMounted = true;
-        this.loadProductsHandler();    
+        this.setState({ mountedOnce: true}, () => {
+            this.loadProductsHandler();
+        })    
     }
 
     componentWillUpdate(){
@@ -84,12 +87,28 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
             })
             .then(resData => {
 
-                if(this._isMounted === true) {
-                    this.setState({
+                if(this._isMounted === true && this.state.mountedOnce === true ) {
+                    this.setState( prevstate => ({
                         products: resData.products,
                         totalProducts: resData.totalProducts,
-                        loading: false
-                    })
+                        loading: false,
+                        mountedOnce: false,
+                        priceMin: resData.priceMin,
+                        priceMax: resData.priceMax,
+                        productPriceRequested: {
+                            ...prevstate.productPriceRequested,
+                            min: resData.priceMin,
+                            max: resData.priceMax 
+                        }
+                    }))
+                } else {
+                    if(this._isMounted === true) {
+                        this.setState({
+                            products: resData.products,
+                            totalProducts: resData.totalProducts,
+                            loading: false,
+                        })
+                    }
                 }
 
                 return null;
