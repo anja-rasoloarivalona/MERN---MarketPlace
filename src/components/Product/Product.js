@@ -10,6 +10,8 @@ const product = props => {
         description = description.slice(0, 230) + '...'
     }
 
+
+
     return (
     <article className="product">
 
@@ -27,12 +29,18 @@ const product = props => {
                 <div className="product__date">{props.date}</div>
             </header>
             <p>{description}</p>
-            {
+            {   
                  props.shop ?
                  (
                     <div className="product__actions flex-centered-row">
                         <Button 
-                            link= {`details/${props.id}`}
+                            link= { {
+                                pathname: `details/${props.id}`,
+                                state: {currentPage: props.currentPage, componentToGoBack: props.componentToGoBack}
+                            }
+                                
+                                
+                            }
                             color="primary"
                         >
                             View details

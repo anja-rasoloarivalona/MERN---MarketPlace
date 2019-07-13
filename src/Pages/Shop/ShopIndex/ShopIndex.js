@@ -23,7 +23,8 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
         totalProducts: 0,
         currentPage: 1,
         loading: false,
-        mountedOnce: false
+        mountedOnce: false,
+        componentName: 'shop'
     }
 
    
@@ -31,9 +32,22 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
 
 
     componentDidMount(){
+        let page;
+
+        if(this.props.location.state.currentPage != "undefined"){
+            page = this.props.location.state.currentPage;
+        } else {
+            page = 1
+        }
+
+        console.log(this.props.location.state.currentPage)
+
         window.scrollTo(0, 0);
         this._isMounted = true;
-        this.setState({ mountedOnce: true}, () => {
+        this.setState({ 
+            mountedOnce: true,
+            currentPage: page
+            }, () => {
             this.loadProductsHandler();
         })    
     }
@@ -160,6 +174,8 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                                             return (          
                                                     <Product
                                                         shop
+                                                        currentPage = {this.state.currentPage}
+                                                        componentToGoBack = {this.state.componentName}
                                                         key={product._id}
                                                         id={product._id}
                                                         title={product.title}

@@ -17,7 +17,8 @@ class SingleProduct extends Component {
         price: '',
         image: '',
         date: '',
-        loading: false
+        loading: false,
+        pathToBack: '/'
     }
 
     componentDidMount(){
@@ -25,9 +26,15 @@ class SingleProduct extends Component {
         this.setState({loading: true})
         this._isMounted = true;
         const prodId = this.props.match.params.prodId;
-        const category = this.props.match.params.category;
 
-        console.log(category, prodId)
+
+        
+        if(this.props.location.state.componentToGoBack == "shop"){
+            this.setState({pathToBack: '/'})
+        } else {
+            this.setState({pathToBack: `${this.state.category}`})
+        }
+      
         
         fetch('http://localhost:8000/' + prodId, {
             method: 'GET'
@@ -79,7 +86,10 @@ class SingleProduct extends Component {
                             <Button color='primary'>
                                 Add to cart
                             </Button>
-                            <Button color="secondary" onClick={this.props.history.goBack}>
+                            <Button color="secondary" link={{
+                                    pathname: this.state.pathToBack,
+                                    state: {currentPage: this.props.location.state.currentPage}
+                            }}>      
                                 Back
                             </Button>
                         </div>
