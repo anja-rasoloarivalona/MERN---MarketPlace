@@ -222,16 +222,14 @@ import IconSvg from '../../../util/svgHandler';
         } else {
             product = (
                 this.state.products.map( product => {
-                    let fulldate =  new Date(product.createdAt).toString()
-                    let date = fulldate.slice(4, 15)
-                    let hour = fulldate.slice(16, 24)
+                    let fulldate =  new Date(product.createdAt).toLocaleString()
                     return (            
                         <Product
                             key={product._id}
                             id={product._id}
                             title={product.title}
                             price={product.price}
-                            date={date + ' - ' + hour}
+                            date={fulldate}
                             description={product.description}
                             link='/'
                             onDelete={this.deleteProductHandler.bind(this, product._id)}

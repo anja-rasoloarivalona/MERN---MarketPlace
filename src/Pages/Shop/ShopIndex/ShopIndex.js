@@ -156,9 +156,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                                                     currentPage={this.state.currentPage}>               
                                 {
                                     this.state.products.map(product => {
-                                        let fulldate =  new Date(product.createdAt).toString()
-                                        let date = fulldate.slice(4, 15)
-                                        let hour = fulldate.slice(16, 24)
+                                        let fulldate =  new Date(product.createdAt).toLocaleString()
                                             return (          
                                                     <Product
                                                         shop
@@ -168,7 +166,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                                                         price={product.price}
                                                         category = {product.category}
                                                         description={product.description}
-                                                        date = {date + ' - ' + hour}
+                                                        date = {fulldate}
                                                         imageUrl = {'http://localhost:8000/' + product.imageUrl }
                                                     />                        
                                         )                                                      
