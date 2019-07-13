@@ -35,7 +35,7 @@ const product = props => {
                     <div className="product__actions flex-centered-row">
                         <Button 
                             link= { {
-                                pathname: `details/${props.id}`,
+                                pathname: `/details/${props.id}`,
                                 state: {currentPage: props.currentPage, componentToGoBack: props.componentToGoBack}
                             }
                                 

@@ -16,6 +16,7 @@ const button = props => !props.link ?
     (
         <Link 
             className={['button', `button--${props.color}`].join(' ')}
+           // action="replace"
             to={props.link}
             onClick={props.onClick}>
                 {props.children}

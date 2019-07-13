@@ -114,12 +114,14 @@ class App extends Component {
               )}/>
               <Route path='/admin/products' render={props => (
                   <AdminProducts {...props} token={this.state.token}/>
-            )}/>        
-              <Route exact path='/:category' render={props => (
+            )}/>   
+            <Route exact path='/details/:prodId' component={SingleProduct}/>
+
+            <Route exact path='/:category' render={props => (
                         <ShopByCategory {...props}/>
               )}/> 
-              <Route exact path='/details/:prodId' component={SingleProduct}/>
-              )}/>                          
+              
+                                        
             <Redirect to='/'/>      
         </Switch>      
     )

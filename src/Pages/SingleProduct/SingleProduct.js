@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './SingleProduct.css';
 import Button from '../../components/Button/Button';
 import Spinner from '../../components/Spinner/Spinner';
+import { Redirect} from 'react-router-dom';
 
 
 
@@ -27,12 +28,9 @@ class SingleProduct extends Component {
         this._isMounted = true;
         const prodId = this.props.match.params.prodId;
 
-        console.log('single product', this.props.location.state.currentPage)
-        
-        if(this.props.location.state.componentToGoBack === "shop"){
-            this.setState({pathToBack: '/'})
-        } 
-      
+        console.log(this.props)
+
+        console.log('single product', this.props.location.state.currentPage)     
         
         fetch('http://localhost:8000/' + prodId, {
             method: 'GET'
@@ -53,7 +51,8 @@ class SingleProduct extends Component {
                     image: 'http://localhost:8000/' + resData.product.imageUrl,
                     description: resData.product.description,
                     date: date,
-                    loading: false
+                    loading: false,
+                    pathToBack: this.props.location.state.componentToGoBack === "shop" ? '/' :  "../" + resData.product.category
                 })} 
             return
             })
@@ -84,10 +83,11 @@ class SingleProduct extends Component {
                             <Button color='primary'>
                                 Add to cart
                             </Button>
-                            <Button color="secondary" link={{
+                            <Button color="secondary"
+                                    link={{   
                                     pathname: this.state.pathToBack,
                                     state: {currentPage: this.props.location.state.currentPage}
-                            }}>      
+                                    }}>      
                                 Back
                             </Button>
                         </div>

@@ -114,8 +114,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                         currentPage: currentPage
                      
                     }))
-                    console.log('from props location',this.props.location.state.currentPage)
-                    console.log('onMountedOnce',this.state.currentPage)
+                    
                 } else {
                     if(this._isMounted === true) {
                         this.setState({
@@ -124,9 +123,6 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                             loading: false, 
                         })
                      }
-
-                     console.log('from props location dos',this.props.location.state.currentPage)
-                     console.log('shop index, current page after fetch dos',this.state.currentPage)
                 }
 
                 

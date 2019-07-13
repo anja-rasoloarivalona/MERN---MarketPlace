@@ -24,7 +24,9 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
         totalProducts: 0,
         currentPage: 1,
         loading: false,
-        mountedOnce: false
+        mountedOnce: false,
+        componentName: 'category',
+        memory: ''
     }
 
 
@@ -88,6 +90,11 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
             this.setState({currentPage: currentPage})
         }
 
+        if(this.props.location.state && this.state.memory !==  this.props.location.state.currentPage ){
+            currentPage = this.props.location.state.currentPage;
+            this.setState({memory: this.props.location.state.currentPage})
+        } 
+
             fetch('http://localhost:8000/' + 
                    this.state.category + '/' + 
                    this.state.productPriceRequested.min + '&&' + this.state.productPriceRequested.max + '/' +
@@ -116,8 +123,11 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                             ...prevstate.productPriceRequested,
                             min: resData.minPrice,
                             max: resData.maxPrice 
-                        }
-                    }))                 
+                        },
+                        currentPage: currentPage
+                    }))      
+                    console.log('from props location',this.props.location.state.currentPage)
+                    console.log('onMountedOnce',this.state.currentPage)
                 } else {
                     if(this._isMounted === true){
                         this.setState({
@@ -126,6 +136,9 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                             loading: false,
                         })
                     } 
+
+                    console.log('from props location dos',this.props.location.state.currentPage)
+                     console.log('shop index, current page after fetch dos',this.state.currentPage)
                 }           
                 return null;
                 
@@ -181,6 +194,8 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
 
                         return <Product
                                     shop
+                                    currentPage = {this.state.currentPage}
+                                    componentToGoBack = {this.state.componentName}
                                     key={product._id}
                                     id={product._id}
                                     title={product.title}
