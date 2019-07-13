@@ -27,13 +27,11 @@ class SingleProduct extends Component {
         this._isMounted = true;
         const prodId = this.props.match.params.prodId;
 
-
+        console.log('single product', this.props.location.state.currentPage)
         
-        if(this.props.location.state.componentToGoBack == "shop"){
+        if(this.props.location.state.componentToGoBack === "shop"){
             this.setState({pathToBack: '/'})
-        } else {
-            this.setState({pathToBack: `${this.state.category}`})
-        }
+        } 
       
         
         fetch('http://localhost:8000/' + prodId, {

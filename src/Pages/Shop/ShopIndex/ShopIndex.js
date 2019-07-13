@@ -24,29 +24,17 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
         currentPage: 1,
         loading: false,
         mountedOnce: false,
-        componentName: 'shop'
+        componentName: 'shop',
+        memory: ''
     }
-
-   
 
 
 
     componentDidMount(){
-        let page;
-
-        if(this.props.location.state.currentPage != "undefined"){
-            page = this.props.location.state.currentPage;
-        } else {
-            page = 1
-        }
-
-        console.log(this.props.location.state.currentPage)
-
         window.scrollTo(0, 0);
         this._isMounted = true;
         this.setState({ 
             mountedOnce: true,
-            currentPage: page
             }, () => {
             this.loadProductsHandler();
         })    
@@ -59,7 +47,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
         } else {
             scroll = window.innerHeight - 80
         }
-        window.scrollTo(0, scroll); 
+        window.scrollTo(0, scroll);
     }
 
 
@@ -88,6 +76,13 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
             this.setState({currentPage: currentPage})
         }
 
+         if(this.props.location.state && this.state.memory !==  this.props.location.state.currentPage ){
+                 currentPage = this.props.location.state.currentPage;
+                 this.setState({memory: this.props.location.state.currentPage})
+         } 
+
+
+
             fetch('http://localhost:8000/' + 
                     this.state.productPriceRequested.min + '&&' + this.state.productPriceRequested.max +
                      '/' + this.state.sortBy +
@@ -101,6 +96,8 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
             })
             .then(resData => {
 
+
+
                 if(this._isMounted === true && this.state.mountedOnce === true ) {
                     this.setState( prevstate => ({
                         products: resData.products,
@@ -112,18 +109,29 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                         productPriceRequested: {
                             ...prevstate.productPriceRequested,
                             min: resData.priceMin,
-                            max: resData.priceMax 
-                        }
+                            max: resData.priceMax
+                        },
+                        currentPage: currentPage
+                     
                     }))
+                    console.log('from props location',this.props.location.state.currentPage)
+                    console.log('onMountedOnce',this.state.currentPage)
                 } else {
                     if(this._isMounted === true) {
                         this.setState({
                             products: resData.products,
                             totalProducts: resData.totalProducts,
-                            loading: false,
+                            loading: false, 
                         })
-                    }
+                     }
+
+                     console.log('from props location dos',this.props.location.state.currentPage)
+                     console.log('shop index, current page after fetch dos',this.state.currentPage)
                 }
+
+                
+
+             
 
                 return null;
                 
