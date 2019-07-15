@@ -97,10 +97,23 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
             })
             .then(resData => {
 
+                let min, max
 
+                if(this.props.location.state){
+                    min = this.props.location.state.currentPriceRequested.min;
+                    max= this.props.location.state.currentPriceRequested.max;
+                } else {
+                    min = resData.priceMin;
+                    max = resData.priceMax;
+                }
+
+                if(this.props.location){
+                    console.log('after fetch',this.props.location.state)
+                }
 
                 if(this._isMounted === true && this.state.mountedOnce === true ) {
-                    this.setState({
+                    this.setState( prevstate => ({
+                        ...prevstate,
                         products: resData.products,
                         totalProducts: resData.totalProducts,
                         loading: false,
@@ -108,7 +121,13 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                         priceMin: resData.priceMin,
                         priceMax: resData.priceMax,
                         currentPage: currentPage,  
-                    })
+                        productPriceRequested: {
+                            ...prevstate.productPriceRequested,
+                            min: min,
+                            max: max
+                        },
+                        
+                    }))
 
                     
 
