@@ -24,7 +24,15 @@
         z-index: 2000;
     }
 
-    .sidebar.sidebar--show {
+    .sidebar.sidebar--show__cat {
+        height: 90%;
+    }
+
+    .sidebar.sidebar--show__price {
+        height: 27%;
+    }
+
+    .sidebar.sidebar--show__cat.sidebar.sidebar--show__price {
         height: 90%;
     }
 }
