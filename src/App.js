@@ -36,11 +36,8 @@ class App extends Component {
     const token = localStorage.getItem('token');
     const expiryDate = localStorage.getItem('expiryDate');
 
-    console.log('app did mount', token)
-    console.log('app did mount', expiryDate)
-
    if(!token || !expiryDate){
-    console.log('NO TOKEN',this.state)
+  //  console.log('NO TOKEN',this.state)
       return;
     }
 

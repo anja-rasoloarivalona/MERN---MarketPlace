@@ -13,6 +13,7 @@ const Shop = props => (
                      minPrice = {props.productPriceRequested.min}
                      maxPrice = {props.productPriceRequested.max}
                      sortbyhandler = {props.sortbyhandler}
+                     sortBy = {props.sortBy}
                  /*    onChangeComplete ={props.onChangeComplete}*/
                
                 />

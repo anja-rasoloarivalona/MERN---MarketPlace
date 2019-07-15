@@ -23,14 +23,13 @@ class SingleProduct extends Component {
     }
 
     componentDidMount(){
+
+        console.log('Single Prod', this.props.location.state)
+
         window.scrollTo(0, 0);
         this.setState({loading: true})
         this._isMounted = true;
-        const prodId = this.props.match.params.prodId;
-
-        console.log(this.props)
-
-        console.log('single product', this.props.location.state.currentPage)     
+        const prodId = this.props.match.params.prodId;   
         
         fetch('http://localhost:8000/' + prodId, {
             method: 'GET'
@@ -86,7 +85,9 @@ class SingleProduct extends Component {
                             <Button color="secondary"
                                     link={{   
                                     pathname: this.state.pathToBack,
-                                    state: {currentPage: this.props.location.state.currentPage}
+                                    state: {currentPage: this.props.location.state.currentPage,
+                                            currentPriceRequested: this.props.location.state.currentPriceRequested,
+                                            currentSort: this.props.location.state.currentSort}
                                     }}>      
                                 Back
                             </Button>

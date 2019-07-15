@@ -36,7 +36,11 @@ const product = props => {
                         <Button 
                             link= { {
                                 pathname: `/details/${props.id}`,
-                                state: {currentPage: props.currentPage, componentToGoBack: props.componentToGoBack}
+                                state: {
+                                      currentPage: props.currentPage, 
+                                      currentPriceRequested: props.currentPriceRequested,
+                                      currentSort: props.currentSort,
+                                      componentToGoBack: props.componentToGoBack}
                             }
                                 
                                 

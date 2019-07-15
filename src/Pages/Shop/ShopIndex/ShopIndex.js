@@ -16,16 +16,16 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
     state = {
         products: [],
         status: '',
-        productPriceRequested : {min: 1, max: 99998},
+        productPriceRequested : this.props.location.state ? this.props.location.state.currentPriceRequested : {min: 1, max: 99998},
         priceMin: 0,
         priceMax: 99999, 
-        sortBy: 'latest',
+        sortBy: this.props.location.state ? this.props.location.state.currentSort : 'latest',
         totalProducts: 0,
         currentPage: 1,
         loading: false,
         mountedOnce: false,
         componentName: 'shop',
-        memory: ''
+        memoryCurrentPage: '',
     }
 
 
@@ -33,11 +33,14 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
     componentDidMount(){
         window.scrollTo(0, 0);
         this._isMounted = true;
+
         this.setState({ 
             mountedOnce: true,
             }, () => {
+            console.log('shop mount state', this.state.productPriceRequested)
             this.loadProductsHandler();
-        })    
+        }) 
+       
     }
 
     componentWillUpdate(){
@@ -58,13 +61,16 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
 
     loadProductsHandler = direction => {
 
+        let currentPage = this.state.currentPage;
+        let currentPrice = this.state.productPriceRequested;
+
+
+
         this.setState({loading: true})
 
         if(direction){
             this.setState( {products: []} )
-        }
-
-        let currentPage = this.state.currentPage;
+        }    
 
         if(direction === 'next'){
             currentPage++;
@@ -76,15 +82,13 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
             this.setState({currentPage: currentPage})
         }
 
-         if(this.props.location.state && this.state.memory !==  this.props.location.state.currentPage ){
+         if(this.props.location.state && this.state.memoryCurrentPage !==  this.props.location.state.currentPage ){
                  currentPage = this.props.location.state.currentPage;
-                 this.setState({memory: this.props.location.state.currentPage})
-         } 
-
-
+                 this.setState({memoryCurrentPage: this.props.location.state.currentPage})
+         }        
 
             fetch('http://localhost:8000/' + 
-                    this.state.productPriceRequested.min + '&&' + this.state.productPriceRequested.max +
+                        this.state.productPriceRequested.min + '&&' + this.state.productPriceRequested.max +
                      '/' + this.state.sortBy +
                      '?page=' + currentPage) 
             .then(res => {
@@ -99,28 +103,25 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
 
 
                 if(this._isMounted === true && this.state.mountedOnce === true ) {
-                    this.setState( prevstate => ({
+                    this.setState({
                         products: resData.products,
                         totalProducts: resData.totalProducts,
                         loading: false,
                         mountedOnce: false,
                         priceMin: resData.priceMin,
                         priceMax: resData.priceMax,
-                        productPriceRequested: {
-                            ...prevstate.productPriceRequested,
-                            min: resData.priceMin,
-                            max: resData.priceMax
-                        },
-                        currentPage: currentPage
-                     
-                    }))
+                        currentPage: currentPage,  
+                    })
+
                     
+
                 } else {
                     if(this._isMounted === true) {
                         this.setState({
                             products: resData.products,
                             totalProducts: resData.totalProducts,
                             loading: false, 
+                           
                         })
                      }
                 }
@@ -148,7 +149,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
 
     onChangeComplete = value => {   
         this.setState({productPriceRequested : value, currentPage: 1}, 
-            () => this.loadProductsHandler())
+            () => this.loadProductsHandler()) 
     }
 
     sortbyhandler = event => {
@@ -179,7 +180,11 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                                                     <Product
                                                         shop
                                                         currentPage = {this.state.currentPage}
+                                                        currentPriceRequested={this.state.productPriceRequested}
+                                                        currentSort = {this.state.sortBy}
                                                         componentToGoBack = {this.state.componentName}
+
+
                                                         key={product._id}
                                                         id={product._id}
                                                         title={product.title}
@@ -202,12 +207,15 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                 <ShopLayout 
                     priceMax ={this.state.priceMax}
                     priceMin = {this.state.priceMin}
+
                     productPriceRequested={this.state.productPriceRequested}
+
                     inputRangeChangeHandler={this.inputRangeChangeHandler}
                     minPrice = {this.state.productPriceRequested.min}
                     maxPrice ={this.state.productPriceRequested.max}
                     onChangeComplete = {this.onChangeComplete}
-                    sortbyhandler = {this.sortbyhandler}>
+                    sortbyhandler = {this.sortbyhandler}
+                    sortBy={this.state.sortBy}>
                         
                     
 
