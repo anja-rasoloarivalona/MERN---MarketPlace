@@ -196,11 +196,8 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                                         currentPage={this.state.currentPage}>              
                 {
                     this.state.products.map(product => {
-                    /*  const date = product.createdAt.slice(0, 10);*/
-                            let date = product.createdAt.toString().split('T')[0];
-                            let hour = product.createdAt.toString().split('T')[1].slice(0, 8);
 
-                            let fullDate = date + ' ' + hour                       
+                        let fullDate =  new Date(product.createdAt).toLocaleString()           
 
                         return <Product
                                     shop
