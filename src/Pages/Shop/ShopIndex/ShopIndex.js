@@ -62,9 +62,6 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
     loadProductsHandler = direction => {
 
         let currentPage = this.state.currentPage;
-        let currentPrice = this.state.productPriceRequested;
-
-
 
         this.setState({loading: true})
 

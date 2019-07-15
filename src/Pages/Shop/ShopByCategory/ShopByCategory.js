@@ -16,11 +16,11 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
     state = {
         products: [],
         status: '',
-        productPriceRequested : {min: 1, max: 99998},
+        productPriceRequested : this.props.location.state ? this.props.location.state.currentPriceRequested : {min: 1, max: 99998},
         priceMin: 0,
         priceMax: 99999, 
         category: this.props.match.params.category,
-        sortBy: 'latest',
+        sortBy: this.props.location.state ? this.props.location.state.currentSort : 'latest',
         totalProducts: 0,
         currentPage: 1,
         loading: false,
@@ -110,6 +110,16 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
             })
             .then(resData => {
 
+                let min, max
+
+                if(this.props.location.state){
+                    min = this.state.productPriceRequested.min;
+                    max= this.state.productPriceRequested.max;
+                } else {
+                    min = resData.minPrice;
+                    max = resData.maxPrice;
+                }
+
                 if(this._isMounted === true && this.state.mountedOnce === true) {
                     this.setState( prevstate => ({
                         ...prevstate,
@@ -121,8 +131,8 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                         priceMax: resData.maxPrice,
                         productPriceRequested: {
                             ...prevstate.productPriceRequested,
-                            min: resData.minPrice,
-                            max: resData.maxPrice 
+                            min: min,
+                            max: max 
                         },
                         currentPage: currentPage
                     }))      
@@ -195,6 +205,10 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                         return <Product
                                     shop
                                     currentPage = {this.state.currentPage}
+                                    currentPriceRequested={this.state.productPriceRequested}
+                                    currentSort = {this.state.sortBy}
+
+
                                     componentToGoBack = {this.state.componentName}
                                     key={product._id}
                                     id={product._id}
@@ -222,6 +236,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                     minPrice = {this.state.productPriceRequested.min}
                     maxPrice ={this.state.productPriceRequested.max}
                     sortbyhandler = {this.sortbyhandler}
+                    sortBy={this.state.sortBy}
                     >
 
                     <section className="shop--category"> 
