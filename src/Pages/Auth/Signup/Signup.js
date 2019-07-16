@@ -87,7 +87,7 @@ class Signup extends Component {
 
 
 
-        fetch('http://localhost:8000/auth/signup', {
+        fetch('https://strix-market-place.herokuapp.com/auth/signup', {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

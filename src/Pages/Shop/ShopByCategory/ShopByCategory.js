@@ -95,7 +95,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
             this.setState({memory: this.props.location.state.currentPage})
         } 
 
-            fetch('http://localhost:8000/' + 
+            fetch('https://strix-market-place.herokuapp.com/' + 
                    this.state.category + '/' + 
                    this.state.productPriceRequested.min + '&&' + this.state.productPriceRequested.max + '/' +
                    this.state.sortBy +
@@ -214,7 +214,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
                                     category = {product.category}
                                     description={product.description}
                                     date = {fullDate}
-                                    imageUrl = {'http://localhost:8000/' + product.imageUrl }
+                                    imageUrl = {'https://strix-market-place.herokuapp.com/' + product.imageUrl }
                                 />
                         })}  
                 </Paginator> 

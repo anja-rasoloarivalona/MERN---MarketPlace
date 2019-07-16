@@ -52,7 +52,7 @@ class Login extends Component {
                 return
             }
 
-        fetch('http://localhost:8000/auth/login', {
+        fetch('https://strix-market-place.herokuapp.com/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json'

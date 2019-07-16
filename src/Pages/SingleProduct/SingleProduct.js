@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './SingleProduct.css';
 import Button from '../../components/Button/Button';
 import Spinner from '../../components/Spinner/Spinner';
-import { Redirect} from 'react-router-dom';
+
 
 
 
@@ -31,7 +31,7 @@ class SingleProduct extends Component {
         this._isMounted = true;
         const prodId = this.props.match.params.prodId;   
         
-        fetch('http://localhost:8000/' + prodId, {
+        fetch('https://strix-market-place.herokuapp.com/' + prodId, {
             method: 'GET'
         })
         .then( res => {
@@ -47,7 +47,7 @@ class SingleProduct extends Component {
                     title: resData.product.title,
                     price: resData.product.price,
                     category: resData.product.category,
-                    image: 'http://localhost:8000/' + resData.product.imageUrl,
+                    image: 'https://strix-market-place.herokuapp.com/' + resData.product.imageUrl,
                     description: resData.product.description,
                     date: date,
                     loading: false,

@@ -45,7 +45,7 @@ import IconSvg from '../../../util/svgHandler';
 
             const token = localStorage.getItem('token');
 
-            fetch('http://localhost:8000/admin/products',
+            fetch('https://strix-market-place.herokuapp.com/admin/products',
         {
             headers: {
                 Authorization: 'Bearer ' + token
@@ -111,11 +111,11 @@ import IconSvg from '../../../util/svgHandler';
             formData.append('category', productData.category);
             formData.append('description', productData.description);
             formData.append('image', productData.image);
-        let url = 'http://localhost:8000/admin/add-product';
+        let url = 'https://strix-market-place.herokuapp.com/admin/add-product';
         let method = 'POST';
     
         if(this.state.isEditing){
-            url = 'http://localhost:8000/admin/product/' + this.state.productBeingEdited._id
+            url = 'https://strix-market-place.herokuapp.com/admin/product/' + this.state.productBeingEdited._id
             method = 'PUT'
         }
 
@@ -182,7 +182,7 @@ import IconSvg from '../../../util/svgHandler';
     deleteProductHandler = productId => {
         const token = localStorage.getItem('token');
 
-            fetch('http://localhost:8000/admin/product/' + productId, {
+            fetch('https://strix-market-place.herokuapp.com/admin/product/' + productId, {
                 headers: {
                     Authorization: 'Bearer ' + token
                 },
@@ -234,7 +234,7 @@ import IconSvg from '../../../util/svgHandler';
                             link='/'
                             onDelete={this.deleteProductHandler.bind(this, product._id)}
                             onStartEdit = {this.startEditProductHandler.bind(this, product._id)}
-                            imageUrl = {'http://localhost:8000/' + product.imageUrl }
+                            imageUrl = {'https://strix-market-place.herokuapp.com/' + product.imageUrl }
                     />
                     )
                    
