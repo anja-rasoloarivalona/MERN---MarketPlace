@@ -19,7 +19,7 @@
 @media (max-width: 887px) {
     .shop--category{
         grid-column: full-start / full-end;
-        transform: translateY(-.5rem);
+        transform: translateY(-1.2rem);
     }
 }
 
