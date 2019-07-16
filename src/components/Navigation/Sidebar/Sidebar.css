@@ -29,7 +29,7 @@
     }
 
     .sidebar.sidebar--show__price {
-        height: 35%;
+        height: 60%;
     }
 
     .sidebar.sidebar--show__cat.sidebar.sidebar--show__price {
@@ -111,7 +111,7 @@
     display: flex;
     justify-content: center;
     position: relative;
-    z-index: 2;
+    z-index: 5;
     cursor: pointer;
     
 }

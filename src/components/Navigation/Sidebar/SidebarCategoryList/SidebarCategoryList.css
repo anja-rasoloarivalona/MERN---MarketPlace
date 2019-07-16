@@ -49,10 +49,19 @@ a.sidebar__category__list__item:focus {
 
 .sidebar__category__list.sidebar__category__list--hide {
     transform: translateY(-100%);
-    z-index: -1;
+    z-index: -8;
     position: relative;
 
 }
+
+
+
+
+
+
+
+
+
 
 .sidebar__category__list__item .icon {
     width: 3rem;
