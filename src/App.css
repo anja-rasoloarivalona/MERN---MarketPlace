@@ -58,7 +58,7 @@ body {
   .spacer_sidebar_mobile{
       grid-row: 4 / 5;
       grid-column: full-start / full-end;
-      height: 20rem;
+      height: 17rem;
       display: block;
   }
 }
