@@ -51,7 +51,11 @@ a.sidebar__category__list__item:focus {
     transform: translateY(-100%);
     z-index: -8;
     position: relative;
+}
 
+.sidebar__category__list.sidebar__category__list--hide a {
+    opacity: 0;
+    z-index: -900;
 }
 
 
