@@ -17,8 +17,9 @@
 @media (max-width: 1199px) {
     .sidebar {
         position: fixed;
-        right: 0;
+        right: 0;     
         height: 26%;
+        min-height: 17rem;
         width: 100%;
         grid-column: center-start / center-end;
         z-index: 2000;
