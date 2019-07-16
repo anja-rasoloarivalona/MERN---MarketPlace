@@ -48,9 +48,10 @@ a.sidebar__category__list__item:focus {
 
 
 .sidebar__category__list.sidebar__category__list--hide {
-    transform: translateY(-120%);
+    transform: translateY(-100%);
     z-index: -1;
     position: relative;
+
 }
 
 .sidebar__category__list__item .icon {
