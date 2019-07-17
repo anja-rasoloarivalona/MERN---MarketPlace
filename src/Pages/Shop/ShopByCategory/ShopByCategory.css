@@ -39,6 +39,7 @@
 @media (max-width: 1199px) {
     .shop--category__title {
         background: rgb(238, 238, 238);
+        transform: translateY(-1.5rem)
     }
 }
 
