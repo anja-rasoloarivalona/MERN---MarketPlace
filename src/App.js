@@ -141,7 +141,7 @@ class App extends Component {
                 onClickNavLink={this.mobileNavHandler.bind(this, false)}
                 onLogout={this.logoutHandler}
                 isAuth={this.state.isAuth}/>
-            <div className='spacer_sidebar_mobile'></div>
+            
             {routes}
             <Footer />
         </Layout>

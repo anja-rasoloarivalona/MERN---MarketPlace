@@ -3,7 +3,9 @@ import Sidebar from '../../components/Navigation/Sidebar/Sidebar';
 
 const Shop = props => (
             <Fragment>
-        
+                
+                <div className='spacer_sidebar_mobile'></div>
+
                 <Sidebar 
                      maxPriceRequested = {props.priceMax} 
                      minPriceRequested = {props.priceMin}

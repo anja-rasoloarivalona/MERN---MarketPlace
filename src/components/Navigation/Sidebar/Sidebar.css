@@ -108,7 +108,7 @@
 .sidebar__price__title {
     background: rgb(185, 185, 185);
     width: 100%;
-    height: 5rem;
+    height: 5.1rem;
     display: flex;
     justify-content: center;
     position: relative;
@@ -185,8 +185,3 @@
     outline: none;
 }
 
-@media (max-width: 600px) {
-    .sidebar__sort__goTop {
-        transform: translateY(-8.2rem);
-    }
-  }
