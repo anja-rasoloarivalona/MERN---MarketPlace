@@ -13,6 +13,7 @@
     .shop--category{
         grid-row: 5/ 6;
         grid-column: center-start / center-end;
+        background: none;
     }
 }
 
@@ -32,7 +33,13 @@
     align-items: center;
     padding-left: 3rem;
     font-size: 1.5rem;
-    color: var(--color-secondary)
+    color: var(--color-secondary);
+}
+
+@media (max-width: 1199px) {
+    .shop--category__title {
+        background: rgb(238, 238, 238);
+    }
 }
 
 
