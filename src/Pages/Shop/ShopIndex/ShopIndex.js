@@ -1,4 +1,6 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+
 import './ShopIndex.css';
 import Product from '../../../components/Product/Product';
 import bg from '../../../assets/img/bg.jpg';
@@ -6,6 +8,9 @@ import ShopLayout from '../Shop';
 import Paginator from '../../../components/Paginator/Paginator';
 import Spinner from '../../../components/Spinner/Spinner';
 import NoProductFound from '../../../components/NoProductFound/NoProductFound';
+
+import * as actionTypes from '../../../store/actions';
+
 
 
 
@@ -252,5 +257,7 @@ import NoProductFound from '../../../components/NoProductFound/NoProductFound';
         )}
 }
 
-
-export default ShopIndex
+const mapStateToProps = (state) => ({
+    products: state.products
+})
+export default connect(mapStateToProps)(ShopIndex)
