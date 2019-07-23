@@ -9,7 +9,7 @@ import Paginator from '../../../components/Paginator/Paginator';
 import Spinner from '../../../components/Spinner/Spinner';
 import NoProductFound from '../../../components/NoProductFound/NoProductFound';
 
-import * as actionTypes from '../../../store/actions';
+import * as shopActions from '../../../store/actions/index';
 
 
 
@@ -35,16 +35,17 @@ import * as actionTypes from '../../../store/actions';
 
 
 
-    componentDidMount(){
+    componentWillMount(){
         window.scrollTo(0, 0);
-        this._isMounted = true;
+    /*    this._isMounted = true;
 
         this.setState({ 
             mountedOnce: true,
             }, () => {
             console.log('shop mount state', this.state.productPriceRequested)
             this.loadProductsHandler();
-        }) 
+        }) */
+        this.props.loadProductsHandler();
        
     }
 
@@ -64,7 +65,7 @@ import * as actionTypes from '../../../store/actions';
     }
  
 
-    loadProductsHandler = direction => {
+  /*  loadProductsHandler = direction => {
 
         let currentPage = this.state.currentPage;
 
@@ -161,7 +162,7 @@ import * as actionTypes from '../../../store/actions';
                 }
                
             })
-    }
+    }*/
 
 
     inputRangeChangeHandler = value => {
@@ -182,8 +183,63 @@ import * as actionTypes from '../../../store/actions';
     render() {  
         
         let products;
+   
 
-        if(this.state.loading === true){
+    
+        console.log(this.props.products[0])
+         
+        products = (
+            this.props.products.map( product => {
+                let fulldate =  new Date(product.createdAt).toLocaleString();
+                return (
+                    <Product
+                            shop
+                            currentPage = {this.state.currentPage}
+                            currentPriceRequested={this.state.productPriceRequested}
+                            currentSort = {this.state.sortBy}
+                            componentToGoBack = {this.state.componentName}
+                            key={product._id}
+                            id={product._id}
+                            title={product.title}
+                            price={product.price}
+                            category = {product.category}
+                            description={product.description}
+                            date = {fulldate}
+                            imageUrl = {'https://strix-market-place.herokuapp.com/' + product.imageUrl }
+                        />     
+                )
+            })
+        )
+     
+
+       /* products = (
+
+            this.props.products.map( product => {
+                let fulldate =  new Date(product.createdAt).toLocaleString()
+                return (          
+                        <Product
+                            shop
+                            currentPage = {this.state.currentPage}
+                            currentPriceRequested={this.state.productPriceRequested}
+                            currentSort = {this.state.sortBy}
+                            componentToGoBack = {this.state.componentName}
+
+
+                            key={product._id}
+                            id={product._id}
+                            title={product.title}
+                            price={product.price}
+                            category = {product.category}
+                            description={product.description}
+                            date = {fulldate}
+                            imageUrl = {'https://strix-market-place.herokuapp.com/' + product.imageUrl }
+                        />                        
+                    ) 
+            })
+            
+        )*/
+
+      /*  if(this.state.loading === true){
             products = <Spinner />
         } else {
             if(this.state.totalProducts < 1) {
@@ -220,7 +276,7 @@ import * as actionTypes from '../../../store/actions';
                             </Paginator> 
                 )
             }
-        }
+        } */
         
       
         return (
@@ -257,7 +313,17 @@ import * as actionTypes from '../../../store/actions';
         )}
 }
 
-const mapStateToProps = (state) => ({
-    products: state.products
-})
-export default connect(mapStateToProps)(ShopIndex)
+const mapStateToProps = state => {
+    return {
+        products: state.products
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        loadProductsHandler: () => dispatch(shopActions.loadProductsHandler())
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopIndex)
