@@ -7,9 +7,11 @@ const Shop = props => (
                 <div className='spacer_sidebar_mobile'></div>
 
                 <Sidebar 
-                     maxPriceRequested = {props.priceMax} 
-                     minPriceRequested = {props.priceMin}
+                     maxPriceAllowed = {props.maxPriceAllowed} 
+                     minPriceAllowed = {props.minPriceAllowed}
                      inputRangeValue = {props.productPriceRequested}
+
+                     
                      onInputRangeChange = {props.inputRangeChangeHandler}
                      onChangeComplete = {props.onChangeComplete}
                      minPrice = {props.productPriceRequested.min}

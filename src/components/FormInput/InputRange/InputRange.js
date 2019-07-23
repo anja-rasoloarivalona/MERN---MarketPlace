@@ -15,8 +15,8 @@ class Input extends React.Component {
   render() {
     return (
       <InputRange
-        maxValue={this.props.maxPriceRequested}
-        minValue={this.props.minPriceRequested}
+        maxValue={this.props.maxPriceAllowed}
+        minValue={this.props.minPriceAllowed}
         onChange = {this.props.onInputRangeChange}
         onChangeComplete = {this.props.onChangeComplete}
         value={this.props.inputRangeValue}/>
