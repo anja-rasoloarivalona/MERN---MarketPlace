@@ -4,8 +4,7 @@ import * as actionTypes from './actionsTypes';
 export const setProducts = data => {
     return {
         type: actionTypes.SET_PRODUCTS,
-        products: data.products
-        
+        products: data.products       
     }
 }
 
@@ -31,12 +30,11 @@ export const getProductsFailed = () => {
     }
 }
 
-export const inputRangeChangeHandler = value => {
+export const priceRangeRequestedHandler = value => {
     return {
-        type: actionTypes.INPUT_RANGE_CHANGE_HANDLER,
+        type: actionTypes.PRICE_RANGE_REQUESTED_HANDLER,
         min: value.min,
         max: value.max
-
     }
 }
 
@@ -47,7 +45,6 @@ export const loadProductsHandler = (value, history) => {
         min = value.min;
         max= value.max
     }
-
     return dispatch => {
         fetch('http://localhost:8000/test/' + min + '&&' + max )
         .then(res => {
@@ -60,12 +57,11 @@ export const loadProductsHandler = (value, history) => {
                 dispatch(setInputRangeValue(resData))
             } else {
                 dispatch(setProducts(resData));          
-            }
-            
+            }          
         })
         .catch( error => {
             dispatch(getProductsFailed())
-           console.log(error)
+           console.log('error',error)
         })
     }
 }

@@ -1,6 +1,6 @@
 export {
     loadProductsHandler,
-    inputRangeChangeHandler
+    priceRangeRequestedHandler
 } from './products';
 
 export {
