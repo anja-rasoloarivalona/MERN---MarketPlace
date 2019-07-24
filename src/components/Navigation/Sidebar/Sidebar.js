@@ -63,7 +63,7 @@ class Sidebar extends Component {
                     <div className={["sidebar__price__title", "flex-centered-row", this.state.hidePriceFilter === false ? 'rotateIcon' : ''].join(' ')}
                         onClick = {this.hidePriceFilterHandler}>
                         <span>Filter by price:</span> 
-                        <span>${this.props.minPriceAllowed} - ${this.props.maxPriceAllowed}</span> 
+                        <span>${this.props.inputRangeValue.min} - ${this.props.inputRangeValue.max}</span> 
 
                         <IconSvg icon="down"/>
                     </div>  

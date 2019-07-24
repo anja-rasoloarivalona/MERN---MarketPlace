@@ -9,16 +9,20 @@ const Shop = props => (
                 <Sidebar 
                      maxPriceAllowed = {props.maxPriceAllowed} 
                      minPriceAllowed = {props.minPriceAllowed}
-                     inputRangeValue = {props.productPriceRequested}
 
-                     
+                     inputRangeValue = {props.inputRangeValue}
+
                      onInputRangeChange = {props.inputRangeChangeHandler}
+                   //  minPrice = {props.productPriceRequested.min}
+                 //    maxPrice = {props.productPriceRequested.max}                  
                      onChangeComplete = {props.onChangeComplete}
-                     minPrice = {props.productPriceRequested.min}
-                     maxPrice = {props.productPriceRequested.max}
+
+                    
+
+
                      sortbyhandler = {props.sortbyhandler}
                      sortBy = {props.sortBy}
-                 /*    onChangeComplete ={props.onChangeComplete}*/
+ 
                
                 />
                 

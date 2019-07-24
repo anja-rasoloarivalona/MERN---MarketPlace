@@ -19,7 +19,6 @@ import * as shopActions from '../../../store/actions/index';
     _isMounted = false;
 
     state = {
-        status: '',
         productPriceRequested : this.props.location.state ? this.props.location.state.currentPriceRequested : {min: 1, max: 99998},
         priceMin: 0,
         priceMax: 99999, 
@@ -34,7 +33,7 @@ import * as shopActions from '../../../store/actions/index';
 
 
 
-    componentWillMount(){
+    componentDidMount(){
         window.scrollTo(0, 0);
     /*    this._isMounted = true;
 
@@ -44,8 +43,10 @@ import * as shopActions from '../../../store/actions/index';
             console.log('shop mount state', this.state.productPriceRequested)
             this.loadProductsHandler();
         }) */
-        this.props.loadProductsHandler();
-       
+
+        this.setState({
+            mountedOnce: true
+        }, () => {this.props.loadProductsHandler()} )    
     }
 
     componentWillUpdate(){
@@ -164,13 +165,14 @@ import * as shopActions from '../../../store/actions/index';
     }*/
 
 
-    inputRangeChangeHandler = value => {
-        this.setState({productPriceRequested : value})
+    inputRangeChangeHandler = (value) => {
+        this.props.inputRangeChangeHandler(value);
     }
 
-    onChangeComplete = value => {  
-        console.log('comp', value);
-        this.props.loadProductsHandler(value)
+    onChangeComplete = (value) => { 
+        let history = this.state.mountedOnce;
+        this.props.loadProductsHandler(value, history);
+    
     }
 
     sortbyhandler = event => {
@@ -280,15 +282,17 @@ import * as shopActions from '../../../store/actions/index';
                 <ShopLayout 
                     minPriceAllowed = {this.props.priceMin}
                     maxPriceAllowed = {this.props.priceMax}
-
-                    productPriceRequested={this.state.productPriceRequested}
+                    inputRangeValue={this.props.inputRangeValue} /*Input Range value*/
 
 
 
                     inputRangeChangeHandler={this.inputRangeChangeHandler}
+                    onChangeComplete = {this.onChangeComplete}
+
+
                    // minPrice = {this.state.productPriceRequested.min}
                   //  maxPrice ={this.state.productPriceRequested.max}
-                    onChangeComplete = {this.onChangeComplete}
+                   
                     sortbyhandler = {this.sortbyhandler}
                     sortBy={this.state.sortBy}>
                         
@@ -315,16 +319,15 @@ const mapStateToProps = state => {
     return {
         products: state.products,
         priceMin: state.priceMin,
-        priceMax: state.priceMax,
-       
-        
+        priceMax: state.priceMax, 
+        inputRangeValue: state.inputRangeValue
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        loadProductsHandler: (value) => dispatch(shopActions.loadProductsHandler(value))
-       // requestProductsPriceHandler: (price) => dispatch(shopActions.requestProductsPriceHandler(price))
+        loadProductsHandler: (value, history) => dispatch(shopActions.loadProductsHandler(value, history)),
+        inputRangeChangeHandler: (value) => dispatch(shopActions.inputRangeChangeHandler(value))
     }
 }
 

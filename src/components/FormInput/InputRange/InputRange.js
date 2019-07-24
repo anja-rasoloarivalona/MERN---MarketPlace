@@ -17,9 +17,12 @@ class Input extends React.Component {
       <InputRange
         maxValue={this.props.maxPriceAllowed}
         minValue={this.props.minPriceAllowed}
+        value={this.props.inputRangeValue}
+
+        
         onChange = {this.props.onInputRangeChange}
         onChangeComplete = {this.props.onChangeComplete}
-        value={this.props.inputRangeValue}/>
+        />
     );
   }
 }

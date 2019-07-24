@@ -1,5 +1,6 @@
 export {
-    loadProductsHandler
+    loadProductsHandler,
+    inputRangeChangeHandler
 } from './products';
 
 export {
