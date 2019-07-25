@@ -9,7 +9,8 @@ const initialState = {
     inputRangeValue: {
         min: 1,
         max: 99998
-    }
+    },
+    sortBy: 'latest'
 };
 
 
@@ -36,8 +37,9 @@ const reducer = ( state = initialState, action) => {
         case actionTypes.SET_PRODUCTS: return setProducts(state, action);
         case actionTypes.SET_MIN_MAX_PRODUCTS: return setMinMaxProducts(state, action);
         case actionTypes.SET_INPUT_RANGE_VALUE: return setInputRangeValue(state, action);
-        case actionTypes.GET_PRODUCTS_FAILED: return updatedObject(state, {loading: false})       
-        case actionTypes.PRICE_RANGE_REQUESTED_HANDLER: return priceRangeRequestedHandler(state, action);       
+        case actionTypes.SET_PRODUCTS_FAILED: return updatedObject(state, {loading: false})       
+        case actionTypes.PRICE_RANGE_REQUESTED_HANDLER: return priceRangeRequestedHandler(state, action); 
+        case actionTypes.UPDATE_SORT_BY: return updatedObject(state, {sortBy: action.sortBy} ) 
         default: return state
     }
 };

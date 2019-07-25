@@ -175,10 +175,10 @@ import * as shopActions from '../../../store/actions/index';
     
     }
 
-    sortbyhandler = event => {
-        event.preventDefault();
-        this.setState({sortBy : event.target.value, currentPage: 1}, 
-            () => this.loadProductsHandler())
+    sortbyhandler = e => {
+        e.preventDefault();
+        let sortBy = e.target.value;
+        this.props.sortByhandler(this.props.inputRangeValue, this.state.mountedOnce, sortBy);
     }
 
     render() {  
@@ -287,7 +287,7 @@ import * as shopActions from '../../../store/actions/index';
                     onChangeCompletePriceRangeRequested= {this.onChangeCompletePriceRangeRequested}  
 
                     sortbyhandler = {this.sortbyhandler}
-                    sortBy={this.state.sortBy}>
+                    sortBy={this.props.sortBy}>
                         
                     
 
@@ -313,14 +313,16 @@ const mapStateToProps = state => {
         products: state.products,
         priceMin: state.priceMin,
         priceMax: state.priceMax, 
-        inputRangeValue: state.inputRangeValue
+        inputRangeValue: state.inputRangeValue,
+        sortBy: state.sortBy
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        loadProductsHandler: (value, history) => dispatch(shopActions.loadProductsHandler(value, history)),
-        priceRangeRequestedHandler: (value) => dispatch(shopActions.priceRangeRequestedHandler(value))
+        loadProductsHandler: (value, history) => dispatch(shopActions.loadProductsHandler(value,history)),
+        priceRangeRequestedHandler: (value) => dispatch(shopActions.priceRangeRequestedHandler(value)),
+        sortByhandler: (val, history, sortBy) => dispatch(shopActions.sortByHandler(val, history, sortBy))
     }
 }
 
