@@ -1,7 +1,8 @@
 export {
     loadProductsHandler,
     priceRangeRequestedHandler,
-    sortByHandler
+    sortByHandler,
+    paginationHandler
 } from './products';
 
 export {

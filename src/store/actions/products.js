@@ -30,12 +30,19 @@ export const setProductsFailed = () => {
     }
 }
 
+export const setProductsTotal = data => {
+    return {
+        type: actionTypes.SET_PRODUCTS_TOTAL,
+        totalProducts: data.totalProducts
+    }
+}
+
 export const priceRangeRequestedHandler = value => {
     return {
         type: actionTypes.PRICE_RANGE_REQUESTED_HANDLER,
         min: value.min,
         max: value.max
-    }
+    } 
 }
 
 export const updateSortBy = value => {
@@ -45,17 +52,35 @@ export const updateSortBy = value => {
     }
 }
 
+export const updateCurrentPage = page => {
+    return {
+        type: actionTypes.PAGINATION_HANDLER,
+        page: page
+    }
+}
+
+export const paginationHandler = (val, history, sortBy, currentPage, direction) => {
+    let page;
+    if(direction === 'previous') {
+        page = currentPage - 1
+    } else {
+        page = currentPage + 1
+    }
+
+    return dispatch => {
+        dispatch(updateCurrentPage(page));
+        dispatch(loadProductsHandler(val, history, sortBy, page))
+    }
+}
+
 export const sortByHandler = (val, history, sortBy) => {
-
-    console.log('sortbyhandler', sortBy)
-
     return dispatch => {
         dispatch(updateSortBy(sortBy));
         dispatch(loadProductsHandler(val, history, sortBy));
     }
 }
 
-export const loadProductsHandler = (value, history, sortBy ) => {
+export const loadProductsHandler = (value, history, sortBy, page) => {
     let min, max;
     if(value){
         min = value.min;
@@ -64,19 +89,21 @@ export const loadProductsHandler = (value, history, sortBy ) => {
     return dispatch => {
         fetch('http://localhost:8000/test/' 
                 + min + '&&' + max + '/'
-                + sortBy )
+                + sortBy + '/' +
+                '?page=' + page
+        )
         .then(res => {
             return res.json();
         })
         .then( resData => {
-            console.log('Fetch', sortBy);
-
             if(!history){
                 dispatch(setProducts(resData));
                 dispatch(setMinMaxProducts(resData));
                 dispatch(setInputRangeValue(resData));
+                dispatch(setProductsTotal(resData))
             } else {
-                dispatch(setProducts(resData));          
+                dispatch(setProducts(resData));   
+                dispatch(setProductsTotal(resData));    
             }          
         })
         .catch( error => {
