@@ -4,6 +4,8 @@ import InputRange from '../../../components/FormInput/InputRange/InputRange';
 import SidebarCategoryToggler from './SidebarToggler/SidebarCategoryToggler';
 import SideBarCategoryList from './SidebarCategoryList/SidebarCategoryList';
 import IconSvg from '../../../util/svgHandler';
+import { connect } from 'react-redux';
+import * as shopActions from '../../../store/actions/index';
 
 
 class Sidebar extends Component {
@@ -28,12 +30,21 @@ class Sidebar extends Component {
         }))
     }
 
-    hideCategoryFilterHandlerOnMobile = () => {
+    hideCategoryFilterHandlerOnMobile = (category) => {
         if(this.state.windowWidth < 1199){
             this.setState(prevstate => ({
                 hideCategoryFilter: !prevstate.hideCategoryFilter
             }))
         }
+
+        let val = {
+            min: 1,
+            max: 99998
+        }
+
+        let history = null;
+
+        this.props.categoryHandler(val, history, category, this.props.sortBy);
     }
 
 
@@ -101,5 +112,17 @@ class Sidebar extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        sortBy: state.sortBy
+    }
+}
 
-export default Sidebar;
+const mapDispatchToProps = dispatch => {
+    return {
+        categoryHandler: (val, history, category, sortBy) => dispatch(shopActions.categoryHandler(val, history, category, sortBy))
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);

@@ -12,7 +12,8 @@ const initialState = {
     },
     sortBy: 'latest',
     currentPage: 1,
-    totalProducts: 0
+    totalProducts: 0,
+    category: ''
 };
 
 
@@ -42,8 +43,11 @@ const reducer = ( state = initialState, action) => {
         case actionTypes.SET_PRODUCTS_FAILED: return updatedObject(state, {loading: false});   
         case actionTypes.PRICE_RANGE_REQUESTED_HANDLER: return priceRangeRequestedHandler(state, action); 
         case actionTypes.UPDATE_SORT_BY: return updatedObject(state, {sortBy: action.sortBy}); 
-        case actionTypes.SET_PRODUCTS_TOTAL: return updatedObject(state, {totalProducts: action.totalProducts})
-        case actionTypes.PAGINATION_HANDLER: return updatedObject(state, {currentPage: action.page})
+        case actionTypes.SET_PRODUCTS_TOTAL: return updatedObject(state, {totalProducts: action.totalProducts});
+        case actionTypes.PAGINATION_HANDLER: return updatedObject(state, {currentPage: action.page});
+        case actionTypes.UPDATE_CATEGORY: return updatedObject(state, {category: action.category});
+        case actionTypes.RESET_CATEGORY: return updatedObject(state, {category: ''})
+
         default: return state
     }
 };

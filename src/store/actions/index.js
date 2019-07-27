@@ -2,7 +2,9 @@ export {
     loadProductsHandler,
     priceRangeRequestedHandler,
     sortByHandler,
-    paginationHandler
+    paginationHandler,
+    categoryHandler,
+    onLoadShopIndex
 } from './products';
 
 export {

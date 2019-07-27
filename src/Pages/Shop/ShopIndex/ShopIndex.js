@@ -24,10 +24,24 @@ import * as shopActions from '../../../store/actions/index';
 
     componentDidMount(){
         window.scrollTo(0, 0);
+
+        let cat = this.props.match.params.category;
+
         this.setState({
             mountedOnce: true
-        }, () => {this.props.loadProductsHandler()} )    
+            }, () => { 
+                        {if(cat){
+                            let val = {min: 1, max: 99998};
+                            let history = null;
+                            return this.props.categoryHandler(val, history, cat, this.props.sortBy)
+                        } else {
+                            console.log('loading set going')
+                            return this.props.loadProductsHandler()
+                       }                    
+                    }    
+                })
     }
+
 
     componentWillUpdate(){
         let scroll;
@@ -38,6 +52,20 @@ import * as shopActions from '../../../store/actions/index';
         }
         window.scrollTo(0, scroll);
     }
+
+ /*   componentWillReceiveProps(nextProps){
+        this._isMounted = true;
+        if(nextProps.match.params.category === this.props.category){
+            return 
+        } else {
+            console.log('received props')
+            let category = nextProps.match.params.category;
+            let history = null;
+            console.log(category)
+          //  this.props.loadProductsHandler(this.props.inputRangeValue, history, category)
+
+        }
+    }*/
 
 
     componentWillUnmount(){
@@ -57,13 +85,18 @@ import * as shopActions from '../../../store/actions/index';
     sortbyhandler = e => {
         e.preventDefault();
         let sortBy = e.target.value;
-        this.props.sortByhandler(this.props.inputRangeValue, this.state.mountedOnce, sortBy);
+        this.props.sortByhandler(
+            this.props.inputRangeValue, 
+            this.state.mountedOnce, 
+            this.props.category,
+            sortBy);
     }
 
     paginationHandler = direction => {
         this.props.paginationHandler(
             this.props.inputRangeValue, 
             this.state.mountedOnce,
+            this.props.category,
             this.props.sortBy,
             this.props.currentPage ,
             direction)
@@ -135,16 +168,18 @@ const mapStateToProps = state => {
         inputRangeValue: state.inputRangeValue,
         sortBy: state.sortBy,
         currentPage: state.currentPage,
-        totalProducts: state.totalProducts
+        totalProducts: state.totalProducts,
+        category: state.category
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         priceRangeRequestedHandler: (val) => dispatch(shopActions.priceRangeRequestedHandler(val)),
-        loadProductsHandler: (val, history) => dispatch(shopActions.loadProductsHandler(val, history)),
-        sortByhandler: (val, history, sortBy) => dispatch(shopActions.sortByHandler(val, history, sortBy)),
-        paginationHandler: (val, history, sortBy, currentPage, direction) => dispatch(shopActions.paginationHandler(val, history, sortBy, currentPage,direction))
+        loadProductsHandler: (val, history, category) => dispatch(shopActions.loadProductsHandler(val, history, category)),
+        sortByhandler: (val, history, category, sortBy) => dispatch(shopActions.sortByHandler(val, history, category, sortBy)),
+        paginationHandler: (val, history, category, sortBy, currentPage, direction) => dispatch(shopActions.paginationHandler(val, history, category, sortBy, currentPage,direction)),
+        categoryHandler: (val, history, category, sortBy) => dispatch(shopActions.categoryHandler(val, history, category, sortBy))
     }
 }
 

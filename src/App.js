@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import './App.css';
+import { connect } from 'react-redux';
+import * as shopActions from './store/actions/index';
 
 
 
@@ -85,6 +87,19 @@ class App extends Component {
     })
   };
 
+
+
+  onLoadShopIndex = () => {
+    this.mobileNavHandler();
+
+    this.props.onLoadShopIndex(
+      this.props.inputRangeValue,
+        null,
+        '',
+        this.props.sortBy
+    )
+  }
+
   backdropClickHandler = () => {
     this.setState({ showBackdrop: false, showMobileNav: false });
   };
@@ -114,9 +129,13 @@ class App extends Component {
             )}/>   
             <Route exact path='/details/:prodId' component={SingleProduct}/>
 
-            <Route exact path='/:category' render={props => (
+         {/**  <Route exact path='/:category' render={props => (
                         <ShopByCategory {...props}/>
               )}/> 
+         **/}
+
+            <Route exact path='/:category' component={ShopIndex}/>
+            )}/>
               
                                         
             <Redirect to='/'/>      
@@ -133,6 +152,7 @@ class App extends Component {
                 isAuth={this.state.isAuth}
                 onOpenMobileNav={this.mobileNavHandler.bind(this, true)}
                 onLogout={this.logoutHandler}
+                onLoadShopIndex={this.onLoadShopIndex.bind(this, true)}
                 />
 
             <MobileNav 
@@ -140,7 +160,8 @@ class App extends Component {
                 mobile
                 onClickNavLink={this.mobileNavHandler.bind(this, false)}
                 onLogout={this.logoutHandler}
-                isAuth={this.state.isAuth}/>
+                isAuth={this.state.isAuth}
+                onLoadShopIndex={this.onLoadShopIndex.bind(this, false)}/>
             
             {routes}
             <Footer />
@@ -150,5 +171,17 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return { 
+      inputRangeValue: state.inputRangeValue,
+      sortBy: state.sortBy,
+  }
+}
 
-export default withRouter(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    onLoadShopIndex: (val, history,category, sortBy) => dispatch(shopActions.onLoadShopIndex(val, history,category, sortBy))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

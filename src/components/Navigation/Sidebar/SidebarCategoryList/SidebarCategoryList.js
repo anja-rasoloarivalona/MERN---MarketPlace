@@ -32,7 +32,7 @@ const sidebarCategoryList = props => {
                     { category.map( category => (
                         
                         <NavLink 
-                              onClick={props.hideCategoryFilterHandlerOnMobile}
+                              onClick={props.hideCategoryFilterHandlerOnMobile.bind(this, category)}
                               key={category} 
                               to={`${category}`}
                               className="sidebar__category__list__item">
@@ -43,7 +43,7 @@ const sidebarCategoryList = props => {
 
                     { category2.map( category => (
                         <NavLink 
-                        onClick={props.hideCategoryFilterHandlerOnMobile} 
+                        onClick={props.hideCategoryFilterHandlerOnMobile.bind(this, category.title)} 
                             key={category.title} 
                               to={`${category.title}`}
                               className="sidebar__category__list__item">

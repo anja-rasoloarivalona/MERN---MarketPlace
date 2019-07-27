@@ -12,6 +12,7 @@ const mobileNavigation = props => (
     >
       <NavigationItems
         mobile
+        onLoadShopIndex = {props.onLoadShopIndex}
         onClickNavLink={props.onClickNavLink}
         isAuth={props.isAuth}
         onLogout={props.onLogout}

@@ -19,7 +19,7 @@ const navigationItems = props => [
         <li key={'shop'} 
                 className={["navigationItems", "centered", props.mobile ? "mobile" : ''].join(' ')}
         >    
-            <NavLink to={'/'} exact onClick={props.onClickNavLink}>
+            <NavLink to={'/'} exact onClick={props.onLoadShopIndex}>
                 Shop
             </NavLink>       
         </li> 

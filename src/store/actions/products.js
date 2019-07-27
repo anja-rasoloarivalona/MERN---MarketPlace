@@ -59,7 +59,7 @@ export const updateCurrentPage = page => {
     }
 }
 
-export const paginationHandler = (val, history, sortBy, currentPage, direction) => {
+export const paginationHandler = (val, history,category,  sortBy, currentPage, direction) => {
     let page;
     if(direction === 'previous') {
         page = currentPage - 1
@@ -69,39 +69,78 @@ export const paginationHandler = (val, history, sortBy, currentPage, direction) 
 
     return dispatch => {
         dispatch(updateCurrentPage(page));
-        dispatch(loadProductsHandler(val, history, sortBy, page))
+        dispatch(loadProductsHandler(val, history,category,  sortBy, page))
     }
 }
 
-export const sortByHandler = (val, history, sortBy) => {
+export const sortByHandler = (val, history,category,  sortBy) => {
     return dispatch => {
         dispatch(updateSortBy(sortBy));
-        dispatch(loadProductsHandler(val, history, sortBy));
+        dispatch(loadProductsHandler(val, history, category, sortBy));
     }
 }
 
-export const loadProductsHandler = (value, history, sortBy, page) => {
+
+export const updateCategory = (category) => {
+    return {
+        type: actionTypes.UPDATE_CATEGORY,
+        category: category
+    }
+}
+
+export const resetCategory = () => {
+    return {
+        type: actionTypes.RESET_CATEGORY
+    }
+}
+
+export const categoryHandler = (val, history, category,  sortBy) => {
+    return dispatch => {
+        dispatch(updateCategory(category));
+        dispatch(loadProductsHandler(val, history, category,  sortBy))
+    }
+}
+
+export const onLoadShopIndex = (value, history, category, sortBy) => {
+    return dispatch => {
+        dispatch(resetCategory());
+        dispatch(loadProductsHandler(value, history, category,  sortBy))
+    }
+}
+
+export const loadProductsHandler = (value, history, category, sortBy, page) => {
     let min, max;
     if(value){
         min = value.min;
         max= value.max
     }
+
+    
     return dispatch => {
+
+        console.log('before fetch', category);
+
         fetch('http://localhost:8000/test/' 
                 + min + '&&' + max + '/'
                 + sortBy + '/' +
-                '?page=' + page
+                '?page=' + page + '&' +
+                'category=' + category
         )
         .then(res => {
             return res.json();
         })
         .then( resData => {
             if(!history){
+                
+                console.log('fetch reset');
+
                 dispatch(setProducts(resData));
                 dispatch(setMinMaxProducts(resData));
-                dispatch(setInputRangeValue(resData));
-                dispatch(setProductsTotal(resData))
+               dispatch(setInputRangeValue(resData));
+               dispatch(setProductsTotal(resData))
             } else {
+
+                console.log('fetch no reset')
                 dispatch(setProducts(resData));   
                 dispatch(setProductsTotal(resData));    
             }          
