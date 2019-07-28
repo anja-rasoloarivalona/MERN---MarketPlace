@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './SingleProduct.css';
 import Button from '../../components/Button/Button';
 import Spinner from '../../components/Spinner/Spinner';
+import {connect } from 'react-redux';
 
 
 
@@ -23,8 +24,6 @@ class SingleProduct extends Component {
     }
 
     componentDidMount(){
-
-        console.log('Single Prod', this.props.location.state)
 
         window.scrollTo(0, 0);
         this.setState({loading: true})
@@ -51,7 +50,7 @@ class SingleProduct extends Component {
                     description: resData.product.description,
                     date: date,
                     loading: false,
-                    pathToBack: this.props.location.state.componentToGoBack === "shop" ? '/' :  "../" + resData.product.category
+                    pathToBack: this.props.category !== "" ?  "../" + resData.product.category : '/'
                 })} 
             return
             })
@@ -84,10 +83,7 @@ class SingleProduct extends Component {
                             </Button>
                             <Button color="secondary"
                                     link={{   
-                                    pathname: this.state.pathToBack,
-                                    state: {currentPage: this.props.location.state.currentPage,
-                                            currentPriceRequested: this.props.location.state.currentPriceRequested,
-                                            currentSort: this.props.location.state.currentSort}
+                                    pathname: this.state.pathToBack
                                     }}>      
                                 Back
                             </Button>
@@ -113,4 +109,10 @@ class SingleProduct extends Component {
     }
 }
 
-export default SingleProduct;
+const mapStateToProps = state => {
+    return {
+        category: state.category
+    }
+}
+
+export default connect(mapStateToProps)(SingleProduct);

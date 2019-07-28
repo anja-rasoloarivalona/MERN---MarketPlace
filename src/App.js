@@ -15,7 +15,6 @@ import Footer from './components/Footer/Footer';
 
 /*------------Pages-----------------*/
 import ShopIndex from './Pages/Shop/ShopIndex/ShopIndex';
-import ShopByCategory from './Pages/Shop/ShopByCategory/ShopByCategory';
 import AdminProducts from './Pages/Admin/AdminProducts/AdminProducts';
 import AuthSignup from './Pages/Auth/Signup/Signup';
 import AuthLogin from './Pages/Auth/Login/Login';
@@ -92,9 +91,25 @@ class App extends Component {
   onLoadShopIndex = () => {
     this.mobileNavHandler();
 
+    let history;
+    let inputRangeValue; 
+
+    if(this.props.category !== ''){/*If we came back from a category, reset*/
+       console.log('open shop cat', this.props.category);      
+        history = false;
+        inputRangeValue = {
+          min: this.props.initialPriceMin,
+          max: this.props.initialPriceMax
+        }
+        console.log('reset input range', inputRangeValue)
+    } else {
+      history = true;
+      inputRangeValue = this.props.inputRangeValue /*If we came back from another page, keep the value requested*/
+    }
+
     this.props.onLoadShopIndex(
-      this.props.inputRangeValue,
-        null,
+      inputRangeValue,
+      history,
         '',
         this.props.sortBy
     )
@@ -110,7 +125,6 @@ class App extends Component {
       token: authData.token,
       userId: authData.userId
     })
-    console.log('from onudpatestate', this.state)
   }
 
 
@@ -119,6 +133,7 @@ class App extends Component {
     let routes = (
       <Switch>
             <Route path='/' exact component={ShopIndex}/>
+            
             <Route path='/signup' component={AuthSignup}/>
             <Route path='/login' 
                 render={props => (
@@ -128,14 +143,9 @@ class App extends Component {
                   <AdminProducts {...props} token={this.state.token}/>
             )}/>   
             <Route exact path='/details/:prodId' component={SingleProduct}/>
-
-         {/**  <Route exact path='/:category' render={props => (
-                        <ShopByCategory {...props}/>
-              )}/> 
-         **/}
-
-            <Route exact path='/:category' component={ShopIndex}/>
+            
             )}/>
+            <Route exact path='/:category' component={ShopIndex}/>
               
                                         
             <Redirect to='/'/>      
@@ -175,6 +185,9 @@ const mapStateToProps = state => {
   return { 
       inputRangeValue: state.inputRangeValue,
       sortBy: state.sortBy,
+      category: state.category,
+      initialPriceMin: state.initialPriceMin,
+      initialPriceMax: state.initialPriceMax
   }
 }
 

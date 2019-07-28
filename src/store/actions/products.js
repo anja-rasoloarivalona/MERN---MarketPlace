@@ -16,6 +16,14 @@ export const setMinMaxProducts = data => {
     }
 }
 
+export const setInitPriceProducts = data => {
+    return {
+        type: actionTypes.SET_INITIAL_PRODUCTS_PRICE,
+        priceMin: data.priceMin,
+        priceMax: data.priceMax
+    }
+}
+
 export const setInputRangeValue = data => {
     return {
         type: actionTypes.SET_INPUT_RANGE_VALUE,
@@ -104,7 +112,7 @@ export const categoryHandler = (val, history, category,  sortBy) => {
 export const onLoadShopIndex = (value, history, category, sortBy) => {
     return dispatch => {
         dispatch(resetCategory());
-        dispatch(loadProductsHandler(value, history, category,  sortBy))
+        dispatch(loadProductsHandler(value, history, category,  sortBy));
     }
 }
 
@@ -118,8 +126,6 @@ export const loadProductsHandler = (value, history, category, sortBy, page) => {
     
     return dispatch => {
 
-        console.log('before fetch', category);
-
         fetch('http://localhost:8000/test/' 
                 + min + '&&' + max + '/'
                 + sortBy + '/' +
@@ -130,17 +136,19 @@ export const loadProductsHandler = (value, history, category, sortBy, page) => {
             return res.json();
         })
         .then( resData => {
-            if(!history){
-                
+            if(!history){               
                 console.log('fetch reset');
-
                 dispatch(setProducts(resData));
                 dispatch(setMinMaxProducts(resData));
                dispatch(setInputRangeValue(resData));
-               dispatch(setProductsTotal(resData))
+               dispatch(setProductsTotal(resData));
+               
+               if(!category){
+                    dispatch(setInitPriceProducts(resData));
+               }
             } else {
-
-                console.log('fetch no reset')
+                console.log('fetch no reset, we have history', history)
+                console.log('sortby', sortBy)
                 dispatch(setProducts(resData));   
                 dispatch(setProductsTotal(resData));    
             }          

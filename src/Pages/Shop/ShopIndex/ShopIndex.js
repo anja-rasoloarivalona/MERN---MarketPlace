@@ -27,16 +27,44 @@ import * as shopActions from '../../../store/actions/index';
 
         let cat = this.props.match.params.category;
 
+        let inputRangeValue = this.props.inputRangeValue;
+
+        const initialInputRangeValue = {
+            min: this.props.initialPriceMin,
+            max: this.props.initialPriceMax
+        }
+
         this.setState({
             mountedOnce: true
-            }, () => { 
+            }, () => { /*--- 3 scenarios as callback on componentDidMount ---*/
+
+                        /* CASE 1: If user request the products by category */
                         {if(cat){
-                            let val = {min: 1, max: 99998};
-                            let history = null;
+                            let val = {min: 1, max: 99998}; //reset the inputRangeValue
+                            let history = null; //loadProductsHandler will reset everything without history
+    
                             return this.props.categoryHandler(val, history, cat, this.props.sortBy)
                         } else {
-                            console.log('loading set going')
-                            return this.props.loadProductsHandler()
+                        
+                        /* CASE 2: Load Shop Index by keeping the old inputRangeValue (example: shop - change value - login - back to shop - keep new */
+                          if(JSON.stringify(inputRangeValue) != JSON.stringify(initialInputRangeValue)) {
+
+                            console.log('input', inputRangeValue)
+                            console.log('initial input',initialInputRangeValue )
+
+                                console.log('shop index dit mount and keep old values')
+                                return //this.props.loadProductsHandler(inputRangeValue)
+                          } else {
+
+                        /* CASE 3: Load Shop Index by Default*/
+                                console.log('shop index dit mount and reset')
+                                return this.props.loadProductsHandler()
+                          }
+
+
+
+                            
+                           
                        }                    
                     }    
                 })
@@ -53,20 +81,6 @@ import * as shopActions from '../../../store/actions/index';
         window.scrollTo(0, scroll);
     }
 
- /*   componentWillReceiveProps(nextProps){
-        this._isMounted = true;
-        if(nextProps.match.params.category === this.props.category){
-            return 
-        } else {
-            console.log('received props')
-            let category = nextProps.match.params.category;
-            let history = null;
-            console.log(category)
-          //  this.props.loadProductsHandler(this.props.inputRangeValue, history, category)
-
-        }
-    }*/
-
 
     componentWillUnmount(){
         this._isMounted = false;
@@ -78,8 +92,14 @@ import * as shopActions from '../../../store/actions/index';
 
     onChangeCompletePriceRangeRequested = (value) => { 
         let history = this.state.mountedOnce;
-        this.props.loadProductsHandler(value, history);
-    
+        let category = this.props.category;
+        let sortBy = this.props.sortBy;
+        console.log('change complete, sort by', sortBy)
+        if(category){
+            return   this.props.loadProductsHandler(value, history, category, sortBy);
+        } else {
+            this.props.loadProductsHandler(value, history, '', sortBy);
+        }      
     }
 
     sortbyhandler = e => {
@@ -117,11 +137,6 @@ import * as shopActions from '../../../store/actions/index';
                             return ( 
                                     <Product
                                             shop
-                                    //       currentPage = {this.state.currentPage}
-                                    //      currentPriceRequested={this.state.productPriceRequested}
-                                    //     currentSort = {this.state.sortBy}
-                                    //     componentToGoBack = {this.state.componentName}
-
                                             key={product._id}
                                             id={product._id}
                                             title={product.title}
@@ -164,7 +179,9 @@ const mapStateToProps = state => {
     return {
         products: state.products,
         priceMin: state.priceMin,
+        initialPriceMin: state.initialPriceMin,
         priceMax: state.priceMax, 
+        initialPriceMax: state.initialPriceMax,
         inputRangeValue: state.inputRangeValue,
         sortBy: state.sortBy,
         currentPage: state.currentPage,
@@ -176,7 +193,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         priceRangeRequestedHandler: (val) => dispatch(shopActions.priceRangeRequestedHandler(val)),
-        loadProductsHandler: (val, history, category) => dispatch(shopActions.loadProductsHandler(val, history, category)),
+        loadProductsHandler: (val, history, category, sortBy) => dispatch(shopActions.loadProductsHandler(val, history, category, sortBy)),
         sortByhandler: (val, history, category, sortBy) => dispatch(shopActions.sortByHandler(val, history, category, sortBy)),
         paginationHandler: (val, history, category, sortBy, currentPage, direction) => dispatch(shopActions.paginationHandler(val, history, category, sortBy, currentPage,direction)),
         categoryHandler: (val, history, category, sortBy) => dispatch(shopActions.categoryHandler(val, history, category, sortBy))

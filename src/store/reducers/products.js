@@ -10,6 +10,8 @@ const initialState = {
         min: 1,
         max: 99998
     },
+    initialPriceMin: 1,
+    initialPriceMax: 99998,
     sortBy: 'latest',
     currentPage: 1,
     totalProducts: 0,
@@ -22,7 +24,16 @@ const setProducts = (state, action) => {
 }
 
 const setMinMaxProducts = (state, action) => {
-    return updatedObject(state, {priceMin: action.priceMin, priceMax: action.priceMax})
+    return updatedObject(state, {
+        priceMin: action.priceMin,       
+        priceMax: action.priceMax})
+}
+
+const setInitProductPrice = (state, action) => {
+    return updatedObject(state, {
+        initialPriceMin: action.priceMin, 
+        initialPriceMax: action.priceMax
+    })
 }
 
 const setInputRangeValue = (state, action) => {
@@ -38,7 +49,9 @@ const priceRangeRequestedHandler = (state, action) => {
 const reducer = ( state = initialState, action) => {
     switch(action.type){
         case actionTypes.SET_PRODUCTS: return setProducts(state, action);
+
         case actionTypes.SET_MIN_MAX_PRODUCTS: return setMinMaxProducts(state, action);
+
         case actionTypes.SET_INPUT_RANGE_VALUE: return setInputRangeValue(state, action);
         case actionTypes.SET_PRODUCTS_FAILED: return updatedObject(state, {loading: false});   
         case actionTypes.PRICE_RANGE_REQUESTED_HANDLER: return priceRangeRequestedHandler(state, action); 
@@ -46,6 +59,7 @@ const reducer = ( state = initialState, action) => {
         case actionTypes.SET_PRODUCTS_TOTAL: return updatedObject(state, {totalProducts: action.totalProducts});
         case actionTypes.PAGINATION_HANDLER: return updatedObject(state, {currentPage: action.page});
         case actionTypes.UPDATE_CATEGORY: return updatedObject(state, {category: action.category});
+        case actionTypes.SET_INITIAL_PRODUCTS_PRICE: return setInitProductPrice(state, action);
         case actionTypes.RESET_CATEGORY: return updatedObject(state, {category: ''})
 
         default: return state
