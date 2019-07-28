@@ -116,15 +116,30 @@ export const onLoadShopIndex = (value, history, category, sortBy) => {
     }
 }
 
+export const setLoadingToTrue = () => {
+    return {
+        type: actionTypes.SET_LOADING_TO_TRUE
+    }
+}
+
+export const setLoadingToFalse = () => {
+    return {
+        type: actionTypes.SET_LOADING_TO_FALSE
+    }
+}
+
 export const loadProductsHandler = (value, history, category, sortBy, page) => {
     let min, max;
     if(value){
         min = value.min;
         max= value.max
-    }
+}
+
 
     
     return dispatch => {
+
+        dispatch(setLoadingToTrue())
 
         fetch('http://localhost:8000/test/' 
                 + min + '&&' + max + '/'
@@ -136,25 +151,24 @@ export const loadProductsHandler = (value, history, category, sortBy, page) => {
             return res.json();
         })
         .then( resData => {
+            dispatch(setLoadingToFalse());
             if(!history){               
-                console.log('fetch reset');
                 dispatch(setProducts(resData));
                 dispatch(setMinMaxProducts(resData));
-               dispatch(setInputRangeValue(resData));
-               dispatch(setProductsTotal(resData));
+                dispatch(setInputRangeValue(resData));
+                dispatch(setProductsTotal(resData));
                
                if(!category){
                     dispatch(setInitPriceProducts(resData));
                }
             } else {
-                console.log('fetch no reset, we have history', history)
-                console.log('sortby', sortBy)
                 dispatch(setProducts(resData));   
                 dispatch(setProductsTotal(resData));    
             }          
         })
         .catch( error => {
-            dispatch(setProductsFailed())
+            dispatch(setLoadingToFalse());
+            dispatch(setProductsFailed());
            console.log('error',error)
         })
     }

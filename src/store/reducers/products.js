@@ -60,7 +60,11 @@ const reducer = ( state = initialState, action) => {
         case actionTypes.PAGINATION_HANDLER: return updatedObject(state, {currentPage: action.page});
         case actionTypes.UPDATE_CATEGORY: return updatedObject(state, {category: action.category});
         case actionTypes.SET_INITIAL_PRODUCTS_PRICE: return setInitProductPrice(state, action);
-        case actionTypes.RESET_CATEGORY: return updatedObject(state, {category: ''})
+        case actionTypes.RESET_CATEGORY: return updatedObject(state, {category: ''});
+
+
+        case actionTypes.SET_LOADING_TO_TRUE: return updatedObject(state, {loading: true});
+        case actionTypes.SET_LOADING_TO_FALSE: return updatedObject(state, {loading: false});
 
         default: return state
     }

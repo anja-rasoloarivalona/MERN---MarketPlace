@@ -48,16 +48,10 @@ import * as shopActions from '../../../store/actions/index';
                         
                         /* CASE 2: Load Shop Index by keeping the old inputRangeValue (example: shop - change value - login - back to shop - keep new */
                           if(JSON.stringify(inputRangeValue) != JSON.stringify(initialInputRangeValue)) {
-
-                            console.log('input', inputRangeValue)
-                            console.log('initial input',initialInputRangeValue )
-
-                                console.log('shop index dit mount and keep old values')
-                                return //this.props.loadProductsHandler(inputRangeValue)
+                                return  /*it will be triggered by clicking the link in order to reach this page*/
                           } else {
 
                         /* CASE 3: Load Shop Index by Default*/
-                                console.log('shop index dit mount and reset')
                                 return this.props.loadProductsHandler()
                           }
 
@@ -94,7 +88,6 @@ import * as shopActions from '../../../store/actions/index';
         let history = this.state.mountedOnce;
         let category = this.props.category;
         let sortBy = this.props.sortBy;
-        console.log('change complete, sort by', sortBy)
         if(category){
             return   this.props.loadProductsHandler(value, history, category, sortBy);
         } else {
@@ -118,38 +111,43 @@ import * as shopActions from '../../../store/actions/index';
             this.state.mountedOnce,
             this.props.category,
             this.props.sortBy,
-            this.props.currentPage ,
+            this.props.currentPage,
             direction)
     }
 
     render() {  
         
         let products;
-         
-        products = (
 
-            <Paginator  onRequestPreviousPage={this.paginationHandler.bind(this, 'previous')}
-                        onRequestNextPage={this.paginationHandler.bind(this, 'next')}
-                        lastPage={Math.ceil(this.props.totalProducts / 10)}
-                        currentPage={this.props.currentPage}>
-                        {this.props.products.map( product => {
-                            let fulldate =  new Date(product.createdAt).toLocaleString();
-                            return ( 
-                                    <Product
-                                            shop
-                                            key={product._id}
-                                            id={product._id}
-                                            title={product.title}
-                                            price={product.price}
-                                            category = {product.category}
-                                            description={product.description}
-                                            date = {fulldate}
-                                            imageUrl = {'https://strix-market-place.herokuapp.com/' + product.imageUrl }
-                                        />                  
-                            )
-                        }) }
-            </Paginator>   
-        )    
+        if(this.props.loading){
+            products = <Spinner />
+        } else {
+            products = (
+                <Paginator  onRequestPreviousPage={this.paginationHandler.bind(this, 'previous')}
+                            onRequestNextPage={this.paginationHandler.bind(this, 'next')}
+                            lastPage={Math.ceil(this.props.totalProducts / 10)}
+                            currentPage={this.props.currentPage}>
+                            {this.props.products.map( product => {
+                                let fulldate =  new Date(product.createdAt).toLocaleString();
+                                return ( 
+                                        <Product
+                                                shop
+                                                key={product._id}
+                                                id={product._id}
+                                                title={product.title}
+                                                price={product.price}
+                                                category = {product.category}
+                                                description={product.description}
+                                                date = {fulldate}
+                                                imageUrl = {'https://strix-market-place.herokuapp.com/' + product.imageUrl }
+                                            />                  
+                                )
+                            }) }
+                </Paginator>   
+            ) 
+        }
+         
+           
       
         return (           
                 <ShopLayout 
@@ -186,7 +184,8 @@ const mapStateToProps = state => {
         sortBy: state.sortBy,
         currentPage: state.currentPage,
         totalProducts: state.totalProducts,
-        category: state.category
+        category: state.category,
+        loading: state.loading
     }
 }
 
