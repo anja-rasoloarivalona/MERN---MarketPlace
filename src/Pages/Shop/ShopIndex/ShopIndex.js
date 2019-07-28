@@ -25,12 +25,9 @@ import * as shopActions from '../../../store/actions/index';
 
     componentDidMount(){
 
-       
-
         window.scrollTo(0, 0);
 
         let cat = this.props.match.params.category;
-
         let inputRangeValue = this.props.inputRangeValue;
 
         const initialInputRangeValue = {
@@ -38,40 +35,44 @@ import * as shopActions from '../../../store/actions/index';
             max: this.props.initialPriceMax
         }
 
-        console.log('did mount', this.props.inputRangeValue)
-
         this.setState({
             mountedOnce: true
             }, () => { /*--- 3 scenarios as callback on componentDidMount ---*/
-
-                        
-
+                       
                         /* CASE 1: If user request the products by category */
                         {if(cat){
                             let history; 
-                            let currentPage = 1;
+                            let currentPage ;
                             let val; 
-                            if(this.props.priceMin !== this.props.inputRangeValue.min || this.props.priceMax !== this.props.inputRangeValue.max){
-                                console.log('no reset, keep old values')
-                                console.log('priceMin: ', this.props.priceMin);
-                                console.log('priceMax: ', this.props.priceMax)
-                                history = true;
-                                val = this.props.inputRangeValue //keep the new inputRangeValue
-                            } else {
-                                val = {min: 1, max: 99998} //reset the inputRangeValue
-                                history = false; //loadProductsHandler will reset everything without history
-                            }  
-                            return this.props.categoryHandler(val, history, cat, this.props.sortBy, currentPage);
+
+                                    /* Check if the user has requested new inputRangeValue before loading the page (example: coming back from details page)  */
+                                    if(this.props.priceMin !== this.props.inputRangeValue.min || this.props.priceMax !== this.props.inputRangeValue.max){
+                                        history = true;
+                                        val = this.props.inputRangeValue //keep the new inputRangeValue
+                                    } else {
+                                        val = {min: 1, max: 99998} //reset the inputRangeValue
+                                        history = false; //loadProductsHandler will reset everything without history
+                                    }  
+
+                                    /* Check if the user was on the first page before loading the page (example: coming back from details page of a product which was displayed in the 3rd shop page*/
+                                    if(this.props.currentPage !== 1) {
+                                        currentPage = this.props.currentPage;
+                                    } else {
+                                        currentPage = 1;
+                                    }
+
+                                    /* Load the page with the appropriate arguments*/
+                                    return this.props.categoryHandler(val, history, cat, this.props.sortBy, currentPage);
 
                         } else {
                         
                         /* CASE 2: Load Shop Index by keeping the old inputRangeValue (example: shop - change value - login - back to shop - keep new */
                           if(JSON.stringify(inputRangeValue) != JSON.stringify(initialInputRangeValue)) {
-                                return  /*it will be triggered by clicking the link in order to reach this page*/
+                                return  /*it will be triggered by clicking the link "SHOP" in order to reach this page or
+                                        this page will simply load by using all the previous props provided by redux */
                           } else {
 
-                        /* CASE 3: Load Shop Index by Default*/
-                                console.log('default')
+                        /* CASE 3: Load Default Shop Index by keeping the currentPage and sortBy method*/
                                 return this.props.loadProductsHandler(
                                     null,
                                     false,
@@ -105,7 +106,7 @@ import * as shopActions from '../../../store/actions/index';
     }
 
     onChangePriceRangeRequested = (value) => {
-        /*Update the state*/
+        /*Update the state only*/
         this.props.priceRangeRequestedHandler(value);
     }
 
@@ -148,29 +149,34 @@ import * as shopActions from '../../../store/actions/index';
         if(this.props.loading){
             products = <Spinner />
         } else {
-            products = (
-                <Paginator  onRequestPreviousPage={this.paginationHandler.bind(this, 'previous')}
-                            onRequestNextPage={this.paginationHandler.bind(this, 'next')}
-                            lastPage={Math.ceil(this.props.totalProducts / 10)}
-                            currentPage={this.props.currentPage}>
-                            {this.props.products.map( product => {
-                                let fulldate =  new Date(product.createdAt).toLocaleString();
-                                return ( 
-                                        <Product
-                                                shop
-                                                key={product._id}
-                                                id={product._id}
-                                                title={product.title}
-                                                price={product.price}
-                                                category = {product.category}
-                                                description={product.description}
-                                                date = {fulldate}
-                                                imageUrl = {'https://strix-market-place.herokuapp.com/' + product.imageUrl }
-                                            />                  
-                                )
-                            }) }
-                </Paginator>   
-            ) 
+            if(!this.props.products) {
+                products = <NoProductFound />
+            } else {
+                products = (
+                    <Paginator  onRequestPreviousPage={this.paginationHandler.bind(this, 'previous')}
+                                onRequestNextPage={this.paginationHandler.bind(this, 'next')}
+                                lastPage={Math.ceil(this.props.totalProducts / 10)}
+                                currentPage={this.props.currentPage}>
+                                {this.props.products.map( product => {
+                                    let fulldate =  new Date(product.createdAt).toLocaleString();
+                                    return ( 
+                                            <Product
+                                                    shop
+                                                    key={product._id}
+                                                    id={product._id}
+                                                    title={product.title}
+                                                    price={product.price}
+                                                    category = {product.category}
+                                                    description={product.description}
+                                                    date = {fulldate}
+                                                    imageUrl = {'https://strix-market-place.herokuapp.com/' + product.imageUrl }
+                                                />                  
+                                    )
+                                }) }
+                    </Paginator>   
+                ) 
+            }
+            
         }
          
            

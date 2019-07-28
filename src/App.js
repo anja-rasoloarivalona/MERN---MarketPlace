@@ -95,7 +95,7 @@ class App extends Component {
     let inputRangeValue; 
 
 
-
+    console.log('on load shop index')
     //console.log('category', this.props.category)
 
     if(this.props.category !== ''){/*If we came back from a category, reset*/
