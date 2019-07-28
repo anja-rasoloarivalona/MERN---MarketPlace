@@ -2,7 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import './App.css';
 import { connect } from 'react-redux';
-import * as shopActions from './store/actions/index';
+import * as actions from './store/actions/index';
+
 
 
 
@@ -26,57 +27,43 @@ class App extends Component {
     /*------------MOBILE STATE-------------*/
     showBackdrop: false,
     showMobileNav: false,
-
-    /*USER STATE*/
-    isAuth: false,
-    token: null,
-    userId: null,
   }
 
   componentDidMount(){
     const token = localStorage.getItem('token');
     const expiryDate = localStorage.getItem('expiryDate');
-
-   if(!token || !expiryDate){
-  //  console.log('NO TOKEN',this.state)
-      return;
-    }
-
-    if(new Date(expiryDate) <= new Date()){ 
-      console.log('Token not valid anymore')
-        this.logoutHandler()
-        return;
-    }
     const connectedUserId = localStorage.getItem('userId');
-    this.setState({
-      isAuth: true,
-      token: token,
-      userId: connectedUserId     
-    })
 
-    const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
+    if(!token || !expiryDate){
+      console.log('NO TOKEN')
+          return;
+     } 
 
- 
-    this.setAutoLogout(remainingMilliseconds);
-
-    
+     if(new Date(expiryDate) <= new Date()){ 
+          console.log('Token not valid anymore')
+          this.props.setLoginStateToFalse()
+          return;
+      } 
+      console.log('connected')
+      this.props.setLoginStateToTrue(true, token, connectedUserId )          
+      const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
+      this.setAutoLogout(remainingMilliseconds);
   }
 
-
-
   logoutHandler = () => {
-    this.setState({ isAuth: false, token: null});
+    this.props.setLoginStateToFalse();
     localStorage.removeItem('token');
     localStorage.removeItem('expiryDate');
     localStorage.removeItem('userId');
     this.props.history.replace('/');
-}
 
-   setAutoLogout = milliseconds => {
-     setTimeout(() => {
-       this.logoutHandler();
-     },milliseconds);
-   }
+  }
+
+  setAutoLogout = timeRemaining => {
+    setTimeout( () => {
+      this.props.setLoginStateToFalse()
+    }, timeRemaining )
+  }
 
   /*-------------MOBILE STATE HANDLER---------*/
   mobileNavHandler = isOpen => {
@@ -90,16 +77,10 @@ class App extends Component {
 
   onLoadShopIndex = () => {
     this.mobileNavHandler();
-
     let history;
     let inputRangeValue; 
 
-
-    console.log('on load shop index')
-    //console.log('category', this.props.category)
-
-    if(this.props.category !== ''){/*If we came back from a category, reset*/
-       console.log('open shop cat', this.props.category);      
+    if(this.props.category !== ''){/*If we came back from a category, reset*/     
         history = false;
         inputRangeValue = {
           min: this.props.initialPriceMin,
@@ -121,14 +102,6 @@ class App extends Component {
   backdropClickHandler = () => {
     this.setState({ showBackdrop: false, showMobileNav: false });
   };
-
-  onUpdateState = authData => {
-    this.setState({
-      isAuth: true,
-      token: authData.token,
-      userId: authData.userId
-    })
-  }
 
 
 
@@ -162,7 +135,7 @@ class App extends Component {
         )}
         <Layout>
             <DeskNav 
-                isAuth={this.state.isAuth}
+                isAuth={this.props.auth}
                 onOpenMobileNav={this.mobileNavHandler.bind(this, true)}
                 onLogout={this.logoutHandler}
                 onLoadShopIndex={this.onLoadShopIndex.bind(this, true)}
@@ -173,7 +146,7 @@ class App extends Component {
                 mobile
                 onClickNavLink={this.mobileNavHandler.bind(this, false)}
                 onLogout={this.logoutHandler}
-                isAuth={this.state.isAuth}
+                isAuth={this.props.auth}
                 onLoadShopIndex={this.onLoadShopIndex.bind(this, false)}/>
             
             {routes}
@@ -190,13 +163,19 @@ const mapStateToProps = state => {
       sortBy: state.products.sortBy,
       category: state.products.category,
       initialPriceMin: state.products.initialPriceMin,
-      initialPriceMax: state.products.initialPriceMax
+      initialPriceMax: state.products.initialPriceMax,
+
+      auth: state.auth.auth,
+      token: state.auth.token,
+      userId: state.auth.userId
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLoadShopIndex: (val, history,category, sortBy) => dispatch(shopActions.onLoadShopIndex(val, history,category, sortBy))
+    onLoadShopIndex: (val, history,category, sortBy) => dispatch(actions.onLoadShopIndex(val, history,category, sortBy)),
+    setLoginStateToTrue: (isAuth, token, userId) => dispatch(actions.setLoginStateToTrue(isAuth, token, userId)),
+    setLoginStateToFalse: () => dispatch(actions.setLoginStateToFalse())
   }
 }
 

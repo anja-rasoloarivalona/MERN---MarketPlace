@@ -9,4 +9,11 @@ export {
 
 export {
 
-} from './cart'
+} from './cart';
+
+export {
+    loginSucceeded,
+    loginFailed,
+    setLoginStateToTrue,
+    setLoginStateToFalse
+} from './auth'

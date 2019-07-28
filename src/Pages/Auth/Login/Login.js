@@ -8,6 +8,8 @@ import { validator } from '../../../util/validators';
 import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import IconSvg from '../../../util/svgHandler';
 import Spinner from '../../../components/Spinner/Spinner';
+import { connect } from 'react-redux';
+import * as authActions from '../../../store/actions/index';
 
 
 class Login extends Component {
@@ -77,14 +79,16 @@ class Login extends Component {
         })
 
         .then(resData => {
-            this.setState({
+
+        /*    this.setState({
                 token: resData.token,
                 userId: resData.userId,
                 loading: false
-            });
+            });*/
+            this.props.loginSucceeded(resData);
 
-            this.props.onUpdateState({token: this.state.token, 
-                                    userId: this.state.userId})
+       /*     this.props.onUpdateState({token: this.state.token, 
+                                    userId: this.state.userId})*/
 
             localStorage.setItem('token', resData.token);
             localStorage.setItem('userId', resData.userId);
@@ -97,10 +101,10 @@ class Login extends Component {
             let error = []
             error.push(err.message)
             this.setState({
-                isAuth: false,
                 error: error,
                 loading: false
             })
+            this.props.loginFailed();
         })
     }
 
@@ -179,6 +183,21 @@ class Login extends Component {
             
         )
      }
-}               
+}         
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        auth: state.auth.auth,
+        token: state.auth.token,
+        userId: state.auth.userId
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        loginSucceeded: (data) => dispatch(authActions.loginSucceeded(data)),
+        loginFailed: () => dispatch(authActions.loginFailed())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
