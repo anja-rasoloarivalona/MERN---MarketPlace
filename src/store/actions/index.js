@@ -8,7 +8,7 @@ export {
 } from './products';
 
 export {
-
+    addProductToCart
 } from './cart';
 
 export {

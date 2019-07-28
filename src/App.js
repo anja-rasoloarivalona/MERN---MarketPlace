@@ -20,6 +20,7 @@ import AdminProducts from './Pages/Admin/AdminProducts/AdminProducts';
 import AuthSignup from './Pages/Auth/Signup/Signup';
 import AuthLogin from './Pages/Auth/Login/Login';
 import SingleProduct from './Pages/SingleProduct/SingleProduct';
+import Cart from './Pages/Cart/Cart';
 
 class App extends Component {
 
@@ -109,7 +110,7 @@ class App extends Component {
     let routes = (
       <Switch>
             <Route path='/' exact component={ShopIndex}/>
-            
+            <Route path="/cart" component={Cart} />
             <Route path='/signup' component={AuthSignup}/>
             <Route path='/login' 
                 render={props => (

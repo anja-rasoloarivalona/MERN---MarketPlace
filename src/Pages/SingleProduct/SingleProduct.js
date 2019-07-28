@@ -3,6 +3,7 @@ import './SingleProduct.css';
 import Button from '../../components/Button/Button';
 import Spinner from '../../components/Spinner/Spinner';
 import {connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 
 
 
@@ -13,10 +14,11 @@ class SingleProduct extends Component {
     _isMounted = false;
 
     state = {
+        id: this.props.match.params.prodId,
         title: '',
         description: '',
         category:'',
-        price: '',
+        price: 0,
         image: '',
         date: '',
         loading: false,
@@ -71,6 +73,17 @@ class SingleProduct extends Component {
         this._isMounted = false;
     }
 
+    addProductToCartHandler = (data) => {
+        this.props.addProductToCart(
+            data.id,
+            data.title,
+            data.description,
+            data.category,
+            data.price,
+            data.image
+        )
+    }
+
     render() {
 
         let product;
@@ -85,7 +98,16 @@ class SingleProduct extends Component {
                         <div className="single-product__details__price">${this.state.price}</div>
                         <p>{this.state.description}</p>
                         <div className="single-product__details__cta flex-centered-row">
-                            <Button color='primary'>
+                            <Button color='primary'
+                                    onClick={this.addProductToCartHandler.bind(this, this.state)}
+
+                                 /*   onClick={this.props.addProductToCart(
+                                        this.state.id,
+                                        this.state.title,
+                                        this.state.description,
+                                        this.state.category,
+                                        this.state.price,
+                                        this.state.image)}    */>
                                 Add to cart
                             </Button>
                             <Button color="secondary"
@@ -122,4 +144,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(SingleProduct);
+const mapDispatchToProps = dispatch => {
+    return {
+        addProductToCart: (id, title, description, category, price, image) => dispatch(actions.addProductToCart(id, title, description, category, price, image))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
