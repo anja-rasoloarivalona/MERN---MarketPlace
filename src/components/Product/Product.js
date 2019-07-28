@@ -29,18 +29,14 @@ const product = props => {
                 <div className="product__date">{props.date}</div>
             </header>
             <p>{description}</p>
+            
             {   
                  props.shop ?
                  (
                     <div className="product__actions flex-centered-row">
                         <Button 
                             link= { {
-                                pathname: `/details/${props.id}`,
-                                state: {
-                                      currentPage: props.currentPage, 
-                                      currentPriceRequested: props.currentPriceRequested,
-                                      currentSort: props.currentSort,
-                                      componentToGoBack: props.componentToGoBack}
+                                pathname: `/details/${props.id}`
                             }
                                 
                                 

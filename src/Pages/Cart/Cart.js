@@ -8,22 +8,26 @@ class Cart extends Component {
     componentDidMount(){
         window.scrollTo(0, 0);
     }
-    
+
     render() {
         return (
             <div className='cart'>
-                {this.props.products.map(product => (
-                    <Product 
-                        shop
-                        key={product.id}
-                        id={product.id}
-                        title={product.title}
-                        price={product.price}
-                        category={product.category}
-                        description={product.description}
-                        imageUrl= {product.image}
-                    />
-                ))}
+                {this.props.products.map(product => {
+                        return (
+                            <Product 
+                                shop
+                                key={product.productId}
+                                id={product.productId}
+                                title={product.title}
+                                price={product.price}
+                                category={product.category}
+                                description={product.description}
+                                imageUrl= {product.image}
+                            />
+                        )
+                }
+                
+               )}
             </div>
         )
     }
