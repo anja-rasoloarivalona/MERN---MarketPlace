@@ -43,7 +43,6 @@ class Sidebar extends Component {
         }
 
         let history = null;
-
         this.props.categoryHandler(val, history, category, this.props.sortBy);
     }
 
@@ -114,7 +113,7 @@ class Sidebar extends Component {
 
 const mapStateToProps = state => {
     return {
-        sortBy: state.sortBy
+        sortBy: state.products.sortBy
     }
 }
 

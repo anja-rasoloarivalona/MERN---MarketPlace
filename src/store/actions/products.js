@@ -88,6 +88,12 @@ export const sortByHandler = (val, history,category,  sortBy) => {
     }
 }
 
+export const resetCurrentPage = () => {
+    return {
+        type: actionTypes.RESET_CURRENT_PAGE
+    }
+}
+
 
 export const updateCategory = (category) => {
     return {
@@ -105,6 +111,7 @@ export const resetCategory = () => {
 export const categoryHandler = (val, history, category,  sortBy) => {
     return dispatch => {
         dispatch(updateCategory(category));
+        dispatch(resetCurrentPage());
         dispatch(loadProductsHandler(val, history, category,  sortBy))
     }
 }

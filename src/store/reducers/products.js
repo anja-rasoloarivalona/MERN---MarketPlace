@@ -4,8 +4,8 @@ import { updatedObject } from '../utility';
 const initialState = {
     products: [],
     loading: false,
-    priceMin: 0,
-    priceMax: 99999,
+    priceMin: 1,
+    priceMax: 99998,
     inputRangeValue: {
         min: 1,
         max: 99998
@@ -62,6 +62,7 @@ const reducer = ( state = initialState, action) => {
         case actionTypes.SET_INITIAL_PRODUCTS_PRICE: return setInitProductPrice(state, action);
         case actionTypes.RESET_CATEGORY: return updatedObject(state, {category: ''});
 
+        case actionTypes.RESET_CURRENT_PAGE: return updatedObject(state, {currentPage: 1});
 
         case actionTypes.SET_LOADING_TO_TRUE: return updatedObject(state, {loading: true});
         case actionTypes.SET_LOADING_TO_FALSE: return updatedObject(state, {loading: false});

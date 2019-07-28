@@ -25,6 +25,9 @@ class SingleProduct extends Component {
 
     componentDidMount(){
 
+        console.log('single product did mount', this.props.category)
+        console.log('test return to category', this.props.category != undefined) /* If true, return to category*/
+
         window.scrollTo(0, 0);
         this.setState({loading: true})
         this._isMounted = true;
@@ -50,9 +53,13 @@ class SingleProduct extends Component {
                     description: resData.product.description,
                     date: date,
                     loading: false,
-                    pathToBack: this.props.category !== "" ?  "../" + resData.product.category : '/'
-                })} 
+                    pathToBack: this.props.category.length > 0 ?  "../" + resData.product.category : '/'
+            })} 
+
+            console.log('back at',this.state.pathToBack);
+
             return
+
             })
         .catch( err => {
             this.setState({loading: false})
@@ -111,7 +118,7 @@ class SingleProduct extends Component {
 
 const mapStateToProps = state => {
     return {
-        category: state.category
+        category: state.products.category
     }
 }
 

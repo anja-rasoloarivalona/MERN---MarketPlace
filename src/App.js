@@ -94,6 +94,10 @@ class App extends Component {
     let history;
     let inputRangeValue; 
 
+
+
+    //console.log('category', this.props.category)
+
     if(this.props.category !== ''){/*If we came back from a category, reset*/
        console.log('open shop cat', this.props.category);      
         history = false;
@@ -101,7 +105,6 @@ class App extends Component {
           min: this.props.initialPriceMin,
           max: this.props.initialPriceMax
         }
-        console.log('reset input range', inputRangeValue)
     } else {
       history = true;
       inputRangeValue = this.props.inputRangeValue /*If we came back from another page, keep the value requested*/
@@ -183,11 +186,11 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return { 
-      inputRangeValue: state.inputRangeValue,
-      sortBy: state.sortBy,
-      category: state.category,
-      initialPriceMin: state.initialPriceMin,
-      initialPriceMax: state.initialPriceMax
+      inputRangeValue: state.products.inputRangeValue,
+      sortBy: state.products.sortBy,
+      category: state.products.category,
+      initialPriceMin: state.products.initialPriceMin,
+      initialPriceMax: state.products.initialPriceMax
   }
 }
 
