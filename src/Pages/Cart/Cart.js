@@ -4,6 +4,11 @@ import Product from '../../components/Product/Product';
 import { connect } from 'react-redux';
 
 class Cart extends Component {
+
+    componentDidMount(){
+        window.scrollTo(0, 0);
+    }
+    
     render() {
         return (
             <div className='cart'>
