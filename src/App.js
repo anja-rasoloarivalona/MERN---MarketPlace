@@ -34,6 +34,18 @@ class App extends Component {
     const token = localStorage.getItem('token');
     const expiryDate = localStorage.getItem('expiryDate');
     const connectedUserId = localStorage.getItem('userId');
+    let productsInCart = JSON.parse(localStorage.getItem('productsInCart'));
+
+    if(productsInCart){
+      /*If we have products, send the products to the cart component*/
+      this.props.setProductsInCart(productsInCart);
+      setTimeout( () => {
+          /*Clear the cart and local storage after 24 hours even if the user never logged in*/
+          this.props.clearProductsInCart();
+          localStorage.removeItem('productsInCart');
+      }, 1000 * 60 * 60 * 24)
+    }
+
 
     if(!token || !expiryDate){
       console.log('NO TOKEN')
@@ -45,7 +57,8 @@ class App extends Component {
           this.props.setLoginStateToFalse()
           return;
       } 
-      console.log('connected')
+
+      /* We reach thoses lines if the user is still connected */
       this.props.setLoginStateToTrue(true, token, connectedUserId )          
       const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
       this.setAutoLogout(remainingMilliseconds);
@@ -53,16 +66,17 @@ class App extends Component {
 
   logoutHandler = () => {
     this.props.setLoginStateToFalse();
+    this.props.clearProductsInCart();
     localStorage.removeItem('token');
     localStorage.removeItem('expiryDate');
     localStorage.removeItem('userId');
+    localStorage.removeItem('productsInCart');
     this.props.history.replace('/');
-
   }
 
   setAutoLogout = timeRemaining => {
     setTimeout( () => {
-      this.props.setLoginStateToFalse()
+      this.logoutHandler()
     }, timeRemaining )
   }
 
@@ -176,7 +190,12 @@ const mapDispatchToProps = dispatch => {
   return {
     onLoadShopIndex: (val, history,category, sortBy) => dispatch(actions.onLoadShopIndex(val, history,category, sortBy)),
     setLoginStateToTrue: (isAuth, token, userId) => dispatch(actions.setLoginStateToTrue(isAuth, token, userId)),
-    setLoginStateToFalse: () => dispatch(actions.setLoginStateToFalse())
+    setLoginStateToFalse: () => dispatch(actions.setLoginStateToFalse()),
+
+    setProductsInCart: (prod) => dispatch(actions.setProductsInCart(prod)),
+    clearProductsInCart: () => dispatch(actions.clearProductsInCart())
+
+
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import './Cart.css';
 import Product from '../../components/Product/Product';
 import { connect } from 'react-redux';
@@ -9,8 +9,13 @@ class Cart extends Component {
         window.scrollTo(0, 0);
     }
 
+    clearCart(){
+        localStorage.removeItem('productsInCart')
+    }
+
     render() {
         return (
+            <Fragment>
             <div className='cart'>
                 {this.props.products.map(product => {
                         return (
@@ -28,7 +33,12 @@ class Cart extends Component {
                 }
                 
                )}
+               <button onClick={this.clearCart}>
+                Clear Cart
+                </button>
             </div>
+            
+            </Fragment>
         )
     }
 }

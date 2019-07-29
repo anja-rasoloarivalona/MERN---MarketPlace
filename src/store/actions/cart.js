@@ -11,3 +11,16 @@ export const addProductToCart = (id, title, description, category, price, image)
         image: image
     }
 }
+
+export const setProductsInCart = (products) => {
+    return {
+        type: actionTypes.SET_PRODUCTS_TO_CART,
+        products: products
+    }
+}
+
+export const clearProductsInCart = () => {
+    return {
+        type: actionTypes.CLEAR_PRODUCTS_IN_CART
+    }
+}

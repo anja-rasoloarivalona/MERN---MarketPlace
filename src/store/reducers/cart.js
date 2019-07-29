@@ -19,17 +19,21 @@ const addProductToCart = (state, action) => {
         image: action.image
         }
     ]
-    
-   
     return updatedObject(state, {
                 products: updatedProductsCart
     })
 }
 
+const setProductsToCart = (state, action) => {
+    return updatedObject(state, {products: action.products})
+}
+
 
 const reducer = (state = initialState, action ) => {
     switch(action.type){
-        case actionTypes.ADD_PRODUCT_TO_CART: return addProductToCart(state, action)
+        case actionTypes.ADD_PRODUCT_TO_CART: return addProductToCart(state, action);
+        case actionTypes.SET_PRODUCTS_TO_CART: return setProductsToCart(state, action);
+        case actionTypes.CLEAR_PRODUCTS_IN_CART: return updatedObject(state, {products: []})
         default: return state
     }
 }

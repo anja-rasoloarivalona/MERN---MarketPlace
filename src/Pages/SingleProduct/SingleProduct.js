@@ -26,12 +26,10 @@ class SingleProduct extends Component {
     }
 
     componentDidMount(){
-
-        console.log('single product did mount', this.props.category)
-        console.log('test return to category', this.props.category != undefined) /* If true, return to category*/
-
         window.scrollTo(0, 0);
-        this.setState({loading: true})
+
+        this.setState({loading: true});
+
         this._isMounted = true;
         const prodId = this.props.match.params.prodId;   
         
@@ -57,11 +55,7 @@ class SingleProduct extends Component {
                     loading: false,
                     pathToBack: this.props.category.length > 0 ?  "../" + resData.product.category : '/'
             })} 
-
-            console.log('back at',this.state.pathToBack);
-
             return
-
             })
         .catch( err => {
             this.setState({loading: false})
@@ -74,6 +68,27 @@ class SingleProduct extends Component {
     }
 
     addProductToCartHandler = (data) => {
+
+       let productsInCart = JSON.parse(localStorage.getItem('productsInCart'));
+        let productData = {
+            productId: data.id,
+            title: data.title,
+            description: data.description,
+            category: data.category,
+            price: data.price,
+            image: data.image
+        }
+        let newProductsInCart = [];
+
+        if(!productsInCart){
+            newProductsInCart.push(productData);
+        } else {
+            newProductsInCart = [...productsInCart, productData];
+        }
+        
+        localStorage.setItem('productsInCart', JSON.stringify(newProductsInCart))
+
+
         this.props.addProductToCart(
             data.id,
             data.title,
