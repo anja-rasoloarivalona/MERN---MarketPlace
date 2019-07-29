@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import './Cart.css';
 import Product from '../../components/Product/Product';
 import { connect } from 'react-redux';
+import Button from '../../components/Button/Button';
 
 class Cart extends Component {
 
@@ -33,9 +34,22 @@ class Cart extends Component {
                 }
                 
                )}
-               <button onClick={this.clearCart}>
-                Clear Cart
-                </button>
+               <div className="cart__details">
+                   <span>Total of Products:  {this.props.totalProductsCount}</span>
+                   <span>Subtotal: {this.props.subTotalPrice}</span>
+                   <span>Taxes: {this.props.taxes}</span>
+                   <span>Total Price:{this.props.totalPrice}</span>
+               </div>
+               <div className="cart__cta">
+                    <Button onClick={this.clearCart}
+                            color='secondary'>
+                        Clear Cart
+                    </Button>
+                    <Button color='primary'>
+                        Checkout
+                    </Button>
+               </div>
+               
             </div>
             
             </Fragment>
@@ -45,7 +59,11 @@ class Cart extends Component {
 
 const mapStateToProps = state => {
     return {
-        products: state.cart.products
+        products: state.cart.products,
+        totalProductsCount: state.cart.totalProductsCount,
+        subTotalPrice: state.cart.subTotalPrice,
+        taxes: state.cart.taxes,
+        totalPrice: state.cart.totalPrice
     }
 }
 export default connect(mapStateToProps)(Cart);

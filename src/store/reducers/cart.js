@@ -7,6 +7,7 @@ const initialState = {
     subTotalPrice: 0,
     taxes: 0,
     totalPrice: 0,
+    taxRate: 0.15
 }
 
 const addProductToCart = (state, action) => {
@@ -19,13 +20,38 @@ const addProductToCart = (state, action) => {
         image: action.image
         }
     ]
+    let count = state.totalProductsCount + 1;
+    let subTotalPrice = state.subTotalPrice + action.price;
+    let taxes = subTotalPrice  * state.taxRate;
+    let totalPrice = subTotalPrice + taxes;
+
     return updatedObject(state, {
-                products: updatedProductsCart
+                products: updatedProductsCart,
+                totalProductsCount: count,
+                subTotalPrice: subTotalPrice,
+                taxes: taxes,
+                totalPrice: totalPrice
     })
 }
 
 const setProductsToCart = (state, action) => {
-    return updatedObject(state, {products: action.products})
+    let count = action.products.length;
+
+    let subTotalPrice = 0;
+
+    action.products.forEach(i => {
+        subTotalPrice = subTotalPrice + i.price
+    });
+
+    let taxes = subTotalPrice  * state.taxRate;
+    let totalPrice = subTotalPrice + taxes;
+
+    return updatedObject(state, {
+        products: action.products,
+        totalProductsCount: count,
+        subTotalPrice: subTotalPrice,
+        taxes: taxes,
+        totalPrice: totalPrice})
 }
 
 
