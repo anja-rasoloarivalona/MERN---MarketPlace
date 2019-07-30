@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './SingleProduct.css';
 import Button from '../../components/Button/Button';
 import Spinner from '../../components/Spinner/Spinner';
 import {connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
+
+import Backdrop from '../../components/Backdrop/Backdrop';
+import IconSvg from '../../util/svgHandler';
 
 
 
@@ -23,10 +26,14 @@ class SingleProduct extends Component {
         date: '',
         loading: false,
         pathToBack: '/',
-        inCart: false
+        inCart: false,
+
+        showBackdrop: false
     }
 
     componentDidMount(){
+
+        console.log('show backdrop', this.state.showBackdrop)
         window.scrollTo(0, 0);
 
         let productsIdInCart = [];
@@ -80,7 +87,7 @@ class SingleProduct extends Component {
     addProductToCartHandler = (data) => {
 
 
-        this.setState({ inCart: true})
+        this.setState({ inCart: true, showBackdrop: true})
 
 
 
@@ -112,6 +119,10 @@ class SingleProduct extends Component {
             data.price,
             data.image
         )
+    }
+
+    closeBackdrop = () => {
+        this.setState({ showBackdrop: false})
     }
 
     render() {
@@ -163,9 +174,75 @@ class SingleProduct extends Component {
             )
         }
         return (
-            <section className="single-product flex-centered-row">
-                {product}     
-            </section>
+            <Fragment>
+                {
+                    this.state.showBackdrop && (
+                        <Backdrop open={this.state.showBackdrop}
+                        onClick={this.closeBackdrop}>
+                            <div className="singleProduct__modal">
+
+
+                                <div className="singleProduct__modal__top flex-centered-row">
+                                    <IconSvg icon="check" size="small"/> <span>Product successfully added to your shopping cart</span> 
+                                </div>
+
+                               <div className="singleProduct__modal__body">
+
+                                   
+                                    <div className="singleProduct__modal__product">
+                                            <div className="singleProduct__modal__product__title">{this.state.title}</div>
+                                            <div className="singleProduct__modal__product__price">${this.state.price}</div>
+                                            <div className="singleProduct__modal__product__image" 
+                                                    style={{
+                                                        backgroundImage: `url('${this.state.image}')`,
+                                                        backgroundSize: 'contain',
+                                                        backgroundPosition: 'center',
+                                                        backgroundRepeat: 'no-repeat'
+                                                    }}>                              
+                                            </div>         
+                                    </div>
+
+                                    <div className="singleProduct__modal__product__line"/>
+
+                                    <div className="singleProduct__modal__cart">
+
+
+                                        {this.props.totalProductsCount > 1 ? (
+                                            <div>There are {this.props.totalProductsCount} items in your cart</div>
+                                        ): (
+                                            <div>There is {this.props.totalProductsCount} item in your cart</div>
+                                        )}
+
+                                        <div className="singleProduct__modal__cart__info"><b>SubTotal:</b> <span>${this.props.subTotalPrice}</span></div>
+                                        <div className="singleProduct__modal__cart__info"><b>Taxes:</b> <span>${this.props.taxes}</span></div>
+                                        <div className="singleProduct__modal__cart__info"><b>Total:</b> <span>${this.props.totalPrice}</span></div>
+
+                                        <div className="singleProduct__modal__cart__cta flex-centered-row">
+                                            <Button color="primary">
+                                                Checkout
+                                            </Button>
+                                            <Button color="secondary">
+                                                Shop
+                                            </Button>
+                                            
+                                        </div>
+                                        
+                                    </div>
+                               </div>
+                                
+                             
+                                
+                            </div>
+                        </Backdrop>
+                    )
+                }
+               
+
+
+                <section className="single-product flex-centered-row">
+                    {product}     
+                </section>
+            </Fragment>
         )
     }
 }
@@ -174,7 +251,13 @@ const mapStateToProps = state => {
     return {
         category: state.products.category,
         productsInCart: state.cart.products,
-        auth: state.auth.auth
+        auth: state.auth.auth,
+
+
+        totalProductsCount: state.cart.totalProductsCount,
+        subTotalPrice: state.cart.subTotalPrice,
+        taxes: state.cart.taxes,
+        totalPrice: state.cart.totalPrice
     }
 }
 

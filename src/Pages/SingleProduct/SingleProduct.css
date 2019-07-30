@@ -123,3 +123,147 @@
         bottom: 2rem;
     }
 }
+
+.singleProduct__modal {
+    width: 55rem;
+    height: 25rem;
+    position: fixed;
+    top: 15rem;
+    right: 0;
+    left: 0;
+    margin: auto;
+    background: var(--color-white);
+    border-radius: 3px;
+}
+
+
+
+@media (max-width: 530px) {
+    .singleProduct__modal  {
+        width: 90vw;
+    }
+}
+
+@media (max-width: 391px) {
+    .singleProduct__modal  {
+        height: 70vh;
+        top: 0;
+        bottom: 0;
+    }
+}
+
+
+.singleProduct__modal__top {
+    background: var(--color-secondary);
+    padding: 1rem 0;
+    color: var(--color-white);
+}
+
+.singleProduct__modal__top span {
+    margin-left: 1rem;
+}
+
+
+.singleProduct__modal__body {
+    width: 100%;
+    height: 86%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+@media (max-width: 391px) {
+    .singleProduct__modal__body  {
+        flex-direction: column;
+        height: 95%;
+        justify-content: center;
+    }
+}
+
+
+
+
+
+.singleProduct__modal__product {
+    width: 40%;
+    height: 100%;
+    padding-left: 1.4rem; 
+}
+
+@media (max-width: 391px) {
+    .singleProduct__modal__product  {
+        height: 40%;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+}
+
+.singleProduct__modal__product__title, 
+.singleProduct__modal__product__price {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin: .5rem 0;
+}
+
+.singleProduct__modal__product__title {
+    color: var(--color-primary);
+}
+
+.singleProduct__modal__product__price {
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+.singleProduct__modal__product__image {
+    width: 15rem;
+    height: 15rem;
+}
+
+
+.singleProduct__modal__product__line {
+    width: 3px;
+    height: 80%;
+    background: grey;
+}
+
+@media (max-width: 391px) {
+    .singleProduct__modal__product__line  {
+        display: none;
+    }
+}
+
+.singleProduct__modal__cart {
+    width: 55%;
+    height: 100%;
+    position: relative;
+}
+
+@media (max-width: 391px) {
+    .singleProduct__modal__cart  {
+        height: 40%;
+        width: 80%;
+        text-align: center;
+    }
+}
+
+.singleProduct__modal__cart div:not(:last-child){
+    padding-left: 1rem;
+    font-size: 1.3rem;
+    margin: .5rem 0;
+}
+
+.singleProduct__modal__cart__info {
+    transform: translateY(2rem);
+}
+
+.singleProduct__modal__cart__cta {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
