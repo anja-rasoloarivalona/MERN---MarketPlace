@@ -95,6 +95,7 @@ class App extends Component {
 
   /*-------------MOBILE STATE HANDLER---------*/
   mobileNavHandler = isOpen => {
+    console.log('closed occuring')
     this.setState({
         showMobileNav: isOpen,
         showBackdrop: isOpen

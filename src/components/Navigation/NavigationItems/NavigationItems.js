@@ -20,7 +20,7 @@ const navigationItems = props => [
             </li> 
             <li key="cart"
                 className={["navigationItems", "centered", props.mobile ? "mobile" : ''].join(' ')}>
-                <NavLink to={'/cart'}>
+                <NavLink to={'/cart'} onClick={props.onClickNavLink}>
                     Cart
                 </NavLink>             
             </li> 
