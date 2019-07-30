@@ -31,7 +31,11 @@ class App extends Component {
     showMobileNav: false,
   }
 
-  componentDidMount(){
+  componentWillMount(){
+
+    console.log('app did mount');
+
+
     const token = localStorage.getItem('token');
     const expiryDate = localStorage.getItem('expiryDate');
     const connectedUserId = localStorage.getItem('userId');

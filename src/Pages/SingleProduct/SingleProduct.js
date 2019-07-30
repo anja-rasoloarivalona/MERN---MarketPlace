@@ -22,15 +22,22 @@ class SingleProduct extends Component {
         image: '',
         date: '',
         loading: false,
-        pathToBack: '/'
+        pathToBack: '/',
+        inCart: false
     }
 
     componentDidMount(){
         window.scrollTo(0, 0);
 
-      
+        let productsIdInCart = [];
+        this.props.productsInCart.forEach( prod => {
+            productsIdInCart = [...productsIdInCart, prod.productId]
+        })
 
-
+        if(productsIdInCart.includes(this.state.id)) {
+            this.setState({inCart: true})
+        }
+        
         this.setState({loading: true});
 
         this._isMounted = true;
@@ -71,6 +78,11 @@ class SingleProduct extends Component {
     }
 
     addProductToCartHandler = (data) => {
+
+
+        this.setState({ inCart: true})
+
+
 
        let productsInCart = JSON.parse(localStorage.getItem('productsInCart'));
         let productData = {
@@ -116,18 +128,20 @@ class SingleProduct extends Component {
                         <div className="single-product__details__price">${this.state.price}</div>
                         <p>{this.state.description}</p>
                         <div className="single-product__details__cta flex-centered-row">
-                            <Button color='primary'
-                                    onClick={this.addProductToCartHandler.bind(this, this.state)}
 
-                                 /*   onClick={this.props.addProductToCart(
-                                        this.state.id,
-                                        this.state.title,
-                                        this.state.description,
-                                        this.state.category,
-                                        this.state.price,
-                                        this.state.image)}    */>
-                                Add to cart
-                            </Button>
+                        { this.state.inCart ? (
+                                <Button color='primary'>
+                                    Checkout
+                                </Button>
+                            )  : (
+                                <Button color='primary'
+                                        onClick={this.addProductToCartHandler.bind(this, this.state)}>
+                                    Add to cart
+                                </Button>
+                            )}
+                            
+
+
                             <Button color="secondary"
                                     link={{   
                                     pathname: this.state.pathToBack
@@ -159,6 +173,7 @@ class SingleProduct extends Component {
 const mapStateToProps = state => {
     return {
         category: state.products.category,
+        productsInCart: state.cart.products,
         auth: state.auth.auth
     }
 }
