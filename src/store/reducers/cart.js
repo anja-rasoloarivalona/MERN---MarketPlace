@@ -63,12 +63,24 @@ const setProductsToCart = (state, action) => {
         }   
 }
 
+const clearCart = (state, action ) => {
+    return updatedObject( state, {
+        products: [],
+        totalProductsCount: 0,
+        subTotalPrice: 0,
+        taxes: 0,
+        totalPrice: 0,
+        taxRate: 0.15
+    })
+}
+
 
 const reducer = (state = initialState, action ) => {
     switch(action.type){
         case actionTypes.ADD_PRODUCT_TO_CART: return addProductToCart(state, action);
         case actionTypes.SET_PRODUCTS_TO_CART: return setProductsToCart(state, action);
-        case actionTypes.CLEAR_PRODUCTS_IN_CART: return updatedObject(state, {products: []})
+        case actionTypes.CLEAR_PRODUCTS_IN_CART: return clearCart(state, action);
+        
         default: return state
     }
 }

@@ -80,6 +80,7 @@ export const setProductsInCart = (products, token, userId) => {
 
 
 export const clearProductsInCart = () => {
+    localStorage.removeItem('productsInCart');
     return {
         type: actionTypes.CLEAR_PRODUCTS_IN_CART
     }

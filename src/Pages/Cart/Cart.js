@@ -2,16 +2,13 @@ import React, { Component, Fragment } from 'react'
 import './Cart.css';
 import Product from '../../components/Product/Product';
 import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index';
 import Button from '../../components/Button/Button';
 
 class Cart extends Component {
 
     componentDidMount(){
         window.scrollTo(0, 0);
-    }
-
-    clearCart(){
-        localStorage.removeItem('productsInCart')
     }
 
     render() {
@@ -47,7 +44,7 @@ class Cart extends Component {
                    <span>Total Price:{this.props.totalPrice}</span>
                </div>
                <div className="cart__cta">
-                    <Button onClick={this.clearCart}
+                    <Button onClick={this.props.clearProductsInCart}
                             color='secondary'>
                         Clear Cart
                     </Button>
@@ -75,4 +72,12 @@ const mapStateToProps = state => {
         isAuth: state.auth.auth
     }
 }
-export default connect(mapStateToProps)(Cart);
+
+const mapDispatchToProps = dispatch => {
+    return {
+        clearProductsInCart: () => dispatch(actions.clearProductsInCart())
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
