@@ -35,23 +35,32 @@ const addProductToCart = (state, action) => {
 }
 
 const setProductsToCart = (state, action) => {
-    let count = action.products.length;
 
-    let subTotalPrice = 0;
+    if(action.auth){
+        return updatedObject(state, {
+            products: action.products,
+            totalProductsCount: action.totalProductsCount,
+            subTotalPrice: action.subTotalPrice,
+            taxes: action.taxes,
+            totalPrice: action.totalPrice,
+            taxRate: action.taxRate
+        })
 
-    action.products.forEach(i => {
-        subTotalPrice = subTotalPrice + i.price
-    });
-
-    let taxes = subTotalPrice  * state.taxRate;
-    let totalPrice = subTotalPrice + taxes;
-
-    return updatedObject(state, {
-        products: action.products,
-        totalProductsCount: count,
-        subTotalPrice: subTotalPrice,
-        taxes: taxes,
-        totalPrice: totalPrice})
+    } else {
+        let count = action.products.length;
+        let subTotalPrice = 0;
+        action.products.forEach(i => {
+            subTotalPrice = subTotalPrice + i.price
+        });
+        let taxes = subTotalPrice  * state.taxRate;
+        let totalPrice = subTotalPrice + taxes;
+        return updatedObject(state, {
+            products: action.products,
+            totalProductsCount: count,
+            subTotalPrice: subTotalPrice,
+            taxes: taxes,
+            totalPrice: totalPrice})
+        }   
 }
 
 

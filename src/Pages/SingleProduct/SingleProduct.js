@@ -10,7 +10,7 @@ import * as actions from '../../store/actions/index';
 
 
 class SingleProduct extends Component {
-
+    
     _isMounted = false;
 
     state = {
@@ -27,6 +27,8 @@ class SingleProduct extends Component {
 
     componentDidMount(){
         window.scrollTo(0, 0);
+
+       
 
         this.setState({loading: true});
 
@@ -155,7 +157,8 @@ class SingleProduct extends Component {
 
 const mapStateToProps = state => {
     return {
-        category: state.products.category
+        category: state.products.category,
+        auth: state.auth.auth
     }
 }
 

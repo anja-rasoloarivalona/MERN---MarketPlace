@@ -19,6 +19,12 @@ class Cart extends Component {
             <Fragment>
             <div className='cart'>
                 {this.props.products.map(product => {
+                    let image;
+                    if(product.image) {
+                        image = product.image
+                    } else {
+                        image = "https://strix-market-place.herokuapp.com/" + product.imageUrl
+                    }
                         return (
                             <Product 
                                 shop
@@ -28,7 +34,7 @@ class Cart extends Component {
                                 price={product.price}
                                 category={product.category}
                                 description={product.description}
-                                imageUrl= {product.image}
+                                imageUrl= {image}
                             />
                         )
                 }
@@ -45,7 +51,8 @@ class Cart extends Component {
                             color='secondary'>
                         Clear Cart
                     </Button>
-                    <Button color='primary'>
+                    <Button color='primary'
+                            link={this.props.isAuth ? '/checkout' : '/login'}>
                         Checkout
                     </Button>
                </div>
@@ -63,7 +70,9 @@ const mapStateToProps = state => {
         totalProductsCount: state.cart.totalProductsCount,
         subTotalPrice: state.cart.subTotalPrice,
         taxes: state.cart.taxes,
-        totalPrice: state.cart.totalPrice
+        totalPrice: state.cart.totalPrice,
+
+        isAuth: state.auth.auth
     }
 }
 export default connect(mapStateToProps)(Cart);

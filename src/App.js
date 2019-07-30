@@ -21,6 +21,7 @@ import AuthSignup from './Pages/Auth/Signup/Signup';
 import AuthLogin from './Pages/Auth/Login/Login';
 import SingleProduct from './Pages/SingleProduct/SingleProduct';
 import Cart from './Pages/Cart/Cart';
+import Checkout from './Pages/Cart/Checkout/Checkout';
 
 class App extends Component {
 
@@ -36,14 +37,16 @@ class App extends Component {
     const connectedUserId = localStorage.getItem('userId');
     let productsInCart = JSON.parse(localStorage.getItem('productsInCart'));
 
-    if(productsInCart){
-      /*If we have products, send the products to the cart component*/
-      this.props.setProductsInCart(productsInCart);
-      setTimeout( () => {
-          /*Clear the cart and local storage after 24 hours even if the user never logged in*/
-          this.props.clearProductsInCart();
-          localStorage.removeItem('productsInCart');
-      }, 1000 * 60 * 60 * 24)
+    if(productsInCart){    
+          /*If we have products, send the products to the cart component*/       
+          this.props.setProductsInCart(productsInCart);
+
+          setTimeout( () => {
+              /*Clear the cart and local storage after 24 hours even if the user never logged in*/
+              this.props.clearProductsInCart();
+              localStorage.removeItem('productsInCart');
+          }, 1000 * 60 * 60 * 24);
+        
     }
 
 
@@ -51,7 +54,6 @@ class App extends Component {
       console.log('NO TOKEN')
           return;
      } 
-
      if(new Date(expiryDate) <= new Date()){ 
           console.log('Token not valid anymore')
           this.props.setLoginStateToFalse()
@@ -59,9 +61,16 @@ class App extends Component {
       } 
 
       /* We reach thoses lines if the user is still connected */
-      this.props.setLoginStateToTrue(true, token, connectedUserId )          
+      this.props.setLoginStateToTrue(true, token, connectedUserId );
+      this.props.setProductsInCart(productsInCart, token, connectedUserId);  
+      
+      
       const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
       this.setAutoLogout(remainingMilliseconds);
+
+
+
+      
   }
 
   logoutHandler = () => {
@@ -125,6 +134,7 @@ class App extends Component {
       <Switch>
             <Route path='/' exact component={ShopIndex}/>
             <Route path="/cart" component={Cart} />
+            <Route path="/checkout" component={Checkout}/>
             <Route path='/signup' component={AuthSignup}/>
             <Route path='/login' 
                 render={props => (
@@ -192,7 +202,7 @@ const mapDispatchToProps = dispatch => {
     setLoginStateToTrue: (isAuth, token, userId) => dispatch(actions.setLoginStateToTrue(isAuth, token, userId)),
     setLoginStateToFalse: () => dispatch(actions.setLoginStateToFalse()),
 
-    setProductsInCart: (prod) => dispatch(actions.setProductsInCart(prod)),
+    setProductsInCart: (products, token, userId) => dispatch(actions.setProductsInCart(products, token, userId)),
     clearProductsInCart: () => dispatch(actions.clearProductsInCart())
 
 
