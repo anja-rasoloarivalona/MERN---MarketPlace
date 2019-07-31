@@ -12,6 +12,10 @@ class Checkout extends Component {
         currentPage: 'checkout'
     }
 
+    componentWillMount(){
+        window.scroll(0, 0)
+    }
+
     updatePage = nextPage => {
         this.setState({
             currentPage: nextPage

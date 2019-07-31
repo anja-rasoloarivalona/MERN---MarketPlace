@@ -8,6 +8,8 @@
     flex-direction: column;   
 }
 
+
+
 .checkout__title__primary {
     font-size: 1.7rem;
     font-weight: 600;
@@ -15,17 +17,12 @@
     color: var(--color-primary);
 }
 
-/*@media (max-width: 399px) {
-    .checkout {
-        width: 90vw;
-    }
-}*/
 
 .checkout__steps {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 50%;
+    width: 50vw;
     height: 4rem;
     margin-top: 5rem;   
 }
@@ -46,13 +43,13 @@
     left: 2rem;   
 }
 
-.checkout__steps .delivery svg {
+/*.checkout__steps .delivery svg {
     left: 20rem
 }
 
 .checkout__steps .payment svg {
     left: 36rem
-}
+}*/
 
 .checkout__steps__line__bellow {
     height: 100%;
