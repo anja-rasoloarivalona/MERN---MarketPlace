@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import './Delivery.css';
 import Button from '../../../components/Button/Button';
+import UserInfo from '../Recap/UserInfo/UserInfo';
 
  class Delivery extends Component {
 
     state = {
-        delivery: 'fastest',
+        delivery: [
+            "Wednesday, Aug. 14 - Tuesday, Aug. 20",
+            10
+            ],
         firstOption: true,
         secondOption: false 
     }
@@ -20,22 +24,13 @@ import Button from '../../../components/Button/Button';
                 firstOption: !this.state.firstOption,
                 secondOption: !this.state.secondOption
             }, console.log(this.state))
-
-
     }
 
 
     render() {
         return (
             <div className="delivery">
-                <section className="delivery__user">
-                    <div className="delivery__title">ADDRESS</div>
-                    <div className="delivery__user__info--name">Anja Rasoloarivalona</div>
-                    <div className="delivery__user__info">4312 Boulevard Edouard-Monpetit</div>
-                    <div className="delivery__user__info">Montréal, H3T 1K3</div>
-                    <div className="delivery__user__info">Canada</div>
-                    <div className="delivery__user__info">438 123 1234</div>
-                </section>
+                <UserInfo />
                 <section>
                     <div className="delivery__title">DELIVERY METHOD</div>
                     <div>Choose a delivery option</div>
@@ -44,7 +39,11 @@ import Button from '../../../components/Button/Button';
                         <div className="delivery__option">    
                                 <input type="checkbox" 
                                        name="cheapest" 
-                                       value="cheapest"
+                                       value={[
+                                        "Wednesday, Aug. 14 - Tuesday, Aug. 20",
+                                        10
+                                        ]}
+
                                        checked={this.state.firstOption}
                                        onClick={this.toggle.bind(this)}/>
 
@@ -57,7 +56,10 @@ import Button from '../../../components/Button/Button';
                         <div className="delivery__option">     
                                 <input type="checkbox" 
                                        name="fastest" 
-                                       value="fastest"
+                                       value={[
+                                        "Monday, Aug. 5",
+                                        20
+                                        ]}
                                        checked={this.state.secondOption}
                                        onClick={this.toggle.bind(this)}/>
 

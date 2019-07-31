@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './Checkout.css';
-import Button from '../../components/Button/Button';
 import IconSvg from '../../util/svgHandler';
 
 import FormUserInfo from './FormUserInfo/FormUserInfo';
 import Delivery from './Delivery/Delivery';
+import Payment from './Payment/Payment';
 
 class Checkout extends Component {
 
     state = {
-        currentPage: 'delivery'
+        currentPage: 'payment'
     }
 
     updatePage = nextPage => {
@@ -46,6 +46,12 @@ class Checkout extends Component {
                 {
                     this.state.currentPage === 'delivery' && (
                         <Delivery />
+                    )
+                }
+
+                {
+                    this.state.currentPage === "payment" && (
+                        <Payment />
                     )
                 }
 

@@ -1,0 +1,12 @@
+.payment {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.payment__delivery {
+    margin-bottom: 2rem;
+}
+
+.payment__delivery__details {
+    font-size: 1.2rem;
+}

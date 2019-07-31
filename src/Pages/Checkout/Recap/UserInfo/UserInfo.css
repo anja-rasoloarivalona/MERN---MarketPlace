@@ -1,0 +1,21 @@
+.userInfo {
+    margin-bottom: 3rem;
+}
+
+.userInfo__title {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+.userInfo__details--name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+
+.userInfo__details {
+    font-size: 1.2rem;
+}
+

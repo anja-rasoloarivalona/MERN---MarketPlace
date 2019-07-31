@@ -8,6 +8,13 @@
     flex-direction: column;   
 }
 
+.checkout__title__primary {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
 /*@media (max-width: 399px) {
     .checkout {
         width: 90vw;
