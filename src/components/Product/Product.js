@@ -11,6 +11,61 @@ const product = props => {
     }
 
 
+    let cta;
+
+    if(props.shop){
+        cta = (
+            <div className="product__actions flex-centered-row">
+                <Button 
+                    link= { {
+                        pathname: `/details/${props.id}`
+                    }}
+                    color="primary">
+                    View details
+                </Button>
+            </div>  
+        )
+    }
+
+    if(props.admin){
+        cta = (
+            <div className="product__actions flex-centered-row">
+                        <Button 
+                            link = {props.edit_link}
+                            color="primary"
+                          /*  to={props.link}*/
+                            onClick={props.onStartEdit}>
+                            Edit
+                        </Button>
+                        <Button 
+                            link = {props.delete_link}
+                            color="primary"
+                         /*   to={props.link}*/
+                            onClick={props.onDelete}>
+                            Delete
+                        </Button>
+            </div>
+        )
+    }
+
+    if(props.cart){
+        cta = (
+                    <div className="product__actions flex-centered-row">
+                        <Button 
+                            link= { {
+                                pathname: `/details/${props.id}`
+                            }}
+                            color="primary">
+                            View details
+                        </Button>
+                        <Button>
+                            Delete
+                        </Button>
+                    </div>
+        )
+    }
+
+
 
     return (
     <article className="product">
@@ -29,43 +84,7 @@ const product = props => {
                 <div className="product__date">{props.date}</div>
             </header>
             <p>{description}</p>
-            
-            {   
-                 props.shop ?
-                 (
-                    <div className="product__actions flex-centered-row">
-                        <Button 
-                            link= { {
-                                pathname: `/details/${props.id}`
-                            }
-                                
-                                
-                            }
-                            color="primary"
-                        >
-                            View details
-                        </Button>
-                    </div>
-                 ) 
-                    :              
-                 ( <div className="product__actions flex-centered-row">
-                        <Button 
-                            link = {props.edit_link}
-                            color="primary"
-                          /*  to={props.link}*/
-                            onClick={props.onStartEdit}>
-                            Edit
-                        </Button>
-                        <Button 
-                            link = {props.delete_link}
-                            color="primary"
-                         /*   to={props.link}*/
-                            onClick={props.onDelete}>
-                            Delete
-                        </Button>
-                    </div>
-                 )
-             }
+            {cta}
         </div>
         
         <div className="product__price">

@@ -225,6 +225,7 @@ import IconSvg from '../../../util/svgHandler';
                     let fulldate =  new Date(product.createdAt).toLocaleString()
                     return (            
                         <Product
+                            admin
                             key={product._id}
                             id={product._id}
                             title={product.title}

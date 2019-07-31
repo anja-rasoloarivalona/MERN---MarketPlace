@@ -24,7 +24,7 @@ class Cart extends Component {
                     }
                         return (
                             <Product 
-                                shop
+                                cart
                                 key={product.productId}
                                 id={product.productId}
                                 title={product.title}
