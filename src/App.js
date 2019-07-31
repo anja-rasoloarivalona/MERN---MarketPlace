@@ -21,7 +21,7 @@ import AuthSignup from './Pages/Auth/Signup/Signup';
 import AuthLogin from './Pages/Auth/Login/Login';
 import SingleProduct from './Pages/SingleProduct/SingleProduct';
 import Cart from './Pages/Cart/Cart';
-import Checkout from './Pages/Cart/Checkout/Checkout';
+import Checkout from './Pages/Checkout/Checkout';
 
 class App extends Component {
 

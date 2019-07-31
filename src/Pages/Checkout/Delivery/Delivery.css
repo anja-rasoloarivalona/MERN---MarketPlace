@@ -1,0 +1,35 @@
+.delivery {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.delivery__user {
+    margin-bottom: 3rem;
+}
+
+.delivery__title {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+.delivery__user__info--name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+
+.delivery__user__info {
+    font-size: 1.2rem;
+}
+
+.delivery__option {
+    display: flex;
+    margin: 1rem 0;
+}
+
+.delivery__option input {
+    margin-right: 2rem;
+}
+

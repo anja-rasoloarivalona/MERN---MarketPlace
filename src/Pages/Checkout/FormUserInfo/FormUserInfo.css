@@ -1,0 +1,19 @@
+.form__userInfo {
+    width: 56rem;
+    color: var(--color-primary);
+    padding: 2rem;
+    border-radius: 3px;
+    margin-top: 2rem;
+}
+
+.checkout__newAddress {
+    width: 100%;
+}
+
+.checkout__newAddress__title {
+    font-size: 2rem;
+    margin-left: 7rem;
+    align-self: center;
+    margin-top: 2rem;
+}
+

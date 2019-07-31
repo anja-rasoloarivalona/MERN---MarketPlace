@@ -9,7 +9,9 @@ const formInput = props =>(
 
         {
             props.control === 'input' && (
-                <input className="input__field"
+
+              <input className="input__field"
+          //   <input className= {["input__field", props.checkout ? 'border' : '']}
                     type={props.type} //text, email, password, number, etc...
                     id={props.id} //for the label
                     required={props.required}
