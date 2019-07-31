@@ -38,19 +38,27 @@
 }
 
 .checkout__steps__line svg {
-    fill: red;
+    fill: var(--color-secondary);
     z-index: 2;
     position: absolute;
     background: white;
     transform: translateY(-110%);
-    left: 2rem;
+    left: 2rem;   
+}
+
+.checkout__steps .delivery svg {
+    left: 20rem
+}
+
+.checkout__steps .payment svg {
+    left: 36rem
 }
 
 .checkout__steps__line__bellow {
     height: 100%;
     width: 100%;
     position: absolute;
-    background: yellow;
+    background: rgb(216, 216, 216);
     top: 0;
     bottom: 0;
     left: 0;
@@ -60,14 +68,32 @@
 
 .checkout__steps__line__upper {
     height: 100%;
-    width: 80%;
+    width: 10%;
     position: absolute;
-    background: green;
+    background: var(--color-secondary);
     top: 0;
     bottom: 0;
     left: 0;
     margin: auto;
     z-index: 1;
+}
+
+.checkout__steps__line__upper.delivery {
+    width: 37%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+.checkout__steps__line__upper.payment {
+    width: 65%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
 }
 
 .checkout__steps__name {

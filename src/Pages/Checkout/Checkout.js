@@ -9,13 +9,13 @@ import Payment from './Payment/Payment';
 class Checkout extends Component {
 
     state = {
-        currentPage: 'payment'
+        currentPage: 'checkout'
     }
 
     updatePage = nextPage => {
         this.setState({
             currentPage: nextPage
-        })
+        }, console.log('state', this.state.currentPage))
     }
 
 
@@ -25,8 +25,19 @@ class Checkout extends Component {
                 <div className="checkout__steps">
                     <div className="checkout__steps__line">
                         <div className="checkout__steps__line__bellow"></div>
-                        <div className="checkout__steps__line__upper"></div>
-                        <IconSvg icon="cart"/>
+                        <div className={["checkout__steps__line__upper",
+
+                            this.state.currentPage === 'delivery' ? 'delivery' : '',
+                            this.state.currentPage === 'payment' ? 'payment' : ''  
+                        ].join(' ')}></div>
+
+                        <span className={[
+                            this.state.currentPage === 'delivery' ? 'delivery' : '',
+                            this.state.currentPage === 'payment' ? 'payment' : '' 
+                        ].join(' ')}>
+                            <IconSvg icon="cart"/>
+                        </span>
+                        
                     </div>
                     <div className="checkout__steps__name">
                         <div>Information</div>
@@ -45,7 +56,8 @@ class Checkout extends Component {
 
                 {
                     this.state.currentPage === 'delivery' && (
-                        <Delivery />
+                        <Delivery 
+                        onValidate={this.updatePage}/>
                     )
                 }
 

@@ -32,7 +32,7 @@ import UserInfo from '../Recap/UserInfo/UserInfo';
             <div className="delivery">
                 <UserInfo />
                 <section>
-                    <div className="delivery__title">DELIVERY METHOD</div>
+                    <div className="checkout__title__primary">DELIVERY METHOD</div>
                     <div>Choose a delivery option</div>
 
                 <form>
@@ -68,7 +68,9 @@ import UserInfo from '../Recap/UserInfo/UserInfo';
                                     <div>$20</div>
                                 </label>
                         </div>
-                        <Button type="submit">
+                        <Button type="submit"
+                                color="primary"
+                                onClick={this.props.onValidate.bind(this, 'payment')}>
                                 Next
                         </Button>
                 </form>
