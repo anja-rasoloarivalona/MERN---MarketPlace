@@ -9,7 +9,7 @@ import Delivery from './Delivery/Delivery';
 class Checkout extends Component {
 
     state = {
-        currentPage: 'checkout'
+        currentPage: 'delivery'
     }
 
     updatePage = nextPage => {

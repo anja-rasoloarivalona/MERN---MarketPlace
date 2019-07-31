@@ -3,6 +3,28 @@ import './Delivery.css';
 import Button from '../../../components/Button/Button';
 
  class Delivery extends Component {
+
+    state = {
+        delivery: 'fastest',
+        firstOption: true,
+        secondOption: false 
+    }
+
+    componentDidMount(){
+        console.log('did mount', this.state.delivery)
+    }
+
+    toggle(event){
+            this.setState({
+                delivery: event.target.value,
+                firstOption: !this.state.firstOption,
+                secondOption: !this.state.secondOption
+            }, console.log(this.state))
+
+
+    }
+
+
     render() {
         return (
             <div className="delivery">
@@ -18,27 +40,39 @@ import Button from '../../../components/Button/Button';
                     <div className="delivery__title">DELIVERY METHOD</div>
                     <div>Choose a delivery option</div>
 
+                <form>
+                        <div className="delivery__option">    
+                                <input type="checkbox" 
+                                       name="cheapest" 
+                                       value="cheapest"
+                                       checked={this.state.firstOption}
+                                       onClick={this.toggle.bind(this)}/>
 
-                    <div className="delivery__option">    
-                            <input type="checkbox" id="1st" name="1st"
-                                    checked />
-                            <label for="1st">
-                                <div>Wednesday, Aug. 14 - Tuesday, Aug. 20</div>
-                                <div>$10</div>
-                            </label>
-                    </div>
+                                <label for="cheapest">
+                                    <div>Wednesday, Aug. 14 - Tuesday, Aug. 20</div>
+                                    <div>$10</div>
+                                </label>
+                        </div>
 
-                    <div className="delivery__option">     
-                            <input type="checkbox" id="second" name="second"/>
-                            <label for="second">
-                                <div>Monday, Aug. 5</div>
-                                <div>$20</div>
-                            </label>
-                    </div>
+                        <div className="delivery__option">     
+                                <input type="checkbox" 
+                                       name="fastest" 
+                                       value="fastest"
+                                       checked={this.state.secondOption}
+                                       onClick={this.toggle.bind(this)}/>
 
-                    <Button>
-                        Next
-                    </Button>
+                                <label for="fastest">
+                                    <div>Monday, Aug. 5</div>
+                                    <div>$20</div>
+                                </label>
+                        </div>
+                        <Button type="submit">
+                                Next
+                        </Button>
+                </form>
+                    
+
+                    
 
                 </section>
             </div>
