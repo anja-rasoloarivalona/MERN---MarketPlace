@@ -170,3 +170,5 @@ export const clearProductsInCart = () => {
         type: actionTypes.CLEAR_PRODUCTS_IN_CART
     }
 }
+
+

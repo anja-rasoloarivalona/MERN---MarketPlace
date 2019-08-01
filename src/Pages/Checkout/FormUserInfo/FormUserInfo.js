@@ -148,7 +148,6 @@ class FormUserInfo extends Component {
                             label="address line 2 :"
                             type="text"
                             control="input"
-                            required={true}
                             value={this.state.postUserInfo['address2'].value}
                             onChange={this.postUserFormChangeHandler}
                         />

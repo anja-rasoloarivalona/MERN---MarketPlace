@@ -5,16 +5,55 @@ import IconSvg from '../../util/svgHandler';
 import FormUserInfo from './FormUserInfo/FormUserInfo';
 import Delivery from './Delivery/Delivery';
 import Payment from './Payment/Payment';
+import Button from '../../components/Button/Button';
 
 class Checkout extends Component {
 
     state = {
-        currentPage: 'checkout'
+        currentPage: 'checkout',
+        addresses: []
     }
 
-    componentWillMount(){
-        window.scroll(0, 0)
+    componentDidMount(){
+        window.scroll(0, 0);
+        console.log('checkout did mount')
+        this.loadAdressHandler();
     }
+
+
+
+    loadAdressHandler = () => {
+        const token = localStorage.getItem('token');
+
+        if(token) {
+            console.log('fetch happengin');
+
+                    fetch('http://localhost:8000/address/',
+                    {   
+                        headers: {
+                            Authorization: 'Bearer ' + token
+                        }
+                    })
+                    .then(res => {
+                        if(res.status !== 200){
+                            throw new Error('Failed to fectch adresses')
+                        }
+                        return  res.json();
+                    })
+                    .then( resData => {
+                        console.log(resData);
+
+                        this.setState({
+                            addresses: resData.addresses
+                        }, console.log('after fetch', this.state.addresses))
+                    })
+                    .catch( err => {
+                        console.log(err)
+                    })
+            }
+        
+    }
+
 
     updatePage = nextPage => {
         this.setState({
@@ -24,6 +63,48 @@ class Checkout extends Component {
 
 
     render() {
+
+        let addresses;
+
+        if(this.state.addresses) {
+            
+            addresses = (
+                <section className="checkout__addresses">
+                    {
+                        this.state.addresses.map( address => (
+                            <article className="checkout__addresses__item">
+
+                            <div className="checkout__addresses__item__details">
+                                <div className="checkout__addresses__item__name">{address.fullname}</div>
+                                <div>{address.address1}</div>
+                                <div>{address.address2}</div> 
+                                <div>{address.city}, {address.zip}</div>
+                                <div>{address.state}</div>
+                                <div>email: {address.email}</div>
+                                <div>tel: {address.phoneNumber}</div>
+                            </div>
+                                
+
+
+                                <button className="checkout__addresses__item__choose">
+                                    Deliver
+                                </button>
+                                <div className="checkout__addresses__item__cta">
+                                    <Button color="grey">
+                                        Edit
+                                    </Button>
+                                    <Button color="grey">
+                                        Delete
+                                    </Button>
+                                </div>
+                            </article>
+                ))
+                    }
+                </section>
+            )}
+        
+
+
         return (
             <div className="checkout">
                 <div className="checkout__steps">
@@ -50,6 +131,9 @@ class Checkout extends Component {
                         <div>Validation</div>
                     </div>
                 </div>
+                
+                
+                {addresses}
 
                 {
                     this.state.currentPage === 'checkout' && (

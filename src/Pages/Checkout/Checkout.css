@@ -127,6 +127,66 @@
     text-transform: uppercase;
 }
 
+.checkout__addresses {
+    width: 100%;
+    margin: 2rem 0;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 30rem);
+    grid-template-rows: repeat(auto-fit, 30rem );
+    grid-auto-rows: 30rem;
+    column-gap: 12rem;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.checkout__addresses__item {
+    padding: 1rem;
+    width: 100%;
+   height: 23rem;
+}
+
+.checkout__addresses__item__details {
+    height: 50%;
+}
+
+.checkout__addresses__item__details div:not(:first-child){
+    font-size: 1.1rem;
+    line-height: 1.3;
+}
+
+.checkout__addresses__item__name {
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.checkout__addresses__item__choose {
+    margin: 2rem 0;
+    width: 100%;
+    padding: 1rem 0;
+    border-radius: 3px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: 1px solid var(--color-primary);
+}
+
+.checkout__addresses__item__choose:hover,
+.checkout__addresses__item__choose:active {
+        background: var(--color-secondary);
+        border: 1px solid var(--color-secondary);
+        color: var(--color-white);
+    }
+
+.checkout__addresses__item__cta {
+    display: flex;
+    justify-content: space-around;
+}
+
+
 
 
 
