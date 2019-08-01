@@ -9,7 +9,7 @@ import Payment from './Payment/Payment';
 class Checkout extends Component {
 
     state = {
-        currentPage: 'checkout'
+        currentPage: 'payment'
     }
 
     componentWillMount(){

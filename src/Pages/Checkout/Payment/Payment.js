@@ -17,7 +17,18 @@ class Payment extends Component {
                 <section>
                     <div className="checkout__title__primary">YOUR CART</div>
 
-                    
+                    {this.props.products.map( prod => (
+                        <div className="checkout__product">
+                            <div>{prod.title}</div>
+                            <div>${prod.price}</div>
+                        </div>
+                    ))}
+
+
+                    <div>Subtotal: ${this.props.subTotalPrice}</div>
+                    <div>Taxes: ${this.props.taxes}</div>
+                    <div>Delivery fee: $10</div>
+                    <div>Total: $900</div>
                 </section>
             </div>
         )
@@ -26,7 +37,9 @@ class Payment extends Component {
 
 const mapStateToProps = state => {
     return  {
-        products: state.cart.products
+        products: state.cart.products,
+        subTotalPrice: state.cart.subTotalPrice,
+        taxes: state.cart.taxes,
     }
 }
 
