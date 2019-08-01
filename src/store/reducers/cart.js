@@ -20,6 +20,8 @@ const addProductToCart = (state, action) => {
         image: action.image
         }
     ]
+
+
     let count = state.totalProductsCount + 1;
     let subTotalPrice = state.subTotalPrice + action.price;
     let taxes = subTotalPrice  * state.taxRate;
@@ -31,6 +33,25 @@ const addProductToCart = (state, action) => {
                 subTotalPrice: subTotalPrice,
                 taxes: taxes,
                 totalPrice: totalPrice
+    })
+}
+
+const delelteProduct = (state, action) => {
+    let updatedProducts = state.products.filter(prod => prod.productId !== action.id);
+
+    let count = state.totalProductsCount - 1;
+
+    let subTotalPrice = state.subTotalPrice - action.price;
+    let taxes = subTotalPrice * state.taxRate;
+    let totalPrice = subTotalPrice + taxes
+
+
+    return updatedObject(state, {
+        products: updatedProducts,
+        totalProductsCount: count,
+        subTotalPrice: subTotalPrice,
+        taxes: taxes,
+        totalPrice: totalPrice
     })
 }
 
@@ -80,6 +101,7 @@ const reducer = (state = initialState, action ) => {
         case actionTypes.ADD_PRODUCT_TO_CART: return addProductToCart(state, action);
         case actionTypes.SET_PRODUCTS_TO_CART: return setProductsToCart(state, action);
         case actionTypes.CLEAR_PRODUCTS_IN_CART: return clearCart(state, action);
+        case actionTypes.DELETE_PRODUCT: return delelteProduct(state, action)
         
         default: return state
     }

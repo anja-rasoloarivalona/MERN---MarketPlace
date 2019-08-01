@@ -11,6 +11,14 @@ class Cart extends Component {
         window.scrollTo(0, 0);
     }
 
+    deleteProductHandler(data){
+        let productsInCart = JSON.parse(localStorage.getItem('productsInCart'));
+        let updatedProductsInCart =  productsInCart.filter( prod =>  prod.productId !== data.productId)
+        localStorage.setItem('productsInCart', JSON.stringify(updatedProductsInCart));
+
+        this.props.deleteProduct(data.productId, data.price)
+    }
+
     render() {
         return (
             <Fragment>
@@ -32,6 +40,7 @@ class Cart extends Component {
                                 category={product.category}
                                 description={product.description}
                                 imageUrl= {image}
+                                onDelete={this.deleteProductHandler.bind(this, product)}
                             />
                         )
                 }
@@ -75,7 +84,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        clearProductsInCart: () => dispatch(actions.clearProductsInCart())
+        clearProductsInCart: () => dispatch(actions.clearProductsInCart()),
+        deleteProduct: (id, price) => dispatch(actions.deleteProduct(id, price))
     }
 }
 

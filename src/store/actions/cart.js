@@ -13,6 +13,14 @@ export const addProductToCart = (id, title, description, category, price, image)
     }
 }
 
+export const deleteProduct = (id, price) =>{
+    return {
+        type: actionTypes.DELETE_PRODUCT,
+        id: id,
+        price: price
+    }
+}
+
 export const setProductsToCart = (data, auth) => {
     if(auth){
         return {
@@ -75,6 +83,7 @@ export const setProductsInCart = (products, token, userId) => {
     }
 
 }
+
 
 
 

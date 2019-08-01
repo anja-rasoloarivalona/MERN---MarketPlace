@@ -58,7 +58,7 @@ const product = props => {
                             color="primary">
                             View details
                         </Button>
-                        <Button>
+                        <Button onClick={props.onDelete}>
                             Delete
                         </Button>
                     </div>

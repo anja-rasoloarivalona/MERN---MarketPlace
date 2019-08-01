@@ -9,6 +9,7 @@ export {
 
 export {
     addProductToCart,
+    deleteProduct,
     setProductsInCart,
     clearProductsInCart
 } from './cart';
