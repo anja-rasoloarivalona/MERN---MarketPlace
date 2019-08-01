@@ -9,7 +9,7 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import IconSvg from '../../../util/svgHandler';
 import Spinner from '../../../components/Spinner/Spinner';
 import { connect } from 'react-redux';
-import * as authActions from '../../../store/actions/index';
+import * as actions from '../../../store/actions/index';
 
 
 class Login extends Component {
@@ -79,23 +79,21 @@ class Login extends Component {
         })
 
         .then(resData => {
-
-        /*    this.setState({
-                token: resData.token,
-                userId: resData.userId,
-                loading: false
-            });*/
             this.props.loginSucceeded(resData);
-
-       /*     this.props.onUpdateState({token: this.state.token, 
-                                    userId: this.state.userId})*/
-
             localStorage.setItem('token', resData.token);
             localStorage.setItem('userId', resData.userId);
             const remainingMilliseconds = 60 * 60 * 1000; 
             const expiryDate = new Date(  new Date().getTime() + remainingMilliseconds  );
-            localStorage.setItem('expiryDate', expiryDate.toISOString());
-            this.props.history.replace('/admin/products');
+            localStorage.setItem('expiryDate', expiryDate.toISOString());         
+        })
+        .then(() => {
+            let productsInCart = JSON.parse(localStorage.getItem('productsInCart'));
+            if(productsInCart){
+                const token = localStorage.getItem('token');
+                const connectedUserId = localStorage.getItem('userId');
+                this.props.setProductsInCart(productsInCart, token, connectedUserId);
+            }
+            this.props.history.replace('/admin/products');           
         })
         .catch(err => {
             let error = []
@@ -195,8 +193,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        loginSucceeded: (data) => dispatch(authActions.loginSucceeded(data)),
-        loginFailed: () => dispatch(authActions.loginFailed())
+        loginSucceeded: (data) => dispatch(actions.loginSucceeded(data)),
+        loginFailed: () => dispatch(actions.loginFailed()),
+
+        setProductsInCart: (products, token, userId) => dispatch(actions.setProductsInCart(products, token, userId))
     }
 }
 
