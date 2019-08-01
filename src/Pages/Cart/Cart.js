@@ -19,6 +19,7 @@ class Cart extends Component {
         this.props.deleteProduct(data.productId, data.price)
     }
 
+
     render() {
         return (
             <Fragment>

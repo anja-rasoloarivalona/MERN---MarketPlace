@@ -90,6 +90,34 @@ export const setProductsInCart = (products, token, userId) => {
 
 export const clearProductsInCart = () => {
     localStorage.removeItem('productsInCart');
+
+    const token = localStorage.getItem('token');
+    const connectedUserId = localStorage.getItem('userId');
+
+    if(token && connectedUserId){
+        fetch('http://localhost:8000/cart/' +
+                     '?userId=' + connectedUserId , {
+                method: 'DELETE',
+                headers: {
+                    Authorization: 'Bearer ' + token,
+                }
+        })
+        .then(res => {
+            if(res.status !== 200 && res.status !==201){
+                throw new Error('Clearing cart failed')
+            }
+            return res.json();
+        })
+        .then(resData => {
+            console.log(resData)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+    }
+
+
     return {
         type: actionTypes.CLEAR_PRODUCTS_IN_CART
     }
