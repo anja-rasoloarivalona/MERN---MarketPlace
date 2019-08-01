@@ -2,6 +2,33 @@ import * as actionTypes from './actionsTypes';
 
 
 export const addProductToCart = (id, title, description, category, price, image) => {
+
+    const token = localStorage.getItem('token');
+
+    if(token){
+        fetch('http://localhost:8000/cart/add-product/' + id, {
+        method: 'POST',
+        headers: {
+        Authorization: 'Bearer ' + token,
+            }
+        })
+        .then(res => {
+            if(res.status !== 200 && res.status !==201){
+                throw new Error('Adding product failed')
+            }
+
+            return res.json();
+        })
+        .then(result => {
+            console.log(result)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+    }
+
+
     return {
         type: actionTypes.ADD_PRODUCT_TO_CART,
         id: id,
@@ -42,9 +69,9 @@ export const setProductsToCart = (data, auth) => {
     
 }
 
-export const setProductsInCart = (products, token, userId) => {
+export const setProductsInCart = (products, token) => {
 
-    if(token && userId){
+    if(token){
 
         return dispatch => {
 
@@ -53,8 +80,7 @@ export const setProductsInCart = (products, token, userId) => {
             let data = new FormData();
             data.append('products', JSON.stringify(products))
 
-            fetch('http://localhost:8000/cart/' +
-                     '?userId=' + userId , {
+            fetch('http://localhost:8000/cart/', {
                 method: 'POST',
                 headers: {
                     Authorization: 'Bearer ' + token,
@@ -90,13 +116,11 @@ export const setProductsInCart = (products, token, userId) => {
 
 export const clearProductsInCart = () => {
     localStorage.removeItem('productsInCart');
-
     const token = localStorage.getItem('token');
-    const connectedUserId = localStorage.getItem('userId');
 
-    if(token && connectedUserId){
-        fetch('http://localhost:8000/cart/' +
-                     '?userId=' + connectedUserId , {
+
+    if(token){
+        fetch('http://localhost:8000/cart/', {
                 method: 'DELETE',
                 headers: {
                     Authorization: 'Bearer ' + token,

@@ -66,7 +66,11 @@ class App extends Component {
 
       /* We reach thoses lines if the user is still connected */
       this.props.setLoginStateToTrue(true, token, connectedUserId );
-      this.props.setProductsInCart(productsInCart, token, connectedUserId);  
+
+      if(productsInCart){
+        this.props.setProductsInCart(productsInCart, token);  
+      }
+     
       
       
       const remainingMilliseconds = new Date(expiryDate).getTime() - new Date().getTime();
@@ -207,7 +211,7 @@ const mapDispatchToProps = dispatch => {
     setLoginStateToTrue: (isAuth, token, userId) => dispatch(actions.setLoginStateToTrue(isAuth, token, userId)),
     setLoginStateToFalse: () => dispatch(actions.setLoginStateToFalse()),
 
-    setProductsInCart: (products, token, userId) => dispatch(actions.setProductsInCart(products, token, userId)),
+    setProductsInCart: (products, token) => dispatch(actions.setProductsInCart(products, token)),
     clearProductsInCart: () => dispatch(actions.clearProductsInCart())
 
 
