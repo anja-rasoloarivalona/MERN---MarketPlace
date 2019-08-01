@@ -36,7 +36,7 @@ class AddProduct extends Component {
     
 
     componentWillMount(){     
-        console.log('Edit Mounted')
+
         if(this.props.editingMode){
             const postProduct = {
                 title: {
