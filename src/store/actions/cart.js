@@ -41,6 +41,30 @@ export const addProductToCart = (id, title, description, category, price, image)
 }
 
 export const deleteProduct = (id, price) =>{
+
+    const token = localStorage.getItem('token');
+    if(token){
+        fetch('http://localhost:8000/cart/delete-product/' + id, {
+            method: 'POST',
+            headers: {
+            Authorization: 'Bearer ' + token,
+                }
+            })
+        .then(res => {
+            if(res.status !== 200 && res.status !==201){
+                throw new Error('Deleting product failed')
+            }
+
+            return res.json();
+        })
+        .then(result => {
+            console.log(result)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
     return {
         type: actionTypes.DELETE_PRODUCT,
         id: id,
