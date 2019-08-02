@@ -87,8 +87,6 @@ export const updateCheckoutStep = nextStep => {
 }
 
 export const selectDeliveryHandler = (data) => {
-
-    console.log('from action', data)
     return {
         type: actionTypes.ADD_DELIVERY_INFO,
         data: data

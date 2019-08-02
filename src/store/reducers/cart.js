@@ -121,8 +121,13 @@ const addDeliveryInfo = (state, action) => {
         date: action.data.date,
         price: action.data.price
     })
+
+    let totalPrice = state.totalPrice + action.data.price;
+
     return updatedObject(state, {
-        deliveryInfos: updatedDeliveryInfo
+        deliveryInfos: updatedDeliveryInfo,
+        totalPrice: totalPrice
+
     } )
 }
 
