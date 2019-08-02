@@ -69,10 +69,17 @@ export const updateCurrentPage = page => {
 
 export const paginationHandler = (val, history,category,  sortBy, currentPage, direction) => {
     let page;
+
+    console.log('pagination action', direction)
+
     if(direction === 'previous') {
         page = currentPage - 1
     } else {
-        page = currentPage + 1
+        if(direction === 'next'){
+            page = currentPage + 1
+        } else {
+            page = direction
+        }
     }
 
     return dispatch => {

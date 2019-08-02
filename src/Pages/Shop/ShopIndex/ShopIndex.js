@@ -156,7 +156,12 @@ import * as shopActions from '../../../store/actions/index';
                     <Paginator  onRequestPreviousPage={this.paginationHandler.bind(this, 'previous')}
                                 onRequestNextPage={this.paginationHandler.bind(this, 'next')}
                                 lastPage={Math.ceil(this.props.totalProducts / 10)}
-                                currentPage={this.props.currentPage}>
+                                currentPage={this.props.currentPage}
+
+                                onRequestPageNumber={this.paginationHandler}
+                                >
+                                
+
                                 {this.props.products.map( product => {
                                     let fulldate =  new Date(product.createdAt).toLocaleString();
                                     return ( 
