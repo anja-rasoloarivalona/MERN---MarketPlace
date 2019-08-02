@@ -8,7 +8,9 @@ const initialState = {
     taxes: 0,
     totalPrice: 0,
     taxRate: 0.15,
-    userInfos: []
+    userInfos: [],
+    deliveryInfos: [],
+    checkoutStep: 'checkout'
 }
 
 const addProductToCart = (state, action) => {
@@ -93,7 +95,8 @@ const clearCart = (state, action ) => {
         taxes: 0,
         totalPrice: 0,
         taxRate: 0.15,
-        userInfos: []
+        userInfos: [],
+        deliveryInfos: []
     })
 }
 
@@ -113,14 +116,26 @@ const addUserInfo = (state, action) => {
     })
 }
 
+const addDeliveryInfo = (state, action) => {
+    let updatedDeliveryInfo = updatedObject(state.deliveryInfos,{
+        date: action.data.date,
+        price: action.data.price
+    })
+    return updatedObject(state, {
+        deliveryInfos: updatedDeliveryInfo
+    } )
+}
+
 
 const reducer = (state = initialState, action ) => {
     switch(action.type){
         case actionTypes.ADD_PRODUCT_TO_CART: return addProductToCart(state, action);
         case actionTypes.SET_PRODUCTS_TO_CART: return setProductsToCart(state, action);
         case actionTypes.CLEAR_PRODUCTS_IN_CART: return clearCart(state, action);
-        case actionTypes.DELETE_PRODUCT: return delelteProduct(state, action)
-        case actionTypes.ADD_USER_INFO: return addUserInfo(state, action)
+        case actionTypes.DELETE_PRODUCT: return delelteProduct(state, action);
+        case actionTypes.ADD_USER_INFO: return addUserInfo(state, action);
+        case actionTypes.ADD_DELIVERY_INFO: return addDeliveryInfo(state, action);
+        case actionTypes.UPDATE_CHECKOUT_STEP: return updatedObject(state, {checkoutStep: action.nextStep})
         
         default: return state
     }

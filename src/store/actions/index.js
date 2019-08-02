@@ -12,7 +12,9 @@ export {
     deleteProduct,
     setProductsInCart,
     clearProductsInCart,
-    selectAddressHandler
+    selectAddressHandler,
+    selectDeliveryHandler,
+    updateCheckoutStep
 } from './cart';
 
 export {

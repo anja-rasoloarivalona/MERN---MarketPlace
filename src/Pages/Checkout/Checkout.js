@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import './Checkout.css';
 import IconSvg from '../../util/svgHandler';
 import { connect } from 'react-redux';
+import {Route, Switch } from 'react-router-dom';
 import * as actions from '../../store/actions/index'
 import FormUserInfo from './FormUserInfo/FormUserInfo';
 import Delivery from './Delivery/Delivery';
@@ -11,7 +12,7 @@ import Button from '../../components/Button/Button';
 class Checkout extends Component {
 
     state = {
-        currentPage: 'checkout',
+        currentPage: this.props.currentCheckoutStep,
         addresses: []
     }
 
@@ -55,16 +56,23 @@ class Checkout extends Component {
         
     }
 
+   /* shouldComponentUpdate(nextProps){
+        const step = this.props.currentCheckoutStep !== nextProps.currentCheckoutStep;
+        return step
+    }*/
 
-    updatePage = nextPage => {
-        this.setState({
-            currentPage: nextPage
-        }, console.log('state', this.state.currentPage))
-    }
+    componentWillReceiveProps(nextProps){
+        this.setState({currentPage: nextProps.currentCheckoutStep},
+  )}
+
+ 
 
     selectAdressHander(data){
         this.props.selectAddressHandler(data);
-        this.setState({currentPage: 'delivery'})   
+        this.props.updateCheckoutStep('delivery'); 
+        this.setState({
+            currentCheckoutStep: 'delivery'
+        })
     }
 
     render() {
@@ -108,10 +116,13 @@ class Checkout extends Component {
                     }
                 </section>
             )}
+
         
 
 
         return (
+
+            
             <div className="checkout">
                 <div className="checkout__steps">
                     <div className="checkout__steps__line">
@@ -137,24 +148,21 @@ class Checkout extends Component {
                         <div>Validation</div>
                     </div>
                 </div>
-                
-                
-                
 
-                {                  
+                {                
                     this.state.currentPage === 'checkout' && (
                         <Fragment>
                             {addresses}
-                            <FormUserInfo 
-                            onValidate={this.updatePage} />
+                            <FormUserInfo />
                         </Fragment>
                     )
                 }
 
+
+
                 {
                     this.state.currentPage === 'delivery' && (
-                        <Delivery 
-                        onValidate={this.updatePage}/>
+                        <Delivery />
                     )
                 }
 
@@ -181,13 +189,16 @@ const mapStateToProps = state => {
         subTotalPrice: state.cart.subTotalPrice,
         taxes: state.cart.taxes,
         totalPrice: state.cart.totalPrice,
-        userInfos: state.cart.userInfos
+        userInfos: state.cart.userInfos,
+
+        currentCheckoutStep: state.cart.checkoutStep
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        selectAddressHandler: (data) => dispatch(actions.selectAddressHandler(data) )
+        selectAddressHandler: (data) => dispatch(actions.selectAddressHandler(data) ),
+        updateCheckoutStep: (nextStep) => dispatch(actions.updateCheckoutStep(nextStep))
     }
 }
 

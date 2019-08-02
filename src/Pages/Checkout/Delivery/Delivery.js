@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './Delivery.css';
 import Button from '../../../components/Button/Button';
 import UserInfo from '../Recap/UserInfo/UserInfo';
+import { connect } from 'react-redux';
+import * as actions from '../../../store/actions/index';
 
 const WEEKDAY = new Array(7)
 WEEKDAY[0] =  "Sunday";
@@ -28,6 +30,9 @@ WEEKDAY[6] = "Saturday";
     }
 
     componentWillMount(){ 
+
+        console.log(this.props);
+        
         let today = new Date();
 
         let cheapestFirstDate = new Date();
@@ -85,9 +90,6 @@ WEEKDAY[6] = "Saturday";
                     date: fastestDeliveryMethod[0],
                     price: fastestDeliveryMethod[1]
             }
-
-        }, () => {
-            console.log(this.state)
         })  
     }
 
@@ -117,13 +119,22 @@ WEEKDAY[6] = "Saturday";
                 },
                 firstOption: !this.state.firstOption,
                 secondOption: !this.state.secondOption
-            }), () => {
-                console.log(this.state.delivery)
-            })
-            
-            
+            }))      
     }
 
+
+    confirmDeliveryHandler = (e) => {
+        e.preventDefault();
+
+        const deliveryMethod = {
+            date: this.state.delivery.date,
+            price: this.state.delivery.price
+        }
+        this.props.selectDeliveryHandler(deliveryMethod);
+        this.props.updateCheckoutStep('payment');
+
+        
+    }
 
     render() {
 
@@ -134,7 +145,7 @@ WEEKDAY[6] = "Saturday";
                     <div className="checkout__title__primary">DELIVERY METHOD</div>
                     <div>Choose a delivery option</div>
 
-                <form>
+                <form onSubmit={this.confirmDeliveryHandler}>
                         <div className="delivery__option">    
                                 <input type="checkbox" 
                                        name="cheapest" 
@@ -161,8 +172,7 @@ WEEKDAY[6] = "Saturday";
                                 </label>
                         </div>
                         <Button type="submit"
-                                color="primary"
-                                onClick={this.props.onValidate.bind(this, 'payment')}>
+                                color="primary">
                                 Next
                         </Button>
                 </form>
@@ -176,4 +186,12 @@ WEEKDAY[6] = "Saturday";
     }
 }
 
-export default Delivery;
+const mapDispatchToProps = dispatch => {
+    return {
+        selectDeliveryHandler: (data) => dispatch(actions.selectDeliveryHandler(data)),
+        updateCheckoutStep: (nextStep) => dispatch(actions.updateCheckoutStep(nextStep))
+    }
+
+}
+
+export default connect(null, mapDispatchToProps)(Delivery);

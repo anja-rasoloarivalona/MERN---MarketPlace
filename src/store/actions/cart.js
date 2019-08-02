@@ -79,6 +79,22 @@ export const selectAddressHandler = (data) => {
     }
 }
 
+export const updateCheckoutStep = nextStep => {
+    return {
+        type: actionTypes.UPDATE_CHECKOUT_STEP,
+        nextStep: nextStep
+    }
+}
+
+export const selectDeliveryHandler = (data) => {
+
+    console.log('from action', data)
+    return {
+        type: actionTypes.ADD_DELIVERY_INFO,
+        data: data
+    }
+}
+
 export const setProductsToCart = (data, auth) => {
     if(auth){
         return {
