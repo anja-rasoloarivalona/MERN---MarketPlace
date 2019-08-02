@@ -14,7 +14,9 @@ export {
     clearProductsInCart,
     selectAddressHandler,
     selectDeliveryHandler,
-    updateCheckoutStep
+    updateCheckoutStep,
+
+    postOrder
 } from './cart';
 
 export {

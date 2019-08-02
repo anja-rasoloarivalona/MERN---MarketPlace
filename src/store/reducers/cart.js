@@ -102,6 +102,7 @@ const clearCart = (state, action ) => {
 
 const addUserInfo = (state, action) => {
     let updatedUserInfo = updatedObject(state.userInfos, {
+        _id: action.data._id,
         fullname: action.data.fullname,
         address1: action.data.address1,
         address2: action.data.address2,

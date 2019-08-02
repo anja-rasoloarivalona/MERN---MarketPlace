@@ -40,6 +40,48 @@ export const addProductToCart = (id, title, description, category, price, image)
     }
 }
 
+export const postOrder = (paymentData) => {
+
+    const token = localStorage.getItem('token');
+    const formOrderData = new FormData();
+
+    formOrderData.append('address', paymentData.address);
+    formOrderData.append('products', paymentData.products);
+    formOrderData.append('deliveryDate', paymentData.deliveryDate);
+    formOrderData.append('subTotalPrice', paymentData.subTotalPrice);
+    formOrderData.append('taxes', paymentData.taxes);
+    formOrderData.append('deliveryPrice', paymentData.deliveryPrice);
+    formOrderData.append('totalPrice', paymentData.totalPrice);
+    formOrderData.append('totalProductsCount', paymentData.totalProductsCount);
+
+    if(token){
+        fetch('http://localhost:8000/cart/order/' , {
+            headers: {
+                Authorization: 'Bearer ' + token
+            },
+            method: 'POST',
+            body: formOrderData
+        })
+        .then(res => {
+            if(res.status !== 200 && res.status !==201){
+                throw new Error('Creating a post failed')
+            }
+
+            return res.json();
+       })
+       .then( resData => {
+           console.log(resData)
+       })
+       .catch(err => {
+           console.log(err)
+       })
+    }
+    
+
+
+
+}
+
 export const deleteProduct = (id, price) =>{
 
     const token = localStorage.getItem('token');
