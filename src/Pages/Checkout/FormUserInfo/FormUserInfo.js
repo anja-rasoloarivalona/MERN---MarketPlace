@@ -205,7 +205,7 @@ class FormUserInfo extends Component {
                         <Button //onClick={this.props.onValidate.bind(this, 'delivery')}
                                 color="primary"
                                 type="submit">
-                            Next
+                            Add
                         </Button>
                     </form>
                 

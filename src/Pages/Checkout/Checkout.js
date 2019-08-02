@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './Checkout.css';
 import IconSvg from '../../util/svgHandler';
-
+import { connect } from 'react-redux';
+import * as actions from '../../store/actions/index'
 import FormUserInfo from './FormUserInfo/FormUserInfo';
 import Delivery from './Delivery/Delivery';
 import Payment from './Payment/Payment';
@@ -16,10 +17,10 @@ class Checkout extends Component {
 
     componentDidMount(){
         window.scroll(0, 0);
-        console.log('checkout did mount')
         this.loadAdressHandler();
     }
 
+  
 
 
     loadAdressHandler = () => {
@@ -61,6 +62,10 @@ class Checkout extends Component {
         }, console.log('state', this.state.currentPage))
     }
 
+    selectAdressHander(data){
+        this.props.selectAddressHandler(data);
+        this.setState({currentPage: 'delivery'})   
+    }
 
     render() {
 
@@ -86,8 +91,9 @@ class Checkout extends Component {
                                 
 
 
-                                <button className="checkout__addresses__item__choose">
-                                    Deliver
+                                <button className="checkout__addresses__item__choose"
+                                        onClick={this.selectAdressHander.bind(this, address)}>
+                                    Select
                                 </button>
                                 <div className="checkout__addresses__item__cta">
                                     <Button color="grey">
@@ -133,12 +139,15 @@ class Checkout extends Component {
                 </div>
                 
                 
-                {addresses}
+                
 
-                {
+                {                  
                     this.state.currentPage === 'checkout' && (
-                        <FormUserInfo 
-                        onValidate={this.updatePage} />
+                        <Fragment>
+                            {addresses}
+                            <FormUserInfo 
+                            onValidate={this.updatePage} />
+                        </Fragment>
                     )
                 }
 
@@ -165,5 +174,22 @@ class Checkout extends Component {
     }
 }
 
-export default Checkout;
+const mapStateToProps = state => {
+    return {
+        products: state.cart.products,
+        totalProductsCount: state.cart.totalProductsCount,
+        subTotalPrice: state.cart.subTotalPrice,
+        taxes: state.cart.taxes,
+        totalPrice: state.cart.totalPrice,
+        userInfos: state.cart.userInfos
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        selectAddressHandler: (data) => dispatch(actions.selectAddressHandler(data) )
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
 

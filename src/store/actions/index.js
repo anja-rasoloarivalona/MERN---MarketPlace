@@ -11,7 +11,8 @@ export {
     addProductToCart,
     deleteProduct,
     setProductsInCart,
-    clearProductsInCart
+    clearProductsInCart,
+    selectAddressHandler
 } from './cart';
 
 export {

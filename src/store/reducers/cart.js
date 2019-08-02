@@ -7,7 +7,8 @@ const initialState = {
     subTotalPrice: 0,
     taxes: 0,
     totalPrice: 0,
-    taxRate: 0.15
+    taxRate: 0.15,
+    userInfos: []
 }
 
 const addProductToCart = (state, action) => {
@@ -91,7 +92,24 @@ const clearCart = (state, action ) => {
         subTotalPrice: 0,
         taxes: 0,
         totalPrice: 0,
-        taxRate: 0.15
+        taxRate: 0.15,
+        userInfos: []
+    })
+}
+
+const addUserInfo = (state, action) => {
+    let updatedUserInfo = updatedObject(state.userInfos, {
+        fullname: action.data.fullname,
+        address1: action.data.address1,
+        address2: action.data.address2,
+        city: action.data.city,
+        state: action.data.state,
+        zip: action.data.zip,
+        email: action.data.email,
+        phoneNumber: action.data.phoneNumber
+    })
+    return updatedObject(state, {
+        userInfos: updatedUserInfo
     })
 }
 
@@ -102,6 +120,7 @@ const reducer = (state = initialState, action ) => {
         case actionTypes.SET_PRODUCTS_TO_CART: return setProductsToCart(state, action);
         case actionTypes.CLEAR_PRODUCTS_IN_CART: return clearCart(state, action);
         case actionTypes.DELETE_PRODUCT: return delelteProduct(state, action)
+        case actionTypes.ADD_USER_INFO: return addUserInfo(state, action)
         
         default: return state
     }

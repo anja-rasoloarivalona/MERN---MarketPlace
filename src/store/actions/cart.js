@@ -72,6 +72,13 @@ export const deleteProduct = (id, price) =>{
     }
 }
 
+export const selectAddressHandler = (data) => {
+    return {
+        type: actionTypes.ADD_USER_INFO,
+        data: data
+    }
+}
+
 export const setProductsToCart = (data, auth) => {
     if(auth){
         return {
