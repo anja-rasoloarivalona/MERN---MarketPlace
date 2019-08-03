@@ -1,0 +1,26 @@
+.admin {
+    grid-row: 3 / 4;
+    grid-column: center-start / center-end;
+    min-height: calc(100vh - 8rem);
+}
+
+.admin__nav {
+    width: 30rem;
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+}
+
+.admin__nav__link {
+    background: salmon;
+    text-decoration: none;
+    font-size: 1.3rem;
+    padding: 1rem 0;
+    text-align: center;
+    margin: .4rem;
+    transform: translateY(-25%);
+    width: 80%;
+}

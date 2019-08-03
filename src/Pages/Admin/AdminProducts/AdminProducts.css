@@ -1,6 +1,5 @@
 .admin-products {
-    grid-row: 3 / 4;
-    grid-column: col-start 2 / col-end 4;
+    width: calc(100% - 30rem);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,6 +7,7 @@
     position: relative;
     background: rgb(245, 245, 241);
     min-height: calc(100vh - 8rem);
+    transform: translateX(30rem);
 }
 
 @media (max-width: 1060px) {
@@ -18,10 +18,10 @@
 }
 
 .admin-add-products {
-    position: fixed;
-    top: 10rem;
-    left: 4rem;
     display: block;
+    margin: 2rem 0;
+    align-self: flex-start;
+    margin-left: 3rem;
 }
 
 .no-product {

@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './NavigationItems.css';
 
 const navListItems = [
-    {id: 'admin-products', text: 'Admin', link:'/admin/products', auth: true},
+    {id: 'admin', text: 'Admin', link:'/admin', auth: true},
     {id: 'login', text: 'Login', link:'/login', auth: false},
     {id: 'signup', text: 'Signup', link:'/signup', auth: false},
    

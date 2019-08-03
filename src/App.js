@@ -16,7 +16,9 @@ import Footer from './components/Footer/Footer';
 
 /*------------Pages-----------------*/
 import ShopIndex from './Pages/Shop/ShopIndex/ShopIndex';
+import AdminIndex from './Pages/Admin/Admin/Admin';
 import AdminProducts from './Pages/Admin/AdminProducts/AdminProducts';
+
 import AuthSignup from './Pages/Auth/Signup/Signup';
 import AuthLogin from './Pages/Auth/Login/Login';
 import SingleProduct from './Pages/SingleProduct/SingleProduct';
@@ -149,9 +151,14 @@ class App extends Component {
                 render={props => (
                   <AuthLogin {...props} onUpdateState={this.onUpdateState} />
               )}/>
+           {
+             /*
               <Route path='/admin/products' render={props => (
-                  <AdminProducts {...props} token={this.state.token}/>
-            )}/>   
+                    <AdminProducts {...props} token={this.state.token}/>
+              )}/> 
+             */
+           }    
+            <Route path="/admin" component={AdminIndex}/> 
             <Route exact path='/details/:prodId' component={SingleProduct}/>
             
             )}/>
