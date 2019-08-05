@@ -1,0 +1,6 @@
+.admin-orders {
+    width: calc(100% - 30rem);
+    background: red;
+    min-height: calc(100vh - 8rem);
+    transform: translateX(30rem);
+}

@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Admin.css';
+import Button from '../../../components/Button/Button';
 
 
 import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import Spinner from '../../../components/Spinner/Spinner';
 import Backdrop from '../../../components/Backdrop/Backdrop';
+
 import AdminProducts from '../AdminProducts/AdminProducts';
+import AdminOrders from '../AdminOrders/AdminOrders';
 
 
 
@@ -19,16 +22,25 @@ class Admin extends Component {
         loading: false,
         currentPage: 'products'
     }
+
+    updatePage = page => {
+        this.setState({
+            currentPage: page
+        })
+    }
     render() {
         return (
             <div className="admin">
                 <nav className="admin__nav">
-                    <NavLink to="admin/products"
-                             className="admin__nav__link">
+
+                    <NavLink 
+                             className="admin__nav__link"
+                             onClick={this.updatePage.bind(this, 'products')}>
                         Products
                     </NavLink>
-                    <NavLink to="admin/orders"
-                            className="admin__nav__link">
+                    <NavLink 
+                            className="admin__nav__link"
+                            onClick={this.updatePage.bind(this, 'orders')}>
                         Orders
                     </NavLink>
                 </nav>
@@ -38,6 +50,11 @@ class Admin extends Component {
                 {
                     this.state.currentPage === 'products' && (
                         <AdminProducts />
+                    )
+                }
+                {
+                    this.state.currentPage === 'orders' && (
+                        <AdminOrders />
                     )
                 }
             </div>
