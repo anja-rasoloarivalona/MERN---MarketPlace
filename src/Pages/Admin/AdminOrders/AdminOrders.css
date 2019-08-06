@@ -1,6 +1,11 @@
-.admin-orders {
+.admin-orders-container {
     width: calc(100% - 30rem);
     background: red;
     min-height: calc(100vh - 8rem);
     transform: translateX(30rem);
+
+    display: flex;
+    flex-direction: column;
+  
+    
 }

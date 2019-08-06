@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './AdminOrders.css';
-import { Connect } from 'react-redux';
+
 
 class AdminOrders extends Component {
 
@@ -40,16 +40,33 @@ class AdminOrders extends Component {
     }
     render() {
 
-        let orders = this.state.orders.map( i => {
+       let orders = this.state.orders.map( order => {
            return (
-                <div>{i.deliveryDate}</div> 
+                <div className="admin-order"
+                     key={order.shortId}>
+                    <h2>Order: {order.shortId}</h2>
+                    <div className="admin-order__products-list">
+                        {
+                            order.cart.items.map( prod => {
+                               return (
+                                   <div className="admin-order__product">
+                                       <div>{prod.product.title}</div>
+                                       <div>{prod.product.price}</div>
+                                   </div>
+                               )
+
+                            })
+                        }
+                    </div>
+                </div> 
            )
         })
 
 
         return (
-            <div className="admin-orders">
+            <div className="admin-orders-container">
                     {orders}
+                   
             </div>
         )
     }

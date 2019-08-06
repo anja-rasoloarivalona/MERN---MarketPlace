@@ -31,7 +31,7 @@ class Payment extends Component {
         const token = localStorage.getItem('token');
         const formOrderData = new FormData();
 
-    formOrderData.append('address', this.state.data.address._id);
+    formOrderData.append('address', JSON.stringify(this.state.data.address));
     formOrderData.append('products', JSON.stringify(this.state.data.products));
     formOrderData.append('deliveryDate', this.state.data.deliveryDate);
     formOrderData.append('subTotalPrice', this.state.data.subTotalPrice);
