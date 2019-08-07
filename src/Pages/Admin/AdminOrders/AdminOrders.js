@@ -86,8 +86,9 @@ class AdminOrders extends Component {
                             <div className="admin-order__title">Delivery</div>
 
                             <div className="amdin-order__delivery__details">
-                                <span>{order.address.fullname}</span>
-                                <span>{order.address.address1} {order.address.address2}</span>
+                                <div>{order.address.fullname}</div>
+                                <div>{order.address.address1}</div>
+                                <div>{order.address.address2}</div>
                                 <div>{order.address.city}, {order.address.zip}</div>
                                 <div>{order.address.state}</div>
                             </div>

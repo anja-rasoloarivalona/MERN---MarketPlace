@@ -141,7 +141,8 @@ class SingleProduct extends Component {
                         <div className="single-product__details__cta flex-centered-row">
 
                         { this.state.inCart ? (
-                                <Button color='primary'>
+                                <Button color='primary'
+                                        link='../cart'>
                                     Checkout
                                 </Button>
                             )  : (
@@ -218,10 +219,12 @@ class SingleProduct extends Component {
                                         <div className="singleProduct__modal__cart__info"><b>Total:</b> <span>${this.props.totalPrice}</span></div>
 
                                         <div className="singleProduct__modal__cart__cta flex-centered-row">
-                                            <Button color="primary">
+                                            <Button color="primary"
+                                                    link='../cart'>
                                                 Checkout
                                             </Button>
-                                            <Button color="secondary">
+                                            <Button color="secondary"
+                                                    link="../">
                                                 Shop
                                             </Button>
                                             

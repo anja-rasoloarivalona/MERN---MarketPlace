@@ -145,7 +145,6 @@ class Checkout extends Component {
                         <div>Information</div>
                         <div>Delivery</div>
                         <div>Payment</div>
-                        <div>Validation</div>
                     </div>
                 </div>
 

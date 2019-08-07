@@ -62,14 +62,13 @@
 }
 
 .checkout__steps .delivery svg {
-    left: 0;
-    right: 26%;
+    left: 3%;
+    right: 0;
     margin: auto;
 }
 
 .checkout__steps .payment svg {
-    left: 30%;
-    right: 0;
+    left: 95%;
     margin: auto;
 }
 
@@ -98,7 +97,7 @@
 }
 
 .checkout__steps__line__upper.delivery {
-    width: 37%;
+    width: 52%;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -107,7 +106,7 @@
 }
 
 .checkout__steps__line__upper.payment {
-    width: 65%;
+    width: 100%;
     position: absolute;
     top: 0;
     bottom: 0;
