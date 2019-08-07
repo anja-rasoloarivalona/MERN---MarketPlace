@@ -4,6 +4,7 @@
     transform: translateX(30rem);
     display: flex;
     flex-direction: column;
+    padding-top: 2rem;
     
 }
 

@@ -20,7 +20,7 @@ class Admin extends Component {
         showBackdrop: false,
         error: null,
         loading: false,
-        currentPage: 'products'
+        currentPage: 'orders'
     }
 
     updatePage = page => {
@@ -32,17 +32,17 @@ class Admin extends Component {
         return (
             <div className="admin">
                 <nav className="admin__nav">
-
-                    <NavLink 
-                             className="admin__nav__link"
-                             onClick={this.updatePage.bind(this, 'products')}>
-                        Products
-                    </NavLink>
-                    <NavLink 
-                            className="admin__nav__link"
+                    <Button 
+                            color='secondary'
                             onClick={this.updatePage.bind(this, 'orders')}>
                         Orders
-                    </NavLink>
+                    </Button>
+                    <Button     
+                             color='secondary'
+                             onClick={this.updatePage.bind(this, 'products')}>
+                        Products
+                    </Button>
+                    
                 </nav>
 
 

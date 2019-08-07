@@ -5,8 +5,8 @@
 }
 
 .admin__nav {
+    margin-top: 2.6rem;
     width: 30rem;
-    height: 15rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
