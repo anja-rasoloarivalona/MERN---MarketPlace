@@ -21,7 +21,7 @@ class AdminOrders extends Component {
         this.setState({loading: true})
 
         if(token){
-            fetch('http://localhost:8000/order/',
+            fetch('https://strix-market-place.herokuapp.com/order/',
         {
             headers: {
                 Authorization: 'Bearer ' + token
