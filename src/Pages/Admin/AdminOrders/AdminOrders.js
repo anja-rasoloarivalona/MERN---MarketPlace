@@ -11,6 +11,10 @@ class AdminOrders extends Component {
         loading: false,
     }
 
+    componentWillMount(){
+        window.scrollTo(0, 0);
+    }
+
     componentDidMount(){
         const token = localStorage.getItem('token');
 
