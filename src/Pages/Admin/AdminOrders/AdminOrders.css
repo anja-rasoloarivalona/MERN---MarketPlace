@@ -69,7 +69,27 @@
 
 .amdin-order__delivery__details {
     margin-bottom: 1rem;
+}
 
-    
+
+.no-order {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-align: center;
+    height: 80vh;
+}
+
+
+
+.no-order  svg{
+    fill: var(--color-primary);
+    height: 10rem;
+    width:10rem;
+    margin-bottom: 2rem;
+}
+
+.no-order  span {
+    padding: 0 .5rem;
 }
 

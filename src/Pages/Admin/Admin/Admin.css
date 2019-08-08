@@ -5,8 +5,8 @@
 }
 
 .admin__nav {
-    margin-top: 2.6rem;
-    width: 30rem;
+  /*  margin-top: 2.6rem;*/
+    width: 25rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -14,13 +14,26 @@
     position: fixed;
 }
 
-.admin__nav__link {
-    background: salmon;
+.admin__nav__button {
+    background: var(--color-secondary);
+    color: var(--color-white);
     text-decoration: none;
     font-size: 1.3rem;
     padding: 1rem 0;
     text-align: center;
-    margin: .4rem;
-    transform: translateY(-25%);
-    width: 80%;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    border-bottom: 1px solid rgb(180, 180, 180);
 }
+.admin__nav__button:focus {
+    outline: none;
+}
+
+
+.admin__nav__button:hover,
+.admin__nav__button:active,
+.admin__nav__button.active {
+    background: var(--color-primary);
+}
+

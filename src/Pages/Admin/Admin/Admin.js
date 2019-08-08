@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 import './Admin.css';
-import Button from '../../../components/Button/Button';
-
-
-import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
-import Spinner from '../../../components/Spinner/Spinner';
-import Backdrop from '../../../components/Backdrop/Backdrop';
 
 import AdminProducts from '../AdminProducts/AdminProducts';
 import AdminOrders from '../AdminOrders/AdminOrders';
@@ -32,16 +25,17 @@ class Admin extends Component {
         return (
             <div className="admin">
                 <nav className="admin__nav">
-                    <Button 
-                            color='secondary'
-                            onClick={this.updatePage.bind(this, 'orders')}>
+                    <button 
+                            onClick={this.updatePage.bind(this, 'orders')}
+                            className={["admin__nav__button", 
+                            this.state.currentPage === 'orders' ? 'active' : ' '].join(' ')}>
                         Orders
-                    </Button>
-                    <Button     
-                             color='secondary'
-                             onClick={this.updatePage.bind(this, 'products')}>
+                    </button>
+                    <button onClick={this.updatePage.bind(this, 'products')}
+                            className={["admin__nav__button", 
+                            this.state.currentPage === 'products' ? 'active' : ' '].join(' ')}>
                         Products
-                    </Button>
+                    </button>
                     
                 </nav>
 
