@@ -64,7 +64,7 @@ class FormUserInfo extends Component {
         formUserData.append('email', userInfo.email);
         formUserData.append('phoneNumber', userInfo.phoneNumber);
 
-       fetch('https://market-place-anja.firebaseapp.com/cart/add-userInfo/' , {
+       fetch('https://strix-market-place.herokuapp.com/cart/add-userInfo/' , {
            headers: {
                Authorization: 'Bearer ' + token
            },

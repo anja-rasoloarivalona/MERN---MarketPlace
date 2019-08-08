@@ -155,7 +155,7 @@ export const loadProductsHandler = (value, history, category, sortBy, page) => {
 
         dispatch(setLoadingToTrue())
 
-        fetch('https://market-place-anja.firebaseapp.com/test/' 
+        fetch('https://strix-market-place.herokuapp.com/test/' 
                 + min + '&&' + max + '/'
                 + sortBy + '/' +
                 '?page=' + page + '&' +

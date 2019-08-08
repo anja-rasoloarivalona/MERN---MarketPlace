@@ -49,7 +49,7 @@ class Payment extends Component {
     if(token){
         this.setState({loading: true});
 
-        fetch('https://market-place-anja.firebaseapp.com/cart/order/' , {
+        fetch('https://strix-market-place.herokuapp.com/cart/order/' , {
             headers: {
                 Authorization: 'Bearer ' + token
             },

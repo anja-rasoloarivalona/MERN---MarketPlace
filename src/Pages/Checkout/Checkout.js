@@ -30,7 +30,7 @@ class Checkout extends Component {
         if(token) {
             console.log('fetch happengin');
 
-                    fetch('https://market-place-anja.firebaseapp.com/address/',
+                    fetch('https://strix-market-place.herokuapp.com/address/',
                     {   
                         headers: {
                             Authorization: 'Bearer ' + token
