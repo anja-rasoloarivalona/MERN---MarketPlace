@@ -4,8 +4,15 @@
     transform: translateX(30rem);
     display: flex;
     flex-direction: column;
-    padding-top: 2rem;
-    
+    padding-top: 2rem;   
+}
+
+@media (max-width: 1194px) {
+    .admin-orders-container {
+        width: 100%;
+        transform: translate(0);
+        padding: 1rem;
+    }
 }
 
 .admin-order {
@@ -35,11 +42,23 @@
     padding: 1rem 2rem;
 }
 
+@media (max-width: 522px) {
+    .admin-order__body  {
+        flex-direction: column;
+    }
+}
+
 
 .admin-order__details {
     display: flex;
     justify-content: space-between;
     
+}
+
+@media (max-width: 522px) {
+    .admin-order__details  {
+        width: 80%;
+    }
 }
 
 .admin-order__details.admin-order__details--price {

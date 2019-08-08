@@ -4,14 +4,27 @@
     min-height: calc(100vh - 8rem);
 }
 
+@media (max-width: 1194px) {
+    .admin {
+        grid-column: full-start / full-end;
+    }
+}
+
 .admin__nav {
-  /*  margin-top: 2.6rem;*/
     width: 25rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: fixed;
+}
+
+@media (max-width: 1194px) {
+    .admin__nav {
+        position: relative;
+        width: 100%;
+        flex-direction: row;
+    }
 }
 
 .admin__nav__button {

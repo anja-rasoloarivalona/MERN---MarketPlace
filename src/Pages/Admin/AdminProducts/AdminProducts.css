@@ -10,10 +10,10 @@
     transform: translateX(30rem);
 }
 
-@media (max-width: 1060px) {
+@media (max-width: 1194px) {
     .admin-products {
-        grid-column: full-start / full-end;
-        margin-top: 7rem;
+        width: 100%;
+        transform: translate(0)
     }
 }
 
