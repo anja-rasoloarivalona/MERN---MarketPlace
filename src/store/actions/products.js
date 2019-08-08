@@ -155,7 +155,7 @@ export const loadProductsHandler = (value, history, category, sortBy, page) => {
 
         dispatch(setLoadingToTrue())
 
-        fetch('http://localhost:8000/test/' 
+        fetch('https://market-place-anja.firebaseapp.com/test/' 
                 + min + '&&' + max + '/'
                 + sortBy + '/' +
                 '?page=' + page + '&' +

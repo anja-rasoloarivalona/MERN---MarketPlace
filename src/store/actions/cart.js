@@ -6,7 +6,7 @@ export const addProductToCart = (id, title, description, category, price, image)
     const token = localStorage.getItem('token');
 
     if(token){
-        fetch('http://localhost:8000/cart/add-product/' + id, {
+        fetch('https://market-place-anja.firebaseapp.com/cart/add-product/' + id, {
         method: 'POST',
         headers: {
         Authorization: 'Bearer ' + token,
@@ -55,7 +55,7 @@ export const postOrder = (paymentData) => {
     formOrderData.append('totalProductsCount', paymentData.totalProductsCount);
 
     if(token){
-        fetch('http://localhost:8000/cart/order/' , {
+        fetch('https://market-place-anja.firebaseapp.com/cart/order/' , {
             headers: {
                 Authorization: 'Bearer ' + token
             },
@@ -86,7 +86,7 @@ export const deleteProduct = (id, price) =>{
 
     const token = localStorage.getItem('token');
     if(token){
-        fetch('http://localhost:8000/cart/delete-product/' + id, {
+        fetch('https://market-place-anja.firebaseapp.com/cart/delete-product/' + id, {
             method: 'POST',
             headers: {
             Authorization: 'Bearer ' + token,
@@ -167,7 +167,7 @@ export const setProductsInCart = (products, token) => {
             let data = new FormData();
             data.append('products', JSON.stringify(products))
 
-            fetch('http://localhost:8000/cart/', {
+            fetch('https://market-place-anja.firebaseapp.com/cart/', {
                 method: 'POST',
                 headers: {
                     Authorization: 'Bearer ' + token,
@@ -207,7 +207,7 @@ export const clearProductsInCart = () => {
 
 
     if(token){
-        fetch('http://localhost:8000/cart/', {
+        fetch('https://market-place-anja.firebaseapp.com/cart/', {
                 method: 'DELETE',
                 headers: {
                     Authorization: 'Bearer ' + token,

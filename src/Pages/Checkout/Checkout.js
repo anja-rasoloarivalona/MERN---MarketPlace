@@ -30,7 +30,7 @@ class Checkout extends Component {
         if(token) {
             console.log('fetch happengin');
 
-                    fetch('http://localhost:8000/address/',
+                    fetch('https://market-place-anja.firebaseapp.com/address/',
                     {   
                         headers: {
                             Authorization: 'Bearer ' + token
