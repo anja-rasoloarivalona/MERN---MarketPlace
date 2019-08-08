@@ -20,3 +20,68 @@
 .login__title svg {
     transform: translateX(1rem);
 }
+
+.default__login {
+    position: absolute;
+    right: 4rem;
+    top: 4rem;
+    background: var(--color-white);
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    display: inline-block;
+
+
+    border-radius: 10rem;
+
+    width: 4.4rem;
+    height: 4.4rem;
+    overflow: hidden;
+    cursor: pointer;
+
+    transition: all .3s ease-in;
+}
+
+.default__login.show {
+    width: 15rem;
+}
+
+.default__login span{
+    position: absolute;
+    right: 1.6rem;
+    top: 0;
+    bottom: 0;
+    align-items: center;
+    display: none;
+    transition: all .3s ease-in;
+}
+
+.default__login.show span {
+    display: flex;
+}
+
+
+.default__login svg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+
+
+    left: 0;
+    right: 0;
+
+
+    margin: auto;
+    background: var(--color-primary);
+    fill: var(--color-white);
+    border-radius: 50%;
+    padding: .8rem;
+    border: 1px solid black;
+    width: 4rem;
+    height: 4rem;
+    transition: all .3s ease-in;
+}
+
+.default__login.show svg {
+    left: .2rem;
+    right: auto;
+}

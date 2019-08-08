@@ -78,7 +78,7 @@ class Cart extends Component {
                 
                     <div className="no-product-inCart">
                         <div>
-                            <IconSvg icon="happy"/> <span>You do not have any products for sale yet</span>
+                            <IconSvg icon="happy"/> <span>There are no items in your cart</span>
                         </div>
                         <Button color='primary'
                             link='/'>

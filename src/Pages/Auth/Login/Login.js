@@ -28,7 +28,9 @@ class Login extends Component {
         error: null,
         token: null,
         userId: null,
-        loading: false
+        loading: false,
+        showDefaultLog: false,
+        requestDefaultLog: false
     }
 
     componentDidMount(){
@@ -43,15 +45,29 @@ class Login extends Component {
     loginHandler = (e, loginFormData) => {
         e.preventDefault();
         this.setState({loading: true})
-       
-          const errors = validator(
-            loginFormData.email, 
-            loginFormData.password
-         )
 
-            if(errors.length > 0){
-                this.setState({ error : errors, loading: false});
-                return
+        if(loginFormData){
+            const errors = validator(
+                loginFormData.email, 
+                loginFormData.password
+             )
+    
+                if(errors.length > 0){
+                    this.setState({ error : errors, loading: false});
+                    return
+                }
+            }
+             
+            let emailValue;
+            let passwordValue;
+
+
+            if(this.state.requestDefaultLog === true) {
+                emailValue = 'visitor@mail.com';
+                passwordValue = '12345abc'
+            } else {
+                emailValue = loginFormData.email.value;
+                passwordValue = loginFormData.password.value
             }
 
         fetch('https://strix-market-place.herokuapp.com/auth/login', {
@@ -60,8 +76,8 @@ class Login extends Component {
                 'Content-Type' : 'application/json'
             },
             body: JSON.stringify({
-                email: loginFormData.email.value,
-                password: loginFormData.password.value
+                email: emailValue,
+                password: passwordValue
             })
         })
         .then(res => {
@@ -93,7 +109,7 @@ class Login extends Component {
                 const connectedUserId = localStorage.getItem('userId');
                 this.props.setProductsInCart(productsInCart, token, connectedUserId);
             }
-            this.props.history.replace('/admin/products');           
+            this.props.history.replace('/admin');           
         })
         .catch(err => {
             let error = []
@@ -103,6 +119,12 @@ class Login extends Component {
                 loading: false
             })
             this.props.loginFailed();
+        })
+    }
+
+    defaultlogin = (e) => {
+        this.setState({requestDefaultLog: true}, () => {
+            this.loginHandler(e);
         })
     }
 
@@ -123,6 +145,13 @@ class Login extends Component {
                loginForm: udpatedForm
            }
        })
+    }
+
+
+    toggleDefaultLogin = () => {
+        this.setState( prevState => ({
+            showDefaultLog: !prevState.showDefaultLog
+        }))
     }
 
 
@@ -175,6 +204,10 @@ class Login extends Component {
             <ErrorHandler error = {this.state.error}
                           onCloseError={this.closeErrorHandler}/> 
             <Auth>
+                <div className={["default__login", this.state.showDefaultLog ? 'show' : ' '].join(' ')}
+                     onClick={this.toggleDefaultLogin}>
+                    <IconSvg icon="user"/> <span onClick={this.defaultlogin}>Visitor account</span>
+                </div>
                 {form}
             </Auth> 
             </Fragment>     
