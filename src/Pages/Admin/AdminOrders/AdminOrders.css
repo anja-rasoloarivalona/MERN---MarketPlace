@@ -71,6 +71,10 @@
     margin-bottom: 1rem;
 }
 
+.admin-order__spinner{
+    min-height: calc(100vh - 8rem);
+}
+
 
 .no-order {
     font-size: 2rem;
