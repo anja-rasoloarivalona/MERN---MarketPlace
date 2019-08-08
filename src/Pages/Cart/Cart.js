@@ -4,6 +4,7 @@ import Product from '../../components/Product/Product';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import Button from '../../components/Button/Button';
+import IconSvg from '../../util/svgHandler';
 
 class Cart extends Component {
 
@@ -21,8 +22,12 @@ class Cart extends Component {
 
 
     render() {
-        return (
-            <Fragment>
+
+        let cart;
+
+        if(this.props.products.length > 0){
+            cart = (
+        <Fragment>
             <div className='cart'>
                 {this.props.products.map(product => {
                     let image;
@@ -67,7 +72,25 @@ class Cart extends Component {
             </div>
             
             </Fragment>
-        )
+            )
+        } else {
+            cart = (
+                
+                    <div className="no-product-inCart">
+                        <div>
+                            <IconSvg icon="happy"/> <span>You do not have any products for sale yet</span>
+                        </div>
+                        <Button color='primary'
+                            link='/'>
+                            Shop
+                        </Button>
+                    </div>                 
+                
+            )
+        }
+
+        
+        return cart
     }
 }
 
