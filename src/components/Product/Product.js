@@ -58,7 +58,8 @@ const product = props => {
                             color="primary">
                             View details
                         </Button>
-                        <Button onClick={props.onDelete}>
+                        <Button color="red"
+                                onClick={props.onDelete}>
                             Delete
                         </Button>
                     </div>
