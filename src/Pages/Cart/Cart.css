@@ -8,17 +8,61 @@
     flex-direction: column;
 }
 
+
+
+
+
+
+
+.cart__summary {
+    width: 100%;
+    margin: 6rem 0;
+}
+
+
+
+
 .cart__details {
     display: flex;
     flex-direction: column;
     margin-top: 3rem;
-    font-size: 2rem;
+    font-size: 1.5rem;     
+}
+
+.cart__details__price {
+    width: 25rem;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart__details__count {
+    margin: 1rem 0;
 }
 
 .cart__cta {
     display: flex;
     margin-top: 3rem;
+    margin-left: 1rem;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .no-product-inCart {
 

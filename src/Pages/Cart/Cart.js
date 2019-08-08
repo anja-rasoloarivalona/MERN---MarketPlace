@@ -52,22 +52,37 @@ class Cart extends Component {
                 }
                 
                )}
-               <div className="cart__details">
-                   <span>Total of Products:  {this.props.totalProductsCount}</span>
-                   <span>Subtotal: {this.props.subTotalPrice}</span>
-                   <span>Taxes: {this.props.taxes}</span>
-                   <span>Total Price:{this.props.totalPrice}</span>
-               </div>
-               <div className="cart__cta">
-                    <Button onClick={this.props.clearProductsInCart}
-                            color='secondary'>
-                        Clear Cart
-                    </Button>
-                    <Button color='primary'
-                            link={this.props.isAuth ? '/checkout' : '/login'}>
-                        Checkout
-                    </Button>
-               </div>
+
+
+                <div className="cart__summary flex-centered-column">
+                    
+                    <div className="cart__details">
+                        <div className="cart__details__count">
+
+                        {
+                            this.props.totalProductsCount > 1 ? `There are ${this.props.totalProductsCount} items in your cart` : `There is ${this.props.totalProductsCount} item in your cart`                         
+                        }
+
+                        </div>
+                        <div className="cart__details__price"><span>Subtotal: </span><span>${this.props.subTotalPrice}</span></div>
+                        <div className="cart__details__price"><span>Taxes: </span><span>${this.props.taxes}</span></div>
+                        <div className="cart__details__price"><span>Total Price:</span><span>${this.props.totalPrice}</span></div>
+                    </div>
+
+
+                    <div className="cart__cta">
+                            <Button onClick={this.props.clearProductsInCart}
+                                    color='secondary'>
+                                Clear Cart
+                            </Button>
+                            <Button color='primary'
+                                    link={this.props.isAuth ? '/checkout' : '/login'}>
+                                Checkout
+                            </Button>
+                    </div>
+                </div>
+
+               
                
             </div>
             
