@@ -130,6 +130,11 @@ class Signup extends Component {
         
     }
 
+
+    defaultLoginHandler = () => {
+        this.props.history.replace('../login')
+    }
+
     
 
         
@@ -195,7 +200,7 @@ class Signup extends Component {
             <Fragment>
                 <ErrorHandler error = {this.state.error}
                               onCloseError={this.closeErrorHandler}/>
-                <Auth>          
+                <Auth toggleDefaultLogin = {this.defaultLoginHandler}>          
                     {form}
                 </Auth>
         </Fragment>     

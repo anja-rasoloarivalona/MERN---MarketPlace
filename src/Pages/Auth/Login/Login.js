@@ -203,11 +203,9 @@ class Login extends Component {
             <Fragment> 
             <ErrorHandler error = {this.state.error}
                           onCloseError={this.closeErrorHandler}/> 
-            <Auth>
-                <div className={["default__login", this.state.showDefaultLog ? 'show' : ' '].join(' ')}
-                     onClick={this.toggleDefaultLogin}>
-                    <IconSvg icon="user"/> <span onClick={this.defaultlogin}>Visitor account</span>
-                </div>
+            <Auth showDefaultLogin={this.state.showDefaultLog}
+                  toggleDefaultLogin={this.toggleDefaultLogin}
+                  defaultLoginHandler={this.defaultlogin}>
                 {form}
             </Auth> 
             </Fragment>     
