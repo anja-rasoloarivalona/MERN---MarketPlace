@@ -10,12 +10,15 @@
 
 .admin-order {
     margin: 1rem 0;
-    padding: 1rem 2rem;
-    border: 1px solid black;
-    border-radius: 3px;
+    border: 1px solid var(--color-primary);
+    border-radius: 3px; 
+}
 
-
-   
+.admin-order__top {
+    background: var(--color-primary);
+    color: var(--color-white);
+    width: 100%;
+    padding: .5rem 1rem;
 }
 
 .admin-order__title {
@@ -29,6 +32,7 @@
     display: flex;
     justify-content: space-around;
     font-size: 1.2rem;
+    padding: 1rem 2rem;
 }
 
 

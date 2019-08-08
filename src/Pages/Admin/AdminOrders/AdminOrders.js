@@ -62,7 +62,11 @@ class AdminOrders extends Component {
                     return (
                          <div className="admin-order"
                               key={order.shortId}>
-                             <h2>Order: {order.shortId}</h2>
+
+                            <div className="admin-order__top">
+                                <h2>Order: {order.shortId}</h2>
+                            </div>   
+                            
          
                              <div className="admin-order__body">             
                                  <div className="admin-order__products-list">
