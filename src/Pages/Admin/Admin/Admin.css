@@ -15,7 +15,7 @@
 }
 
 .admin__nav__button {
-    background: var(--color-secondary);
+    background: var(--color-primary);
     color: var(--color-white);
     text-decoration: none;
     font-size: 1.3rem;
@@ -34,6 +34,6 @@
 .admin__nav__button:hover,
 .admin__nav__button:active,
 .admin__nav__button.active {
-    background: var(--color-primary);
+    background: var(--color-secondary);
 }
 
