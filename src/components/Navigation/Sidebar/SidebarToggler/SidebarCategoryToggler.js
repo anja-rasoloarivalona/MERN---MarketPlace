@@ -2,6 +2,8 @@ import React from "react";
 import "./SidebarCategoryToggler.css";
 import IconSvg from "../../../../util/svgHandler";
 
+import { FormattedMessage } from 'react-intl';
+
 const sidebarToggler = props => (
   <div className={["sidebar__category", props.hideCategoryFilter === false ? 'rotateIcon' : ''].join(' ')} onClick={props.hideCategoryFilterHandler}>
     <div className="flex-centered-row">
@@ -10,7 +12,7 @@ const sidebarToggler = props => (
         <span />
         <span />
       </div>
-      <div>All Categories</div>
+      <div><FormattedMessage id="allCategories.sidebar" defaultMessage="All Categories"/></div>
     </div>
     <IconSvg icon="down" />
   </div>

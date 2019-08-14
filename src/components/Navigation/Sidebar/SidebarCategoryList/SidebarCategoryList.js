@@ -8,6 +8,8 @@ import Furniture from '../../../../assets/icon/SVG/furniture.svg';
 import Clothes from '../../../../assets/icon/SVG/clothes.svg';
 import Television from '../../../../assets/icon/SVG/television.svg';
 import ReactSVG from 'react-svg';
+import { FormattedMessage } from 'react-intl';
+
 
 const sidebarCategoryList = props => {
 
@@ -37,7 +39,9 @@ const sidebarCategoryList = props => {
                               to={`${category}`}
                               className="sidebar__category__list__item">
                                 <IconSvg icon={category} size="big"/>
-                                <span className="sidebar__category__list__item__title">{category}</span>
+                                <span className="sidebar__category__list__item__title">
+                                    <FormattedMessage id={`${category}.sidebar`} defaultMessage={category}/>
+                                </span>
                         </NavLink>
                     ))}
 
@@ -48,7 +52,9 @@ const sidebarCategoryList = props => {
                               to={`${category.title}`}
                               className="sidebar__category__list__item">
                                 <ReactSVG src={category.src} className={`icon icon--${category.title}`}/>
-                                <span className="sidebar__category__list__item__title">{category.title}</span>
+                                <span className="sidebar__category__list__item__title">
+                                        <FormattedMessage id={`${category.title}.sidebar`} defaultMessage={category.title}/>
+                                </span>
                         </NavLink>
                     ))}
 

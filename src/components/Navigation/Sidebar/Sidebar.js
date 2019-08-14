@@ -7,6 +7,23 @@ import IconSvg from '../../../util/svgHandler';
 import { connect } from 'react-redux';
 import * as shopActions from '../../../store/actions/index';
 
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
+
+const messages =  defineMessages({
+    first: {
+        id: 'sortBy.latest',
+        defaultMessage: 'latest'
+    },
+    second: {
+        id: 'sortBy.lowToHigh',
+        defaultMessage: 'price: low to high'
+    },
+    third: {
+        id: 'sortBy.highToLow',
+        defaultMessage: 'price: high to low'
+    }
+})
 
 class Sidebar extends Component {
 
@@ -56,7 +73,8 @@ class Sidebar extends Component {
     
 
     render() {
-
+        const {formatMessage} = this.props.intl;
+        
         return (
             <section className={["sidebar", 
                                  this.state.hideCategoryFilter === false ? 'sidebar--show__cat' : ' ',
@@ -72,7 +90,7 @@ class Sidebar extends Component {
 
                     <div className={["sidebar__price__title", "flex-centered-row", this.state.hidePriceFilter === false ? 'rotateIcon' : ''].join(' ')}
                         onClick = {this.hidePriceFilterHandler}>
-                        <span>Filter by price:</span> 
+                        <span><FormattedMessage id='filterByPrice.sidebar' defaultMessage='Filter by price'/></span> 
                         <span>${this.props.priceRangeRequested.min} - ${this.props.priceRangeRequested.max}</span> 
 
                         <IconSvg icon="down"/>
@@ -87,14 +105,14 @@ class Sidebar extends Component {
 
                 <div className={["sidebar__sort", this.state.hidePriceFilter ? "sidebar__sort__goTop" : ''].join(' ')}>
                     <span>
-                        Sort by
+                            <FormattedMessage id='sortBy.sidebar' defaultMessage='Sort by'/>
                     </span>
                     <select value={this.props.sortBy}
                             name="filter" 
                             onChange={e => this.props.sortbyhandler(e)}>
-                        <option value="latest">latest</option>
-                        <option value="low_to_high">price: low to high</option>
-                        <option value="high_to_low">price: high to low</option>
+                        <option value="latest">{formatMessage(messages.first)}</option>
+                        <option value="low_to_high">{formatMessage(messages.second)}</option>
+                        <option value="high_to_low">{formatMessage(messages.third)}</option>
                     </select>
                     
                 </div>
@@ -111,6 +129,8 @@ class Sidebar extends Component {
     }
 }
 
+
+
 const mapStateToProps = state => {
     return {
         sortBy: state.products.sortBy
@@ -124,4 +144,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(Sidebar));
