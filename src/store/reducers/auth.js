@@ -5,6 +5,8 @@ const initialState = {
     auth: false,
     token: null,
     userId: null,
+
+    lang: 'fr'
 }
 
 const loginSucceeded = (state, action) => {

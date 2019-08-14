@@ -4,7 +4,8 @@ import './App.css';
 import { connect } from 'react-redux';
 import * as actions from './store/actions/index';
 
-
+import { IntlProvider} from 'react-intl';
+import messages from './messages';
 
 
 /*------Components------------- */
@@ -167,30 +168,33 @@ class App extends Component {
     )
 
     return (
-      <Fragment>
-        {this.state.showBackdrop && (
-          <Backdrop onClick={this.backdropClickHandler} />
-        )}
-        <Layout>
-            <DeskNav 
-                isAuth={this.props.auth}
-                onOpenMobileNav={this.mobileNavHandler.bind(this, true)}
-                onLogout={this.logoutHandler}
-                onLoadShopIndex={this.onLoadShopIndex.bind(this, true)}
-                />
+      <IntlProvider locale={this.props.lang} 
+                    messages={messages[this.props.lang]}>
 
-            <MobileNav 
-                isMobileNavOpen={this.state.showMobileNav}
-                mobile
-                onClickNavLink={this.mobileNavHandler.bind(this, false)}
-                onLogout={this.logoutHandler}
-                isAuth={this.props.auth}
-                onLoadShopIndex={this.onLoadShopIndex.bind(this, false)}/>
-            
-            {routes}
-            <Footer />
-        </Layout>
-    </Fragment>
+
+            {this.state.showBackdrop && (
+              <Backdrop onClick={this.backdropClickHandler} />
+            )}
+            <Layout>
+                <DeskNav 
+                    isAuth={this.props.auth}
+                    onOpenMobileNav={this.mobileNavHandler.bind(this, true)}
+                    onLogout={this.logoutHandler}
+                    onLoadShopIndex={this.onLoadShopIndex.bind(this, true)}
+                    />
+
+                <MobileNav 
+                    isMobileNavOpen={this.state.showMobileNav}
+                    mobile
+                    onClickNavLink={this.mobileNavHandler.bind(this, false)}
+                    onLogout={this.logoutHandler}
+                    isAuth={this.props.auth}
+                    onLoadShopIndex={this.onLoadShopIndex.bind(this, false)}/>
+                
+                {routes}
+                <Footer />
+            </Layout>
+      </IntlProvider>
     )
   }
 }
@@ -205,7 +209,9 @@ const mapStateToProps = state => {
 
       auth: state.auth.auth,
       token: state.auth.token,
-      userId: state.auth.userId
+      userId: state.auth.userId,
+
+      lang: state.auth.lang
   }
 }
 
