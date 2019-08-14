@@ -24,6 +24,23 @@ export default {
         'sortBy.lowToHigh': 'price: low to high',
         'sortBy.highToLow': 'price: high to low',
 
+
+        'product.viewDetails': 'View Details',
+        'product.delete': 'Delete',
+        'product.edit': 'Edit',
+
+        'singleProduct.checkout': 'Checkout',
+        'singleProduct.addToCart': 'Add to cart',
+        'singleProduct.back': 'Back',
+
+        'singleProduct.thereAre': 'There are ',
+        'singleProduct.thereIs': 'There is ',
+        'singleProduct.itemsInYourCart': ' items in your cart',
+        'singleProduct.itemInYourCart': ' item in your cart',
+
+
+        'cart.subtotal': 'Subtotal',
+
         
     },
 
@@ -51,5 +68,22 @@ export default {
         'sortBy.latest': 'les plus récents',
         'sortBy.lowToHigh': 'prix croissant',
         'sortBy.highToLow': 'prix décroissant',
+
+        'product.viewDetails': 'Voir Détails',
+        'product.delete': 'Retirer',
+        'product.edit': 'Éditer',
+
+
+        'singleProduct.checkout': 'Voir Panier',
+        'singleProduct.addToCart': 'Acheter',
+        'singleProduct.back': 'Retour',
+
+        'singleProduct.thereAre': 'Vous avez ',
+        'singleProduct.thereIs': 'Vous avez ',
+        'singleProduct.itemsInYourCart': ' articles dans le panier',
+        'singleProduct.itemInYourCart': ' article dans le panier',
+        
+        'cart.subtotal': 'Sous-Total',
+
     }
 }

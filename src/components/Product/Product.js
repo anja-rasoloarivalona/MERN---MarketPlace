@@ -1,6 +1,7 @@
 import React from 'react';
 import './Product.css';
 import Button from '../Button/Button';
+import { FormattedMessage } from 'react-intl';
 
 const product = props => {
 
@@ -21,7 +22,7 @@ const product = props => {
                         pathname: `/details/${props.id}`
                     }}
                     color="primary">
-                    View details
+                    <FormattedMessage id='product.viewDetails' defaultMessage='View Details'/>
                 </Button>
             </div>  
         )
@@ -35,14 +36,14 @@ const product = props => {
                             color="primary"
                           /*  to={props.link}*/
                             onClick={props.onStartEdit}>
-                            Edit
+                            <FormattedMessage id='product.edit' defaultMessage='Edit'/>t
                         </Button>
                         <Button 
                             link = {props.delete_link}
                             color="primary"
                          /*   to={props.link}*/
                             onClick={props.onDelete}>
-                            Delete
+                            <FormattedMessage id='product.delete' defaultMessage='Delete'/>
                         </Button>
             </div>
         )
@@ -56,11 +57,11 @@ const product = props => {
                                 pathname: `/details/${props.id}`
                             }}
                             color="primary">
-                            View details
+                            <FormattedMessage id='product.viewDetails' defaultMessage='View Details'/>
                         </Button>
                         <Button color="red"
                                 onClick={props.onDelete}>
-                            Delete
+                            <FormattedMessage id='product.delete' defaultMessage='Delete'/>
                         </Button>
                     </div>
         )
