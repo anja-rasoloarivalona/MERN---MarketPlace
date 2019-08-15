@@ -65,9 +65,14 @@ export default {
     "recruiterAccount": "Recruiter account",
     "logIn": "Log In",
     "login":"login",
+
+
     "password":"password",
+    "confirmPassword": "confirm password",
     "dontHaveAnAccount": "Don't have an account",
     "forgetPassword": "Forget password",
+    "alreadyMember": "Already a member",
+    "createAccount": "Create an account",
 
 
     /*----------ADMIN---------------*/
@@ -190,8 +195,11 @@ export default {
     "logIn": "Mon compte",
     "login":"Se connecter",
     "password":"Mot de passe",
+    "confirmPassword": "Confirmer mot de passe",
+    "alreadyMember": "Déjà membre",
     "dontHaveAnAccount": "Vous n'avez pas de compte",
     "forgetPassword": "Mot de passe oublié",
+    "createAccount": "Créer un compte",
 
      /*----------ADMIN---------------*/
      "orders": "Commandes",

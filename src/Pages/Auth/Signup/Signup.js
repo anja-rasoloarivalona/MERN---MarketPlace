@@ -9,6 +9,7 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import { validator } from '../../../util/validators';
 import IconSvg from '../../../util/svgHandler';
 import Spinner from '../../../components/Spinner/Spinner';
+import { FormattedMessage } from 'react-intl'
 
 class Signup extends Component {
 
@@ -148,12 +149,13 @@ class Signup extends Component {
                 <form onSubmit={e => this.submitHandler(e, this.state.signupForm)}
                         className="auth__form flex-centered-column"
                         noValidate>
-                        <div className="signup__title flex-centered-row">Create an account
+                        <div className="signup__title flex-centered-row">
+                            <FormattedMessage id="createAccount" defaultMessage="Create an account"/>
                             <IconSvg icon="pencil"/>
                         </div>
                         <Input 
                             id='name'
-                            label='name*'
+                            label={<FormattedMessage id="fullname" defaultMessage="full name" />}
                             type='text'
                             control='input' //to make sure that it's an input field
                             required={true}
@@ -171,7 +173,7 @@ class Signup extends Component {
                         />
                         <Input 
                             id='password'
-                            label='password*'
+                            label={<FormattedMessage id="password" defaultMessage="input"/>}
                             type='password'
                             control='input' 
                             required={true}
@@ -180,7 +182,7 @@ class Signup extends Component {
                         />
                         <Input 
                             id='confirm_password'
-                            label='confirm password*'
+                            label={<FormattedMessage id="confirmPassword" defaultMessage="Confirm Password" />}
                             type='password'
                             control='input' 
                             required={true}
@@ -188,11 +190,11 @@ class Signup extends Component {
                             onChange={this.changeHandler}
                         />
                             <div className='signup__cta'>
-                                <Link to="login">Already a member?</Link>
-                                <div>Forget password</div>
+                                <Link to="login"><FormattedMessage id="alreadyMember" defaultMessage="Already a member"/>?</Link>
+                                <div><FormattedMessage id="forgetPassword" defaultMessage="Forget Password"/></div>
                             </div>
                         <Button type="submit" color="secondary">
-                            Sign Up
+                            <FormattedMessage id="signup" defaultMessage="Signup"/>
                         </Button>
                     </form>
         )
