@@ -36,7 +36,7 @@ const product = props => {
                             color="primary"
                           /*  to={props.link}*/
                             onClick={props.onStartEdit}>
-                            <FormattedMessage id='edit' defaultMessage='Edit'/>t
+                            <FormattedMessage id='edit' defaultMessage='Edit'/>
                         </Button>
                         <Button 
                             link = {props.delete_link}
