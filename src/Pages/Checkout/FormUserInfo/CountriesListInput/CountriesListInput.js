@@ -1,6 +1,18 @@
 import React from 'react';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
+const messages = defineMessages({
+    country: {
+        id: "country",
+        defaultMessage: "Country"
+    }
+})
+
 
 const countriesListInput = props => {
+
+    const {formatMessage} = props.intl;
+
     return (
         <div className="input">
             {           
@@ -12,7 +24,7 @@ const countriesListInput = props => {
                     value={props.value}
                     onChange={e => props.onChange(props.id, e.target.value)}>
 
-                <option value="">Country...</option>
+                <option value="">{formatMessage(messages.country)}...</option>
                 <option value="Afganistan">Afghanistan</option>
                 <option value="Albania">Albania</option>
                 <option value="Algeria">Algeria</option>
@@ -265,4 +277,4 @@ const countriesListInput = props => {
     )
 }
 
-export default countriesListInput;
+export default injectIntl(countriesListInput);

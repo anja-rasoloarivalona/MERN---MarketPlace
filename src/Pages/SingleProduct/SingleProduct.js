@@ -145,12 +145,12 @@ class SingleProduct extends Component {
                         { this.state.inCart ? (
                                 <Button color='primary'
                                         link='../cart'>
-                                    <FormattedMessage id='singleProduct.checkout' defaultMessage='Checkout'/>
+                                    <FormattedMessage id='myCart' defaultMessage='My Cart'/>
                                 </Button>
                             )  : (
                                 <Button color='primary'
                                         onClick={this.addProductToCartHandler.bind(this, this.state)}>
-                                    <FormattedMessage id='singleProduct.addToCart' defaultMessage='Add to cart'/>
+                                    <FormattedMessage id='addToCart' defaultMessage='Add to cart'/>
                                 </Button>
                             )}
                             
@@ -160,7 +160,7 @@ class SingleProduct extends Component {
                                     link={{   
                                     pathname: this.state.pathToBack
                                     }}>      
-                                <FormattedMessage id='singleProduct.back' defaultMessage='Back'/>
+                                <FormattedMessage id='back' defaultMessage='Back'/>
                             </Button>
                         </div>
                     </div> 
@@ -212,30 +212,30 @@ class SingleProduct extends Component {
 
                                         {this.props.totalProductsCount > 1 ? (
                                             <div>
-                                                <FormattedMessage id='singleProduct.thereAre' defaultMessage='There are '/>
+                                                <FormattedMessage id='thereAre' defaultMessage='There are '/>
                                                 {this.props.totalProductsCount} 
-                                                <FormattedMessage id='singleProduct.itemsInYourCart' defaultMessage=' items in your cart'/>
+                                                <FormattedMessage id='itemsInYourCart' defaultMessage=' items in your cart'/>
                                             </div>
                                         ): (
                                             <div>
-                                                <FormattedMessage id='singleProduct.thereIs' defaultMessage='There is ' />
+                                                <FormattedMessage id='thereIs' defaultMessage='There is ' />
                                                 {this.props.totalProductsCount} 
-                                                <FormattedMessage id='singleProduct.itemInYourCart' defaultMessage=' item in your cart'/>
+                                                <FormattedMessage id='itemInYourCart' defaultMessage=' item in your cart'/>
                                             </div>
                                         )}
 
-                                        <div className="singleProduct__modal__cart__info"><b><FormattedMessage id='cart.subtotal' defaultMessage='Subtotal'/>:</b> <span>${this.props.subTotalPrice}</span></div>
-                                        <div className="singleProduct__modal__cart__info"><b>Taxes:</b> <span>${this.props.taxes}</span></div>
-                                        <div className="singleProduct__modal__cart__info"><b>Total:</b> <span>${this.props.totalPrice}</span></div>
+                                        <div className="singleProduct__modal__cart__info"><b><FormattedMessage id='subtotal' defaultMessage='Subtotal'/>:</b> <span>${this.props.subTotalPrice}</span></div>
+                                        <div className="singleProduct__modal__cart__info"><b><FormattedMessage id='taxes' defaultMessage='Taxes'/>:</b> <span>${this.props.taxes}</span></div>
+                                        <div className="singleProduct__modal__cart__info"><b><FormattedMessage id='totalPrice' defaultMessage='Total Price'/>:</b> <span>${this.props.totalPrice}</span></div>
 
                                         <div className="singleProduct__modal__cart__cta flex-centered-row">
                                             <Button color="primary"
                                                     link='../cart'>
-                                                <FormattedMessage id='singleProduct.checkout' defaultMessage='Checkout'/>
+                                                <FormattedMessage id='myCart' defaultMessage='My cart'/>
                                             </Button>
                                             <Button color="secondary"
                                                     link="../">
-                                                <FormattedMessage id='shop.navigationItems' defaultMessage='Shop'/>
+                                                <FormattedMessage id='shop' defaultMessage='Shop'/>
                                             </Button>
                                             
                                         </div>

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './FormUserInfo.css';
 import Input from '../../../components/FormInput/FormInput';
 import Button from '../../../components/Button/Button';
-import CountriesInput from './CountriesListInput/CountriesListInput'
+import CountriesInput from './CountriesListInput/CountriesListInput';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 
 
 const POST_USER_INFO = {
@@ -31,6 +32,38 @@ const POST_USER_INFO = {
         value: ''
     }
 }
+
+const messages =  defineMessages({
+    fullname: {
+        id: 'fullname',
+        defaultMessage: 'full name'
+    },
+    addressline1: {
+        id: 'addressline1',
+        defaultMessage: 'Address line 1'
+    },
+    addressline2: {
+        id: 'addressline2',
+        defaultMessage: 'Address line 2'
+    },
+    city: {
+        id: 'city',
+        defaultMessage: 'city'
+    },
+    state: {
+        id: 'state/province/region',
+        defaultMessage: 'state/province/region'
+    },
+    zip: {
+        id: 'zip',
+        defaultMessage: 'zip'
+    },
+    phoneNumber: {
+        id: 'phoneNumber',
+        defaultMessage: 'phone number'
+    },
+
+})
 
 
 class FormUserInfo extends Component {
@@ -117,15 +150,17 @@ class FormUserInfo extends Component {
 
 
     render() {
+        const {formatMessage} = this.props.intl;
+
         return (
 
             <section className="checkout__newAddress">
-                    <div className="checkout__newAddress__title">Add a new address</div>
+                    <div className="checkout__newAddress__title"><FormattedMessage id="addNewAddress" defaultMessage="Add a new address"/></div>
                     <form className="form__userInfo flex-centered-column" 
                           onSubmit={this.sumbitFormHandler}>
                         <Input 
                             id="fullname"
-                            label="full name :"
+                            label= { formatMessage(messages.fullname) + ":"}
                             type="text"
                             control="input"
                             required={true}
@@ -135,7 +170,7 @@ class FormUserInfo extends Component {
 
                         <Input 
                             id="address1"
-                            label="address line 1 :"
+                            label={ formatMessage(messages.addressline1) + ":"}
                             type="text"
                             control="input"
                             required={true}
@@ -145,7 +180,7 @@ class FormUserInfo extends Component {
 
                         <Input 
                             id="address2"
-                            label="address line 2 :"
+                            label={ formatMessage(messages.addressline2) + ":"}
                             type="text"
                             control="input"
                             value={this.state.postUserInfo['address2'].value}
@@ -154,7 +189,7 @@ class FormUserInfo extends Component {
 
                         <Input 
                             id="city"
-                            label="city :"
+                            label={ formatMessage(messages.city) + ":"}
                             type="text"
                             control="input"
                             required={true}
@@ -164,7 +199,7 @@ class FormUserInfo extends Component {
 
                         <CountriesInput 
                             id="state"
-                            label="state/province/region :"
+                            label={ formatMessage(messages.state) + ":"}
                             type="text"
                             control="input"
                             required={true}     
@@ -174,7 +209,7 @@ class FormUserInfo extends Component {
 
                         <Input 
                             id="zip"
-                            label="zip :"
+                            label={formatMessage(messages.zip) + ":"}
                             type="text"
                             control="input"
                             required={true}
@@ -194,7 +229,7 @@ class FormUserInfo extends Component {
 
                         <Input 
                             id="phoneNumber"
-                            label="phone Number :"
+                            label={ formatMessage(messages.phoneNumber) + ":"}
                             type="text"
                             control="input"
                             required={true}
@@ -205,7 +240,7 @@ class FormUserInfo extends Component {
                         <Button //onClick={this.props.onValidate.bind(this, 'delivery')}
                                 color="primary"
                                 type="submit">
-                            Add
+                           <FormattedMessage id="add" defaultMessage="Add"/>
                         </Button>
                     </form>
                 
@@ -215,4 +250,4 @@ class FormUserInfo extends Component {
     }
 }
 
-export default FormUserInfo;
+export default injectIntl(FormUserInfo);

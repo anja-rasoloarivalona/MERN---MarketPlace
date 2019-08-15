@@ -6,6 +6,9 @@ import Input from '../../../components/FormInput/FormInput';
 import FilePicker from '../../../components/FormInput/FilePicker/FilePicker';
 import { generateBase64FromImage } from '../../../util/image';
 
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+
+
 const POST_PRODUCT = {
     title: {
         value: ''
@@ -27,11 +30,41 @@ const POST_PRODUCT = {
         value: ''
     }
 }
+
+const message = defineMessages({
+    title: {
+        id: "title",
+        defaultMessage: "Title"
+    },
+
+    price: {
+        id: "price",
+        defaultMessage: "Price"
+    },
+
+    category: {
+        id: "category",
+        defaultMessage: "Category"
+    },
+
+    image: {
+        id: "image",
+        defaultMessage: "Image"
+    },
+
+    description: {
+        id: "description",
+        defaultMessage: "Description"
+    }
+})
+
+
 class AddProduct extends Component {
     state = {
         postProduct : POST_PRODUCT,
         editingMode : this.props.editingMode,
         productBeingEdited : this.props.productBeingEdited,
+        file: undefined
     }
     
 
@@ -64,13 +97,15 @@ class AddProduct extends Component {
 
     postProductChangeHandler = (input, value, files) => {
         if(files){
-            generateBase64FromImage(files[0])
+         /*   generateBase64FromImage(files[0])
             .then(b64 => {
                 this.setState({ imagePreview: b64})
             })
             .catch(err => {
                 this.setState({imagePreview: null})
-            })
+            })*/
+            this.setState({ file : files[0].name});
+
         }
         this.setState(prevState =>{
             const updatedProduct = {
@@ -107,12 +142,16 @@ class AddProduct extends Component {
 
 
     render() {
+
+
+        const {formatMessage} = this.props.intl;
+
         return (
                 <form className='addProduct__form'
                       onSubmit={this.submitFormHandler}>
                     <Input 
                         id='title'
-                        label='title'
+                        label={formatMessage(message.title)}
                         type='text'
                         control='input' //to make sure that it's an input field
                         required={true}
@@ -121,7 +160,7 @@ class AddProduct extends Component {
                     />
                     <Input 
                         id='price'
-                        label='price'
+                        label={formatMessage(message.price)}
                         type='number'
                         control='input' 
                         required={true}
@@ -131,7 +170,7 @@ class AddProduct extends Component {
 
                     <Input 
                         id='category'
-                        label='category'
+                        label={formatMessage(message.category)}
                         type='text'
                         control='select' 
                         required={true}
@@ -141,14 +180,15 @@ class AddProduct extends Component {
 
                     <FilePicker
                             id="image"
-                            label="Image"
+                            label={formatMessage(message.image)}
                             control="input"
+                            file={this.state.file}
                             onChange={this.postProductChangeHandler}
                             />
 
                     <Input 
                         id='description'
-                        label='description'
+                        label={formatMessage(message.description)}
                         type='text'
                         control='textarea' 
                         required={true}
@@ -159,10 +199,10 @@ class AddProduct extends Component {
                     
                     <div>
                         <Button color='primary' type='submit'>
-                            { this.state.editingMode ? 'Update' : 'Create'}
+                            { this.state.editingMode ? <FormattedMessage id="update" defaultMessage="update"/> : <FormattedMessage id="create" defaultMessage="create"/>}
                         </Button>
                         <Button color="secondary" onClick={this.props.onCancel}>
-                                Cancel
+                               <FormattedMessage id="cancel" defaultMessage="cancel"/>
                         </Button>
                     </div>
                     
@@ -171,4 +211,4 @@ class AddProduct extends Component {
     }
 }
 
-export default AddProduct
+export default injectIntl(AddProduct) 

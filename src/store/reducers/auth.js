@@ -40,7 +40,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.LOGIN_SUCCEEDED: return loginSucceeded(state, action);
         case actionTypes.LOGIN_FAILED: return ;
         case actionTypes.SET_LOGIN_STATE_TO_TRUE: return setLoginStateToTrue(state, action);
-        case actionTypes.SET_LOGIN_STATE_TO_FALSE: return setLoginStateToFalse(state)
+        case actionTypes.SET_LOGIN_STATE_TO_FALSE: return setLoginStateToFalse(state);
+        case actionTypes.CHANGE_LANGUAGE: return updatedObject(state, {lang: action.lang})
         default: return state
     }   
 

@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl'
 
 const navListItems = [
     {id: 'admin', text: 'Admin', link:'/admin', auth: true},
-    {id: 'login', text: 'Login', link:'/login', auth: false},
+    {id: 'connexion', text: 'Login', link:'/login', auth: false},
     {id: 'signup', text: 'Signup', link:'/signup', auth: false},
    
 ]
@@ -17,13 +17,13 @@ const navigationItems = props => [
             <li key="shop"
                 className={["navigationItems", "centered", props.mobile ? "mobile" : ''].join(' ')}>    
                 <NavLink to={'/'} exact onClick={props.onLoadShopIndex}>           
-                    <FormattedMessage id="shop.navigationItems" defaultMessage="Shop"/>
+                    <FormattedMessage id="shop" defaultMessage="Shop"/>
                 </NavLink>       
             </li> 
             <li key="cart"
                 className={["navigationItems", "centered", props.mobile ? "mobile" : ''].join(' ')}>
                 <NavLink to={'/cart'} onClick={props.onClickNavLink}>
-                    <FormattedMessage id="cart.navigationItems" defaultMessage="Cart"/>
+                    <FormattedMessage id="cart" defaultMessage="Cart"/>
                 </NavLink>             
             </li> 
     </Fragment>
@@ -36,7 +36,7 @@ const navigationItems = props => [
                 <li key={item.id} 
                 className={["navigationItems", "centered", props.mobile ? "mobile" : ''].join(' ')}>    
                 <NavLink to={item.link} exact onClick={props.onClickNavLink}>
-                    <FormattedMessage id={`${item.id}.navigationItems`} defaultMessage={item.text}/>          
+                    <FormattedMessage id={item.id} defaultMessage={item.text}/>          
                 </NavLink>       
             </li> 
             )
@@ -46,7 +46,7 @@ const navigationItems = props => [
     
     props.isAuth && (
         <li className={["navigationItems", "centered", props.mobile ? "mobile" : ''].join(' ')} key="logout">
-            <button onClick={props.onLogout}>Logout</button>
+            <button onClick={props.onLogout}><FormattedMessage id="logout" defaultMessage="Logout"/></button>
         </li>
     )
     

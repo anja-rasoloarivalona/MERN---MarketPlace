@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './Footer.css';
 import IconSvg from '../../util/svgHandler';
 
+import { FormattedMessage} from 'react-intl';
+
 
 const footer = () => {
     return (
@@ -14,26 +16,26 @@ const footer = () => {
                     <h2 className="footer__menu__header">MARKET PLACE</h2>
                     <ul className="footer__menu__list">
                         <li className="footer__menu__list__item">
-                            <Link to="/">Shop</Link>
+                            <Link to="/"><FormattedMessage id="shop" defaultMessage="Shop"/></Link>
                         </li>
-                        <li className="footer__menu__list__item">About</li>
-                        <li className="footer__menu__list__item">Member Benefits</li>                                              
+                        <li className="footer__menu__list__item"><FormattedMessage id="about" defaultMessage="About"/></li>
+                        <li className="footer__menu__list__item"><FormattedMessage id="memberBenefits" defaultMessage="Member Benefits"/></li>                                              
                     </ul>
                 </div>
 
                 <div className="footer__menu">
-                    <h2 className="footer__menu__header">INFO</h2>
+                    <h2 className="footer__menu__header"><FormattedMessage id="info" defaultMessage="INFO"/></h2>
                     <ul className="footer__menu__list">
-                        <li className="footer__menu__list__item">Terms of Use</li>
-                        <li className="footer__menu__list__item">Privacy Policy</li>
-                        <li className="footer__menu__list__item">Posting Policy</li>                                               
+                        <li className="footer__menu__list__item"><FormattedMessage id="termsOfUse" defaultMessage="Terms of use"/></li>
+                        <li className="footer__menu__list__item"><FormattedMessage id="privacyPolicy" defaultMessage="Privacy Policy"/></li>
+                        <li className="footer__menu__list__item"><FormattedMessage id="postingPolicy" defaultMessage="Posting Policy"/></li>                                               
                     </ul>
                 </div>
 
                 <div className="footer__menu">
-                    <h2 className="footer__menu__header">SUPPORT</h2>
+                    <h2 className="footer__menu__header"><FormattedMessage id="support" defaultMessage="SUPPORT"/></h2>
                     <ul className="footer__menu__list">
-                        <li className="footer__menu__list__item">Help Desk</li>
+                        <li className="footer__menu__list__item"><FormattedMessage id="helpDesk" defaultMessage="Help desk"/></li>
                         <li className="footer__menu__list__item">FAQs</li>                                          
                     </ul>
                 </div>

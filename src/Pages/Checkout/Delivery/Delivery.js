@@ -4,15 +4,9 @@ import Button from '../../../components/Button/Button';
 import UserInfo from '../Recap/UserInfo/UserInfo';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
+import { FormattedMessage } from 'react-intl'
 
-const WEEKDAY = new Array(7)
-WEEKDAY[0] =  "Sunday";
-WEEKDAY[1] = "Monday";
-WEEKDAY[2] = "Tuesday";
-WEEKDAY[3] = "Wednesday";
-WEEKDAY[4] = "Thursday";
-WEEKDAY[5] = "Friday";
-WEEKDAY[6] = "Saturday";
+
 
 
  class Delivery extends Component {
@@ -31,7 +25,60 @@ WEEKDAY[6] = "Saturday";
 
     componentWillMount(){ 
 
-        console.log(this.props);
+        let WEEKDAY;
+        WEEKDAY = new Array(7);
+
+
+        let MONTH;
+        MONTH = new Array(12);
+
+        if(this.props.lang === 'en'){
+            WEEKDAY[0] =  "Sunday";
+            WEEKDAY[1] = "Monday";
+            WEEKDAY[2] = "Tuesday";
+            WEEKDAY[3] = "Wednesday";
+            WEEKDAY[4] = "Thursday";
+            WEEKDAY[5] = "Friday";
+            WEEKDAY[6] = "Saturday";
+
+            MONTH['jan'] ='jan';
+            MONTH['feb'] = 'feb';
+            MONTH['mar'] = 'march';
+            MONTH['apr'] = 'april';
+            MONTH['may'] = 'may';
+            MONTH['jun'] = 'june';
+            MONTH['jul'] = 'july';
+            MONTH['aug'] = "aug";
+            MONTH['sep'] = "sep";
+            MONTH['oct'] = "oct";
+            MONTH['nov'] = "nov";
+            MONTH['dec'] = "dec";
+        }
+
+        if(this.props.lang === 'fr'){
+            WEEKDAY[0] =  "Dimanche";
+            WEEKDAY[1] = "Lundi";
+            WEEKDAY[2] = "Mardi";
+            WEEKDAY[3] = "Mercredi";
+            WEEKDAY[4] = "Jeudi";
+            WEEKDAY[5] = "Vendredi";
+            WEEKDAY[6] = "Samedi";
+
+            MONTH['jan'] ='janvier';
+            MONTH['feb'] = 'février';
+            MONTH['mar'] = 'mars';
+            MONTH['apr'] = 'avril';
+            MONTH['may'] = 'mai';
+            MONTH['jun'] = 'juin';
+            MONTH['jul'] = 'juillet';
+            MONTH['aug'] = "août";
+            MONTH['sep'] = "sep";
+            MONTH['oct'] = "oct";
+            MONTH['nov'] = "nov";
+            MONTH['dec'] = "dec";
+        }
+        
+        
         
         let today = new Date();
 
@@ -62,10 +109,23 @@ WEEKDAY[6] = "Saturday";
         let deliveryDatesOutput = [];
 
         deliveryDatesArray.map( d => {
+
             let weekDayInNumber = d.date.getDay();
+            let month = MONTH[d.date.toString().toLowerCase().slice(4, 7)];
+
+            let dateTemplate;
+
+            if(this.props.lang === 'en'){
+                dateTemplate = `${month} ${d.date.getDate()}` 
+            }
+
+            if(this.props.lang === 'fr'){
+                dateTemplate = `${d.date.getDate()} ${month}` 
+            }
+
             let dateData = {
                 name: d.name,
-                templateLitteral: `${weekday[weekDayInNumber]}, ${d.date.toString().slice(4, 7)} ${d.date.getDate()}`       
+                templateLitteral: `${weekday[weekDayInNumber]}, ${dateTemplate}`       
             }
             deliveryDatesOutput.push(dateData)
         })
@@ -142,8 +202,8 @@ WEEKDAY[6] = "Saturday";
             <div className="delivery">
                 <UserInfo />
                 <section>
-                    <div className="checkout__title__primary">DELIVERY METHOD</div>
-                    <div>Choose a delivery option</div>
+                    <div className="checkout__title__primary"><FormattedMessage id="deliveryMethod" defaultMessage="Delivery Method" /></div>
+                    <div><FormattedMessage id="chooseDeleveryOption" defaultMessage="Choose a delivery option"/></div>
 
                 <form onSubmit={this.confirmDeliveryHandler}>
                         <div className="delivery__option">    
@@ -173,7 +233,7 @@ WEEKDAY[6] = "Saturday";
                         </div>
                         <Button type="submit"
                                 color="primary">
-                                Next
+                                <FormattedMessage id="next" defaultMessage="Next"/>
                         </Button>
                 </form>
                     
@@ -186,6 +246,12 @@ WEEKDAY[6] = "Saturday";
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        lang: state.auth.lang
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         selectDeliveryHandler: (data) => dispatch(actions.selectDeliveryHandler(data)),
@@ -194,4 +260,4 @@ const mapDispatchToProps = dispatch => {
 
 }
 
-export default connect(null, mapDispatchToProps)(Delivery);
+export default connect(mapStateToProps, mapDispatchToProps)(Delivery);

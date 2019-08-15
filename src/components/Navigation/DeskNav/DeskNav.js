@@ -5,6 +5,8 @@ import NavigationItems from '../NavigationItems/NavigationItems';
 import MobileToggler from '../MobileToggler/MobileToggler';
 import IconSvg from '../../../util/svgHandler';
 import logo from '../../../assets/img/logo.png';
+import {connect } from 'react-redux';
+import * as actions from '../../../store/actions/index';
 
 
 
@@ -13,7 +15,12 @@ const deskNav = (props) => {
         <Fragment>
         <div className="deskNav__top">
             <div className="deskNav__top__language">
-                English <IconSvg icon="down" size="small"/>
+                <select  onChange={e => props.changeLanguage(e.target.value)}
+                        value={props.lang}>
+                    <option value="en">English</option>
+                    <option value="fr">French</option>
+                </select>
+                <IconSvg icon="down" size="small"/>
             </div>
             <div className="deskNav__top__icon flex-centered-row">
                 <IconSvg icon='facebook' size='small'/>
@@ -39,7 +46,18 @@ const deskNav = (props) => {
     )
 }
 
-export default deskNav;
+const mapStateToProps = state => {
+    return {
+        lang: state.auth.lang
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        changeLanguage: lang => dispatch(actions.changeLanguage(lang))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)( deskNav);
 
 
 

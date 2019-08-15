@@ -29,3 +29,11 @@ export const setLoginStateToFalse = () => {
         type: actionTypes.SET_LOGIN_STATE_TO_FALSE
     }
 }
+
+
+export const changeLanguage = lang => {
+    return {
+        type: actionTypes.CHANGE_LANGUAGE,
+        lang: lang
+    }
+}

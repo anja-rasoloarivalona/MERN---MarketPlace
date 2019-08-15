@@ -3,7 +3,7 @@ import './Admin.css';
 
 import AdminProducts from '../AdminProducts/AdminProducts';
 import AdminOrders from '../AdminOrders/AdminOrders';
-
+import { FormattedMessage } from 'react-intl';
 
 
 
@@ -32,12 +32,12 @@ class Admin extends Component {
                             onClick={this.updatePage.bind(this, 'orders')}
                             className={["admin__nav__button", 
                             this.state.currentPage === 'orders' ? 'active' : ' '].join(' ')}>
-                        Orders
+                        <FormattedMessage id="orders" defaultMessage="Orders"/>
                     </button>
                     <button onClick={this.updatePage.bind(this, 'products')}
                             className={["admin__nav__button", 
                             this.state.currentPage === 'products' ? 'active' : ' '].join(' ')}>
-                        Products
+                        <FormattedMessage id="products" defaultMessage="Products"/>
                     </button>
                     
                 </nav>

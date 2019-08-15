@@ -6,6 +6,8 @@ import Button from '../../../components/Button/Button';
 import * as actions from '../../../store/actions/index';
 import IconSvg from '../../../util/svgHandler';
 import Spinner from '../../../components/Spinner/Spinner';
+import { FormattedMessage } from 'react-intl'
+
 
 class Payment extends Component {
 
@@ -122,14 +124,14 @@ class Payment extends Component {
                 <div className="payment">
                     <UserInfo />
                     <section className="payment__delivery">
-                        <div className="checkout__title__primary">DELIVERY</div>
+                        <div className="checkout__title__primary"><FormattedMessage id="delivery" defaultMessage="DELIVERY"/></div>
                         <div className="payment__delivery__details">{this.props.deliveryInfos.date}</div>
-                        <div className="payment__delivery__details">price: ${this.props.deliveryInfos.price}</div>
+                        <div className="payment__delivery__details"><FormattedMessage id="price" defaultMessage="price"/>: ${this.props.deliveryInfos.price}</div>
                     </section>
 
                     <section className="payment__summary">
 
-                        <div className="checkout__title__primary">YOUR CART</div>
+                        <div className="checkout__title__primary"><FormattedMessage id="yourCart" defaultMessage="YOUR CART"/></div>
 
                         {this.props.products.map( prod => (
                             <div className="payment__product">
@@ -154,7 +156,7 @@ class Payment extends Component {
                                 <span className='payment__price'>${this.props.taxes}</span>
                         </div>
                         <div className='payment__cart__details'>
-                                <span>Delivery fee:</span> 
+                                <span><FormattedMessage id="deliveryFee" defaultMessage="Delivery fee"/>:</span> 
                                 <span className='payment__price'>${this.props.deliveryInfos.price}</span>
                         </div>
                         <div className='payment__cart__details'>
@@ -164,7 +166,7 @@ class Payment extends Component {
                         <div className="payment__cta">
                                 <Button color="primary"
                                         onClick={this.postOrderHandler}>
-                                    Pay now
+                                    <FormattedMessage id="payNow" defaultMessage="Pay now"/>
                                 </Button>
                         </div>
                     </section>

@@ -1,12 +1,13 @@
 import React from 'react';
 import './UserInfo.css';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl'
 
 
 const userInfo = props => {
     return (
         <section className="userInfo">
-            <div className="checkout__title__primary">ADDRESS</div>
+            <div className="checkout__title__primary"><FormattedMessage id="address" defaultMessage="Address"/></div>
             <div className="userInfo__details--name">{props.fullname}</div>
             <div className="userInfo__details">{props.address1}</div>
             <div className="userInfo__details">{props.address2}</div>

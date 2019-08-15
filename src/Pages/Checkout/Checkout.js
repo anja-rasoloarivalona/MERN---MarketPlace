@@ -8,6 +8,7 @@ import FormUserInfo from './FormUserInfo/FormUserInfo';
 import Delivery from './Delivery/Delivery';
 import Payment from './Payment/Payment';
 import Button from '../../components/Button/Button';
+import { FormattedMessage } from 'react-intl'
 
 class Checkout extends Component {
 
@@ -56,10 +57,6 @@ class Checkout extends Component {
         
     }
 
-   /* shouldComponentUpdate(nextProps){
-        const step = this.props.currentCheckoutStep !== nextProps.currentCheckoutStep;
-        return step
-    }*/
 
     componentWillReceiveProps(nextProps){
         this.setState({currentPage: nextProps.currentCheckoutStep},
@@ -101,14 +98,14 @@ class Checkout extends Component {
 
                                 <button className="checkout__addresses__item__choose"
                                         onClick={this.selectAdressHander.bind(this, address)}>
-                                    Select
+                                    <FormattedMessage id="select" defaultMessage="Select"/>
                                 </button>
                                 <div className="checkout__addresses__item__cta">
                                     <Button color="grey">
-                                        Edit
+                                        <FormattedMessage id="edit" defaultMessage="Edit"/>
                                     </Button>
                                     <Button color="grey">
-                                        Delete
+                                        <FormattedMessage id="delete" defaultMessage="Delete"/>
                                     </Button>
                                 </div>
                             </article>
@@ -143,8 +140,8 @@ class Checkout extends Component {
                     </div>
                     <div className="checkout__steps__name">
                         <div>Information</div>
-                        <div>Delivery</div>
-                        <div>Payment</div>
+                        <div><FormattedMessage id="delivery" defaultMessage="Delivery"/></div>
+                        <div><FormattedMessage id="payment" defaultMessage="Paiement"/></div>
                     </div>
                 </div>
 

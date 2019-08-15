@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 import Button from '../../components/Button/Button';
 import IconSvg from '../../util/svgHandler';
+import { FormattedMessage } from 'react-intl';
 
 class Cart extends Component {
 
@@ -59,25 +60,35 @@ class Cart extends Component {
                     <div className="cart__details">
                         <div className="cart__details__count">
 
-                        {
-                            this.props.totalProductsCount > 1 ? `There are ${this.props.totalProductsCount} items in your cart` : `There is ${this.props.totalProductsCount} item in your cart`                         
-                        }
+                        {this.props.totalProductsCount > 1 ? (
+                                <div>
+                                    <FormattedMessage id='thereAre' defaultMessage='There are '/>
+                                    {this.props.totalProductsCount} 
+                                    <FormattedMessage id='itemsInYourCart' defaultMessage=' items in your cart'/>
+                                </div>
+                                        ): (
+                                <div>
+                                    <FormattedMessage id='thereIs' defaultMessage='There is ' />
+                                    {this.props.totalProductsCount} 
+                                    <FormattedMessage id='itemInYourCart' defaultMessage=' item in your cart'/>
+                                </div>
+                        )}
 
                         </div>
-                        <div className="cart__details__price"><span>Subtotal: </span><span>${this.props.subTotalPrice}</span></div>
-                        <div className="cart__details__price"><span>Taxes: </span><span>${this.props.taxes}</span></div>
-                        <div className="cart__details__price"><span>Total Price:</span><span>${this.props.totalPrice}</span></div>
+                        <div className="cart__details__price"><span><FormattedMessage id='subtotal' defaultMessage='Subtotal'/>: </span><span>${this.props.subTotalPrice}</span></div>
+                        <div className="cart__details__price"><span><FormattedMessage id='taxes' defaultMessage='Taxes'/>: </span><span>${this.props.taxes}</span></div>
+                        <div className="cart__details__price"><span><FormattedMessage id='totalPrice' defaultMessage='Total Price'/>:</span><span>${this.props.totalPrice}</span></div>
                     </div>
 
 
                     <div className="cart__cta">
                             <Button onClick={this.props.clearProductsInCart}
                                     color='secondary'>
-                                Clear Cart
+                                <FormattedMessage id='clearCart' defaultMessage='Clear Cart'/>
                             </Button>
                             <Button color='primary'
                                     link={this.props.isAuth ? '/checkout' : '/login'}>
-                                Checkout
+                                <FormattedMessage id='checkout' defaultMessage='Checkout'/>
                             </Button>
                     </div>
                 </div>
@@ -93,11 +104,11 @@ class Cart extends Component {
                 
                     <div className="no-product-inCart">
                         <div>
-                            <IconSvg icon="happy"/> <span>There are no items in your cart</span>
+                            <IconSvg icon="happy"/> <span><FormattedMessage id="noItemsInCart" defaultMessage="There are no items in your cart"/></span>
                         </div>
                         <Button color='primary'
                             link='/'>
-                            Shop
+                            <FormattedMessage id="shop" defaultMessage="Shop"/>
                         </Button>
                     </div>                 
                 

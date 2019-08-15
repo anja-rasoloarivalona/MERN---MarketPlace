@@ -11,6 +11,9 @@ import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import Spinner from '../../../components/Spinner/Spinner';
 import IconSvg from '../../../util/svgHandler';
 
+import { FormattedMessage } from 'react-intl';
+
+
 
 
 
@@ -216,7 +219,7 @@ import IconSvg from '../../../util/svgHandler';
         } else { if(this.state.products.length < 1){
             product = (
                 <div className="no-product flex-centered-column">
-                    <IconSvg icon="happy"/> <span>You do not have any products for sale yet</span>
+                    <IconSvg icon="happy"/> <span><FormattedMessage id="noProductsForSale" defaultMessage="You do not have any products for sale yet"/></span>
                 </div>
             )
         } else {
@@ -268,7 +271,7 @@ import IconSvg from '../../../util/svgHandler';
                                 color='primary' 
                                 onClick={this.addProductHandler}
                                 >
-                                    Add Product
+                                    <FormattedMessage id="addProduct" defaultMessage="Add product"/>
                                 </Button>
                     </div>
                      {product}     

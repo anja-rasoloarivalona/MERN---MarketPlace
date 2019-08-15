@@ -2,7 +2,7 @@
     background: var(--color-grey);
     color: var(--color-white);  
     width: 45rem;
-    height: 57rem;
+    height: 50rem;
     z-index: 99002;
     position: fixed;
     top: 0;
@@ -26,7 +26,7 @@
 
 .addProduct__form button {
     position: absolute;
-    bottom: .9rem;
+    bottom: .5rem;
 }
 
 .addProduct__form button:first-child {
@@ -89,5 +89,5 @@
 }
 
 .addProduct__form textarea {
-    height: 60%;
+    height: 17rem;
 }

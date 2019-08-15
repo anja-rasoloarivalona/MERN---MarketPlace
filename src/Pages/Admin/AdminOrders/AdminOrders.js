@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './AdminOrders.css';
 import IconSvg from '../../../util/svgHandler';
 import Spinner from '../../../components/Spinner/Spinner';
+import { FormattedMessage } from 'react-intl';
 
 
 class AdminOrders extends Component {
@@ -68,13 +69,13 @@ class AdminOrders extends Component {
                               key={order.shortId}>
 
                             <div className="admin-order__top">
-                                <h2>Order: {order.shortId}</h2>
+                                <h2><FormattedMessage id="order" defaultMessage="Order"/>: {order.shortId}</h2>
                             </div>   
                             
          
                              <div className="admin-order__body">             
                                  <div className="admin-order__products-list">
-                                     <div className="admin-order__title">Items</div>
+                                     <div className="admin-order__title"><FormattedMessage id="items" defaultMessage="Items"/></div>
                                      {
                                          order.cart.items.map( prod => {
                                          return (
@@ -87,13 +88,13 @@ class AdminOrders extends Component {
                                      }
          
                                      <div className="admin-order__details admin-order__details--price">
-                                         <span>Subtotal: </span><span>${order.cart.subTotalPrice}</span>
+                                         <span><FormattedMessage id="subtotal" defaultMessage="Subtotal"/>: </span><span>${order.cart.subTotalPrice}</span>
                                      </div>
                                      <div className="admin-order__details">
-                                         <span>Taxes: </span><span>${order.cart.taxes}</span>
+                                         <span><FormattedMessage id="taxes" defaultMessage="Taxes"/>: </span><span>${order.cart.taxes}</span>
                                      </div>
                                      <div className="admin-order__details">
-                                         <span>Delivery: </span><span>${order.cart.deliveryFee}</span>
+                                         <span><FormattedMessage id="delivery" defaultMessage="Delivery"/>: </span><span>${order.cart.deliveryFee}</span>
                                      </div>
                                      <div className="admin-order__details">
                                          <span className="admin-order__details--total" >Total: </span> <span className="admin-order__details--total">${order.cart.totalPrice}</span>
@@ -101,7 +102,7 @@ class AdminOrders extends Component {
                                  </div>
                          
                                  <div className="amdin-order__delivery">
-                                     <div className="admin-order__title">Delivery</div>
+                                     <div className="admin-order__title"><FormattedMessage id="delivery" defaultMessage="Delivery"/></div>
          
                                      <div className="amdin-order__delivery__details">
                                          <div>{order.address.fullname}</div>
@@ -123,7 +124,7 @@ class AdminOrders extends Component {
             } else {
                 orders = (
                     <div className="no-order flex-centered-column">
-                        <IconSvg icon="happy"/> <span>You do not have any orders yet</span>
+                        <IconSvg icon="happy"/> <span><FormattedMessage id="noOrders" defaultMessage="You do not have any orders yet"/></span>
                     </div>
     
                 )

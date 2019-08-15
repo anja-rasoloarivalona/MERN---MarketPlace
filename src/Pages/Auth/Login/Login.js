@@ -10,6 +10,7 @@ import IconSvg from '../../../util/svgHandler';
 import Spinner from '../../../components/Spinner/Spinner';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
+import { FormattedMessage } from 'react-intl'
 
 
 class Login extends Component {
@@ -168,7 +169,7 @@ class Login extends Component {
                         this.loginHandler(e, this.state.loginForm))}
                     noValidate>    
 
-                        <div className="login__title flex-centered-row">Log In
+                        <div className="login__title flex-centered-row"><FormattedMessage id="logIn" defaultMessage="Log In"/>
                             <IconSvg icon="user"/>
                         </div>
                         <Input 
@@ -182,7 +183,7 @@ class Login extends Component {
                         />
                         <Input 
                             id='password'
-                            label='password'
+                            label={<FormattedMessage id="password" defaultMessage="password"/>}
                             type='password'
                             control='input' 
                             onChange={this.inputChangeHandler}
@@ -190,11 +191,11 @@ class Login extends Component {
                             value={this.state.loginForm['password'].value}
                         />
                         <div className="login__cta">
-                                <Link to='/signup'>Don't have an account?</Link>
-                                <div>Forget password</div>
+                                <Link to='/signup'><FormattedMessage id="dontHaveAnAccount" defaultMessage="Don't have an account"/>?</Link>
+                                <div><FormattedMessage id="forgetPassword" defaultMessage="Forget password"/></div>
                             </div>
                         <Button type="submit" color="secondary">
-                            Login
+                            <FormattedMessage id="login" defaultMessage="login"/>
                         </Button>
                 </form>
             )

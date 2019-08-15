@@ -1,89 +1,247 @@
 export default {
-    en: {
-        'shop.navigationItems': 'Shop',
-        'cart.navigationItems': 'Cart',
-        'login.navigationItems': 'Login',
-        'signup.navigationItems': 'Signup',
-        'admin.navigationItems': 'Admin',
+  en: {
+    /*-----NAVIGATION--------*/
+    "shop": "Shop",
+    "cart": "Cart",
+    "login": "Login",
+    "signup": "Signup",
+    "admin": "Admin",
+    "logout": "Logout",
+
+    "connexion": "Login",
+
+    /*-----SIDEBAR------*/
+    "allCategories.sidebar": "All Categories",
+    "automobile.sidebar": "Automobile",
+    "laptop.sidebar": "Laptop",
+    "smartphone.sidebar": "Smartphone",
+    "headphones.sidebar": "Headphones",
+    "clothes.sidebar": "Clothes",
+    "television.sidebar": "Television",
+    "furniture.sidebar": "Furniture",
+    "filterByPrice.sidebar": "Filter by price",
+    "sortBy.sidebar": "Sort by",
+    "sortBy.latest": "latest",
+    "sortBy.lowToHigh": "price: low to high",
+    "sortBy.highToLow": "price: high to low",
+
+    /*------GENERAL-----*/
+
+    "viewDetails": "View Details",
+    "delete": "Delete",
+    "edit": "Edit",
+
+    "myCart": "My cart",
+    "checkout": "Checkout",
+    "addToCart": "Add to cart",
+    "back": "Back",
+    "add": "Add",
+    "create": "Create",
+    "cancel": "Cancel",
+    "update": "Update",
+
+    "price": "price",
+    "title": "Title",
+    "category": "Category",
+    "image": "Image",
+    "description": "Description",
+
+    /*------CART---------------*/
+
+    "thereAre": "There are ",
+    "thereIs": "There is ",
+    "itemsInYourCart": " items in your cart",
+    "itemInYourCart": " item in your cart",
+
+    "noItemsInCart": "There are no items in your cart",
+
+    "subtotal": "Subtotal",
+    "taxes": "Taxes",
+    "totalPrice": "Total Price",
+    "clearCart": "Clear cart",
 
 
-        'allCategories.sidebar': 'All Categories',
-
-        'automobile.sidebar': 'Automobile',
-        'laptop.sidebar': 'Laptop',
-        'smartphone.sidebar': 'Smartphone',
-        'headphones.sidebar': 'Headphones',
-        'clothes.sidebar': 'Clothes',
-        'television.sidebar': 'Television',
-        'furniture.sidebar': 'Furniture',
-
-        'filterByPrice.sidebar': 'Filter by price',
-        'sortBy.sidebar': 'Sort by',
-
-        'sortBy.latest': 'latest',
-        'sortBy.lowToHigh': 'price: low to high',
-        'sortBy.highToLow': 'price: high to low',
+    /*---------AUTH----------------*/
+    "recruiterAccount": "Recruiter account",
+    "logIn": "Log In",
+    "login":"login",
+    "password":"password",
+    "dontHaveAnAccount": "Don't have an account",
+    "forgetPassword": "Forget password",
 
 
-        'product.viewDetails': 'View Details',
-        'product.delete': 'Delete',
-        'product.edit': 'Edit',
-
-        'singleProduct.checkout': 'Checkout',
-        'singleProduct.addToCart': 'Add to cart',
-        'singleProduct.back': 'Back',
-
-        'singleProduct.thereAre': 'There are ',
-        'singleProduct.thereIs': 'There is ',
-        'singleProduct.itemsInYourCart': ' items in your cart',
-        'singleProduct.itemInYourCart': ' item in your cart',
+    /*----------ADMIN---------------*/
+    "orders": "Orders",
+    "order": "Order",
+    "products": "Products",
+    "noProductsForSale": "You do not have any products for sale yet",
+    "addProduct": "Add Product",
+    "noOrders": "You do not have any orders yet",
+    "items": "Items",
+    "delivery": "Delivery",
 
 
-        'cart.subtotal': 'Subtotal',
-
-        
-    },
+    "browse": "Browse",
+    "noImageChosen": "No image chosen",
 
 
-    fr: {
-       'shop.navigationItems': 'Accueil',
-       'cart.navigationItems': 'Panier',
-       'login.navigationItems': 'Connexion',
-       'signup.navigationItems': "S'inscrire",
-       'admin.navigationItems': 'Mon Compte',
+    /*-------CHECKOUT---------------*/
+    "select": "Select",
+    "payment": "Payment",
+    "addNewAddress": "Add a new address",
 
-       'allCategories.sidebar': 'Les Catégories',
+    "fullname": "full name",
+    "addressline1": "Address line 1",
+    "addressline2": "Address line 2",
+    "city": "city",
+    "state/province/region": "state/province/region",
+    "zip": "zip",
+    "phoneNumber": "phone number",
+    "country": "Country",
 
-       'automobile.sidebar': 'Voiture',
-        'laptop.sidebar': 'PC portable',
-        'smartphone.sidebar': 'Téléphone',
-        'headphones.sidebar': 'Casque',
-        'clothes.sidebar': 'Vêtement',
-        'television.sidebar': 'Télévision',
-        'furniture.sidebar': 'Meubles',
+    "address": "ADDRESS",
+    "delivery": "DELIVERY",
 
-        'filterByPrice.sidebar': 'Filtrer par prix',
-        'sortBy.sidebar': 'Trier par',
-        
-        'sortBy.latest': 'les plus récents',
-        'sortBy.lowToHigh': 'prix croissant',
-        'sortBy.highToLow': 'prix décroissant',
+    "deliveryMethod": "Delivery Method", 
+    "chooseDeleveryOption": "Choose a delivery option",
+    "deliveryFee": "Delivery fee", 
 
-        'product.viewDetails': 'Voir Détails',
-        'product.delete': 'Retirer',
-        'product.edit': 'Éditer',
+    "next" : "Next",
+    "payNow": "Pay now",
+    "yourCart": "YOUR CART",
+
+    /*----------FOOTER-------------*/
+    "about": "About",
+    "memberBenefits": "Member Benefits",
+    "info": "INFO",
+    "termsOfUse": "Terms of use",
+    "privacyPolicy": "Privacy policy",
+    "postingPolicy": "Posting policy",
+    "support": "SUPPORT",
+    "helpDesk": "Help Desk",    
+  },
+
+  fr: {
+    /*-----NAVIGATION--------*/
+    "shop": "Accueil",
+    "cart": "Panier",
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "admin": "Mon Compte",
+    "logout": "Se déconnecter",
+
+    "connexion": "Connexion",
+
+    /*-----SIDEBAR------*/
+    "allCategories.sidebar": "Les Catégories",
+    "automobile.sidebar": "Voiture",
+    "laptop.sidebar": "PC portable",
+    "smartphone.sidebar": "Téléphone",
+    "headphones.sidebar": "Casque",
+    "clothes.sidebar": "Vêtement",
+    "television.sidebar": "Télévision",
+    "furniture.sidebar": "Meubles",
+    "filterByPrice.sidebar": "Filtrer par prix",
+    "sortBy.sidebar": "Trier par",
+    "sortBy.latest": "les plus récents",
+    "sortBy.lowToHigh": "prix croissant",
+    "sortBy.highToLow": "prix décroissant",
 
 
-        'singleProduct.checkout': 'Voir Panier',
-        'singleProduct.addToCart': 'Acheter',
-        'singleProduct.back': 'Retour',
+    /*----------GENERAL-------------*/
+    "viewDetails": "Voir Détails",
+    "delete": "Retirer",
+    "edit": "Éditer",
+    "create": "Créer",
+    "cancel": "Annuler",
+    "update": "Actualiser",
 
-        'singleProduct.thereAre': 'Vous avez ',
-        'singleProduct.thereIs': 'Vous avez ',
-        'singleProduct.itemsInYourCart': ' articles dans le panier',
-        'singleProduct.itemInYourCart': ' article dans le panier',
-        
-        'cart.subtotal': 'Sous-Total',
 
-    }
-}
+    "myCart": "Mon panier",
+    "checkout": "Commander",
+    "addToCart": "Acheter",
+    "back": "Retour",
+    "add": "Ajouter",
+
+    "price": "prix",
+    "title": "Titre",
+    "category": "Catégorie",
+    "image": "Image",
+    "description": "Description",
+
+
+    /*------CART---------------*/
+
+
+    "thereAre": "Vous avez ",
+    "thereIs": "Vous avez ",
+    "itemsInYourCart": " articles dans le panier",
+    "itemInYourCart": " article dans le panier",
+
+    "noItemsInCart": "Il n'y a aucun article dans votre panier",
+
+    "subtotal": "Sous-total",
+    "taxes": "Taxes",
+    "totalPrice": "Prix total",
+    "clearCart": "Tout retirer",
+
+    /*---------AUTH----------------*/
+    "recruiterAccount": "Compte recruteur",
+    "logIn": "Mon compte",
+    "login":"Se connecter",
+    "password":"Mot de passe",
+    "dontHaveAnAccount": "Vous n'avez pas de compte",
+    "forgetPassword": "Mot de passe oublié",
+
+     /*----------ADMIN---------------*/
+     "orders": "Commandes",
+     "order": "Commande",
+     "items": "Articles",
+     "products": "Articles",
+     "noProductsForSale": "Vous n'avez pas encore d'articles à vendre",
+     "addProduct": "Ajouter",
+     "noOrders": "Vous n'avez pas encore de commandes",
+     "delivery": "Livraison",
+
+     "browse": "Parcourir",
+     "noImageChosen": "Aucune image choisie",
+
+     /*-------CHECKOUT---------------*/
+    "select": "Choisir",
+    "payment": "Paiement",
+    "addNewAddress": "Ajouter une nouvelle adresse",
+
+    "fullname": "nom complet",
+    "addressline1": "Adresse ligne 1",
+    "addressline2": "Adresse ligne 2",
+    "city": "ville",
+    "state/province/region": "pays/province/région",
+    "zip": "code postal",
+    "phoneNumber": "Numéro de téléphone",
+    "country": "Pays",
+
+    "address": "ADRESSE",
+    "delivery": "LIVRAISON",
+
+    "deliveryMethod": "Mode de livraison", 
+    "chooseDeleveryOption": "Choisissez un mode de livraison",
+    "deliveryFee": "Frais de livraison", 
+
+    "next" : "Suivant",
+
+    "payNow": "Payer",
+
+    "yourCart": "VOTRE PANIER",
+
+    /*----------FOOTER-------------*/
+    "about": "À propos",
+    "memberBenefits": "Avantages pour les membres",
+    "info": "INFO",
+    "termsOfUse": "Conditions d'utilisation",
+    "privacyPolicy": "Politique de confidentialité",
+    "postingPolicy": "Politique d'affichage",
+    "support": "SUPPORT",
+    "helpDesk": "Service d'assistance",    
+
+  }
+};

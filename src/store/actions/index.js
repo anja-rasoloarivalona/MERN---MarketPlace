@@ -23,5 +23,7 @@ export {
     loginSucceeded,
     loginFailed,
     setLoginStateToTrue,
-    setLoginStateToFalse
+    setLoginStateToFalse,
+
+    changeLanguage
 } from './auth'
