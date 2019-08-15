@@ -19,6 +19,7 @@ const deskNav = (props) => {
                         value={props.lang}>
                     <option value="en">English</option>
                     <option value="fr">French</option>
+                    <option value="es">Spanish</option>
                 </select>
                 <IconSvg icon="down" size="small"/>
             </div>

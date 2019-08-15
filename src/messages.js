@@ -251,5 +251,133 @@ export default {
     "support": "SUPPORT",
     "helpDesk": "Service d'assistance",    
 
+  },
+
+
+  es: {
+    /*-----NAVIGATION--------*/
+    "shop": "Comercio",
+    "cart": "Cesta",
+    "login": "Iniciar sesión",
+    "signup": "Regístrese",
+    "admin": "Mi cuenta",
+    "logout": "Se déconnecter",
+
+    "connexion": "Cerrar sesión",
+
+    /*-----SIDEBAR------*/
+    "allCategories.sidebar": "Las categorías",
+    "automobile.sidebar": "Coche",
+    "laptop.sidebar": "Computadora portátil",
+    "smartphone.sidebar": "Teléfono",
+    "headphones.sidebar": "Audífonos",
+    "clothes.sidebar": "Vestimenta",
+    "television.sidebar": "Televisor",
+    "furniture.sidebar": "Muebles",
+    "filterByPrice.sidebar": "Filtrar por precio",
+    "sortBy.sidebar": "Ordenar por",
+    "sortBy.latest": "los más recientes",
+    "sortBy.lowToHigh": "precio ascendente",
+    "sortBy.highToLow": "precio descendente",
+
+
+    /*----------GENERAL-------------*/
+    "viewDetails": "Ver Detalles",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "cancel": "Cancelar",
+    "update": "Actualizar",
+
+
+    "myCart": "Mi cesta",
+    "checkout": "Ordenar",
+    "addToCart": "Comprar",
+    "back": "Regreso",
+    "add": "Añadir",
+
+    "price": "precio",
+    "title": "Título",
+    "category": "Categoría",
+    "image": "Imagen",
+    "description": "Descripción",
+
+
+    /*------CART---------------*/
+
+
+    "thereAre": "Usted tiene ",
+    "thereIs": "Usted tiene ",
+    "itemsInYourCart": " artículos en la cesta",
+    "itemInYourCart": " artículo en la cesta",
+
+    "noItemsInCart": "No hay artículos en su cesta.",
+
+    "subtotal": "Subtotal",
+    "taxes": "Impuestos",
+    "totalPrice": "Precio total",
+    "clearCart": "Eliminar todos",
+
+    /*---------AUTH----------------*/
+    "recruiterAccount": "Reclutador",
+    "logIn": "Mi cuenta",
+    "login":"Iniciar sesión",
+    "password":"Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "alreadyMember": "Soy miembro",
+    "dontHaveAnAccount": "No tienes una cuenta",
+    "forgetPassword": "Contraseña olvidada",
+    "createAccount": "Crear una cuenta",
+
+     /*----------ADMIN---------------*/
+     "orders": "Comandos",
+     "order": "Comando",
+     "items": "Artículos",
+     "products": "Artículos",
+     "noProductsForSale": "No tienes ningún artículo para vender",
+     "addProduct": "Añadir",
+     "noOrders": "No tienes ningún comando",
+     "delivery": "Entrega",
+
+     "browse": "Navegar",
+     "noImageChosen": "Ninguna imagen seleccionada",
+
+     /*-------CHECKOUT---------------*/
+    "select": "Elegir",
+    "payment": "Pago",
+    "addNewAddress": "Añadir una nueva dirección",
+
+    "fullname": "nombre completo",
+    "addressline1": "Dirección línea 1",
+    "addressline2": "Dirección línea 2",
+    "city": "ciudad",
+    "state/province/region": "país/provincia/región",
+    "zip": "código postal",
+    "phoneNumber": "Número de teléfono",
+    "country": "País",
+
+    "address": "DIRRECCIÓN",
+    "delivery": "ENTREGA",
+
+    "deliveryMethod": "Método de entrega", 
+    "chooseDeleveryOption": "Elige un método de entrega",
+    "deliveryFee": "Precio de entrega", 
+
+    "next" : "Siguiente",
+
+    "payNow": "Pagar",
+
+    "yourCart": "SU CESTA",
+
+    /*----------FOOTER-------------*/
+    "about": "A proposito",
+    "memberBenefits": "Beneficios para miembros",
+    "info": "INFO",
+    "termsOfUse": "Condiciones de uso",
+    "privacyPolicy": "Política de confidencialidad",
+    "postingPolicy": "Política de publicación",
+    "support": "APOYO",
+    "helpDesk": "Servicio de asistencia",    
+
   }
 };

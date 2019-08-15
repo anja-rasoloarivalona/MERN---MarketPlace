@@ -77,6 +77,29 @@ import { FormattedMessage } from 'react-intl'
             MONTH['nov'] = "nov";
             MONTH['dec'] = "dec";
         }
+
+        if(this.props.lang === "es"){
+            WEEKDAY[0] =  "Domingo";
+            WEEKDAY[1] = "Lunes";
+            WEEKDAY[2] = "Martes";
+            WEEKDAY[3] = "Miércoles";
+            WEEKDAY[4] = "Jeves";
+            WEEKDAY[5] = "Viernes";
+            WEEKDAY[6] = "Sábado";
+
+            MONTH['jan'] ='enero';
+            MONTH['feb'] = 'febrero';
+            MONTH['mar'] = 'marzo';
+            MONTH['apr'] = 'abril';
+            MONTH['may'] = 'mayo';
+            MONTH['jun'] = 'junio';
+            MONTH['jul'] = 'julio';
+            MONTH['aug'] = "agosto";
+            MONTH['sep'] = "septiembre";
+            MONTH['oct'] = "octubre";
+            MONTH['nov'] = "noviembre";
+            MONTH['dec'] = "diciembre";
+        }
         
         
         
@@ -119,7 +142,7 @@ import { FormattedMessage } from 'react-intl'
                 dateTemplate = `${month} ${d.date.getDate()}` 
             }
 
-            if(this.props.lang === 'fr'){
+            if(this.props.lang === 'fr' || this.props.lang === "es"){
                 dateTemplate = `${d.date.getDate()} ${month}` 
             }
 
