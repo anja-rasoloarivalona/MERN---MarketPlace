@@ -112,6 +112,8 @@ export default {
     "deliveryFee": "Delivery fee", 
 
     "next" : "Next",
+    "previous": "Previous",
+
     "payNow": "Pay now",
     "yourCart": "YOUR CART",
 
@@ -236,6 +238,7 @@ export default {
     "deliveryFee": "Frais de livraison", 
 
     "next" : "Suivant",
+    "previous": "Précédent",
 
     "payNow": "Payer",
 
@@ -319,7 +322,7 @@ export default {
     "clearCart": "Eliminar todos",
 
     /*---------AUTH----------------*/
-    "recruiterAccount": "Reclutador",
+    "recruiterAccount": "Cuenta reclutador",
     "logIn": "Mi cuenta",
     "login":"Iniciar sesión",
     "password":"Contraseña",
@@ -364,6 +367,7 @@ export default {
     "deliveryFee": "Precio de entrega", 
 
     "next" : "Siguiente",
+    "previous": "Anterior",
 
     "payNow": "Pagar",
 

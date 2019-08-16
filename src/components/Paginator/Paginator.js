@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Paginator.css';
+import {FormattedMessage} from 'react-intl';
 
 class Paginator extends Component {
     render() {
@@ -32,7 +33,7 @@ class Paginator extends Component {
                     <button className="paginator__control"
                             disabled={ this.props.currentPage === 1 ? true : false}
                             onClick={this.props.onRequestPreviousPage}>
-                                Previous
+                                <FormattedMessage id="previous" defaultMessage="Previous"/>
                     </button>
 
                     {pageNumbersButton}
@@ -40,7 +41,7 @@ class Paginator extends Component {
                     <button className="paginator__control"
                             disabled={ this.props.currentPage === this.props.lastPage ? true : false}
                             onClick={this.props.onRequestNextPage}>
-                                Next
+                               <FormattedMessage id="next" defaultMessage="Next"/>
                     </button>
             </div>
             
