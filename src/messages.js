@@ -105,7 +105,7 @@ export default {
     "country": "Country",
 
     "address": "ADDRESS",
-    "delivery": "DELIVERY",
+
 
     "deliveryMethod": "Delivery Method", 
     "chooseDeleveryOption": "Choose a delivery option",
@@ -229,7 +229,7 @@ export default {
     "country": "Pays",
 
     "address": "ADRESSE",
-    "delivery": "LIVRAISON",
+ 
 
     "deliveryMethod": "Mode de livraison", 
     "chooseDeleveryOption": "Choisissez un mode de livraison",
@@ -261,9 +261,9 @@ export default {
     "login": "Iniciar sesión",
     "signup": "Regístrese",
     "admin": "Mi cuenta",
-    "logout": "Se déconnecter",
+    "logout": "Desconectarse",
 
-    "connexion": "Cerrar sesión",
+    "connexion": "Iniciar sesión",
 
     /*-----SIDEBAR------*/
     "allCategories.sidebar": "Las categorías",
@@ -344,7 +344,7 @@ export default {
 
      /*-------CHECKOUT---------------*/
     "select": "Elegir",
-    "payment": "Pago",
+    "payment": "Pagar",
     "addNewAddress": "Añadir una nueva dirección",
 
     "fullname": "nombre completo",
@@ -357,7 +357,7 @@ export default {
     "country": "País",
 
     "address": "DIRRECCIÓN",
-    "delivery": "ENTREGA",
+ 
 
     "deliveryMethod": "Método de entrega", 
     "chooseDeleveryOption": "Elige un método de entrega",

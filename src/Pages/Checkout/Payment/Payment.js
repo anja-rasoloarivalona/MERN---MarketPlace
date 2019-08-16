@@ -152,7 +152,7 @@ class Payment extends Component {
 
                         
                         <div className='payment__cart__details'>
-                                <span>Taxes:</span> 
+                                <span><FormattedMessage id="taxes" defaultMessage="Taxes"/>:</span> 
                                 <span className='payment__price'>${this.props.taxes}</span>
                         </div>
                         <div className='payment__cart__details'>

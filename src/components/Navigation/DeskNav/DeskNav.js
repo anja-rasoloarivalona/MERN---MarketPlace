@@ -4,7 +4,6 @@ import { NavLink} from 'react-router-dom';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import MobileToggler from '../MobileToggler/MobileToggler';
 import IconSvg from '../../../util/svgHandler';
-import logo from '../../../assets/img/logo.png';
 import {connect } from 'react-redux';
 import * as actions from '../../../store/actions/index';
 

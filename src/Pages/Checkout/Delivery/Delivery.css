@@ -15,3 +15,7 @@
     margin-right: 2rem;
 }
 
+.delivery section .checkout__title__primary {
+    text-transform: uppercase;
+}
+

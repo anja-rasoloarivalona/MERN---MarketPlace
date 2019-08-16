@@ -8,6 +8,10 @@
     margin-bottom: 2rem;
 }
 
+.payment__delivery .checkout__title__primary {
+    text-transform: uppercase;
+}
+
 .payment__delivery__details {
     font-size: 1.2rem;
 }
