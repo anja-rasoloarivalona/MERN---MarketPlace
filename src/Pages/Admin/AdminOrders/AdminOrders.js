@@ -113,7 +113,7 @@ class AdminOrders extends Component {
                                      </div>
          
                                      <div>
-                                         <span className="admin-order__delivery__date">Date: {order.deliveryDate}</span>
+                                         <span className="admin-order__delivery__date">{order.deliveryDate}</span>
                                      </div>
                                  </div>
                              </div>
