@@ -162,8 +162,6 @@ export const setProductsInCart = (products, token) => {
 
         return dispatch => {
 
-            console.log('set happened');
-
             let data = new FormData();
             data.append('products', JSON.stringify(products))
 

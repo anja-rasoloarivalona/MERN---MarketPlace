@@ -23,7 +23,9 @@ import { FormattedMessage } from 'react-intl'
         fastest: []
     }
 
-    componentWillMount(){ 
+    componentWillMount(){
+        
+        console.log('fron delivery', this.props.lang)
 
         let WEEKDAY;
         WEEKDAY = new Array(7);
@@ -139,7 +141,9 @@ import { FormattedMessage } from 'react-intl'
             let dateTemplate;
 
             if(this.props.lang === 'en'){
-                dateTemplate = `${month} ${d.date.getDate()}` 
+                dateTemplate = `${month} ${d.date.getDate()}` ;
+
+                console.log('datetemplate', dateTemplate)
             }
 
             if(this.props.lang === 'fr' || this.props.lang === "es"){
@@ -158,7 +162,8 @@ import { FormattedMessage } from 'react-intl'
         let cheapestDateDelivery = `${cheapFirstDateOutput.templateLitteral} - ${cheapLastDateOutPut.templateLitteral}`;
         let cheapestDeliveryMethod = [cheapestDateDelivery, 10];
 
-        let fastestDateOutPut = deliveryDatesOutput.find( o => o.name === 'asapDate');     
+
+        let fastestDateOutPut = deliveryDatesOutput.find( o => o.name === 'asapDate');         
         let fastestDeliveryMethod = [fastestDateOutPut.templateLitteral, 20]
 
         this.setState({

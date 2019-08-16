@@ -40,9 +40,13 @@ class App extends Component {
   componentWillMount(){  
     
     let lang = localStorage.getItem('market-place-lang');
-    if(!lang) {
-      localStorage.setItem('market-place-lang', 'fr')
-    };
+
+    if(lang){
+      this.props.initLang(lang)
+    } else {
+      localStorage.setItem('market-place-lang', 'fr');
+      this.props.initLang('fr')
+    }
 
     
     
@@ -236,7 +240,9 @@ const mapDispatchToProps = dispatch => {
     setLoginStateToFalse: () => dispatch(actions.setLoginStateToFalse()),
 
     setProductsInCart: (products, token) => dispatch(actions.setProductsInCart(products, token)),
-    clearProductsInCart: () => dispatch(actions.clearProductsInCart())
+    clearProductsInCart: () => dispatch(actions.clearProductsInCart()),
+
+    initLang: lang => dispatch(actions.changeLanguage(lang))
 
 
   }

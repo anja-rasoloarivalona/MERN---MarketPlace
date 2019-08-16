@@ -29,7 +29,6 @@ class Checkout extends Component {
         const token = localStorage.getItem('token');
 
         if(token) {
-            console.log('fetch happengin');
 
                     fetch('https://strix-market-place.herokuapp.com/address/',
                     {   
@@ -44,11 +43,10 @@ class Checkout extends Component {
                         return  res.json();
                     })
                     .then( resData => {
-                        console.log(resData);
 
                         this.setState({
                             addresses: resData.addresses
-                        }, console.log('after fetch', this.state.addresses))
+                        })
                     })
                     .catch( err => {
                         console.log(err)
