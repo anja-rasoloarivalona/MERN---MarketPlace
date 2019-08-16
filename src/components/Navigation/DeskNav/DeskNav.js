@@ -10,12 +10,20 @@ import * as actions from '../../../store/actions/index';
 
 
 const deskNav = (props) => {
+
+    let userLang;       
+    let lang = localStorage.getItem('market-place-lang');
+    if(lang){
+        userLang = lang
+    } else {
+        userLang = 'fr'
+    }
     return (
         <Fragment>
         <div className="deskNav__top">
             <div className="deskNav__top__language">
                 <select  onChange={e => props.changeLanguage(e.target.value)}
-                        value={props.lang}>
+                        value={userLang}>
                     <option value="en">English</option>
                     <option value="fr">French</option>
                     <option value="es">Spanish</option>

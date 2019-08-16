@@ -32,6 +32,11 @@ export const setLoginStateToFalse = () => {
 
 
 export const changeLanguage = lang => {
+
+    localStorage.setItem('market-place-lang', lang);
+
+    console.log('change lang to', lang)
+
     return {
         type: actionTypes.CHANGE_LANGUAGE,
         lang: lang

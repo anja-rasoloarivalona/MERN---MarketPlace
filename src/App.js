@@ -34,7 +34,18 @@ class App extends Component {
     showMobileNav: false,
   }
 
-  componentWillMount(){
+  
+  
+
+  componentWillMount(){  
+    
+    let lang = localStorage.getItem('market-place-lang');
+    if(!lang) {
+      localStorage.setItem('market-place-lang', 'fr')
+    };
+
+    
+    
 
     const token = localStorage.getItem('token');
     const expiryDate = localStorage.getItem('expiryDate');
@@ -167,9 +178,12 @@ class App extends Component {
         </Switch>      
     )
 
+  let lang = localStorage.getItem('market-place-lang');
+
+
     return (
-      <IntlProvider locale={this.props.lang} 
-                    messages={messages[this.props.lang]}>
+      <IntlProvider locale={lang} 
+                    messages={messages[lang]}>
 
 
             {this.state.showBackdrop && (
